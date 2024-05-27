@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "DINCyr";
+  src: url("./fonts/DinCyRg.woff") format("woff"),
+  url("./fonts/DinCyMd.woff") format("woff"),
+  url("./fonts/DinCyLt.woff") format("woff"),
+  url("./fonts/DinCyBk.woff") format("woff"),
+  url("./fonts/DinCyBd.woff") format("woff");
+}
+
+.MuiTypography-root {
+  font-family: DINCyr, Arial, sans-serif !important;
+ /* font-weight: 600 !important;*/
+
+}

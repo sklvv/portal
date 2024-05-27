@@ -1,0 +1,62 @@
+.authBG{
+  background-image: url('../../img/auth/authBG.png');
+}
+.logoBG{
+  background-image: url('../../img/auth/logo.png');
+  background-repeat: no-repeat;
+  background-size: 26%;
+  background-position: 5% 5%;
+}
+
+.lionBG {
+  background-image: url('../../img/auth/Lion.png');
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 57%;
+}
+
+.loginContainer {
+  font-family: DINCyr,Arial,sans-serif!important;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .box {
+    background-color: #fff;
+    border-left: 10px solid rgb(86 190 6);
+    border-radius: 30px;
+    box-shadow: 0 4px 17px rgba(0,0,0,.17);
+    width: 350px;
+
+    position: fixed;
+    >div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      .img{
+        width: 80%;
+        margin: 0 auto;
+        padding-top: 15px;
+      }
+    }
+
+
+  }
+}
+
+
+.blink {
+  animation: blink-animation 1s steps(10, start) infinite;
+  -webkit-animation: blink-animation 1s steps(10, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}

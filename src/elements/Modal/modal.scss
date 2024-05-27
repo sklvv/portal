@@ -1,0 +1,54 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  /*border: 1px solid rgba(0,0,0,.2);*/
+  border-left: 15px solid rgb(76, 178, 66);
+  padding: 14px 32px;
+  outline: none;
+
+}
+
+.modalBtn {
+  position: absolute;
+  right: -37px;
+  top: -37px;
+  button {
+    color: white;
+  }
+}
+
+.modalBody2{
+  font-size: 0.875rem;
+}
+
+code {
+  /*background-color: #f7f7f7;*/
+  /*padding: 10px 10px;*/
+  /*width: 100%;*/
+  color: grey;
+  /*border-radius: 4px;*/
+  display: block;
+
+  border-radius: 12px;
+  padding: 10px;
+  border: 1px solid;
+  border-color: #E4E4E4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.MuiChip-label {
+  color: white;
+}
+
+
+.tred {
+  color: #f60209;
+}
+.tyellow {
+  color: #EBDA09
+}
+

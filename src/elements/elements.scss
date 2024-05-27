@@ -1,0 +1,13 @@
+.blockShadow {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+  margin: 5px;
+}
+
+
+.custom-tooltip {
+  background-color: #7C7C7C;
+  padding: 3px 5px;
+  border-radius: 5px;
+  /*border: 1px solid white;*/
+  max-width: 300px;
+}
