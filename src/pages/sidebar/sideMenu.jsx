@@ -2,12 +2,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import List from "@mui/material/List";
 import '../layout.scss'
-import {Typography} from "@mui/material";
+import {ListItemIcon, Typography} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import guardian_black from '../../img/sidebar/guardian_black.png'
 import {setActive} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
+
+import CoPresentIcon from '@mui/icons-material/CoPresent';
+
 
 const SideMenu = () => {
     const mode = useSelector(state => state.header.mode);
@@ -52,9 +55,10 @@ export default SideMenu;
 const SideBarList = ({item})=>{
     return (
         <ListItemButton sx={{height: 48,px: 2.5}}>
-            <img className='menuIcon' src={item.icon} alt={item.name}
+            {/*<img className='menuIcon' src={item.icon} alt={item.name}
                  style={{filter: useTheme() ? 'brightness(0) invert(1)': null}}
-            />
+            />*/}
+            <ListItemIcon sx={{width: '44px'}}><CoPresentIcon/></ListItemIcon>
             <div>{item.name}</div>
         </ListItemButton>
     )

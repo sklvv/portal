@@ -9,64 +9,51 @@ import resources_black from "../../img/sidebar/resources_black.png";
 import guardian_black from '../../img/sidebar/guardian_black.png'
 
 const initialState = {
-    activePageName: 'Реализация',
+    activePageName: 'Портал',
     menuList: [
         {
             id: 1,
             icon: production_black,
-            name: 'Реализация',
+            name: 'Портал',
             active: true,
-            link: 'realisation'
+            link: 'main'
         },
         {
             id: 2,
             icon: sales_black,
-            name: 'Продажи',
+            name: 'Телефоны',
             active: false,
-            link: 'sales'
+            link: 'phoneBook'
         },
         {
             id: 3,
             icon: goal_black,
-            name: 'Цели показатели',
+            name: 'Пользователи',
             active: false,
-            link: 'goals'
+            link: 'userAdmin'
         },
         {
             id: 4,
             icon: economics_black,
-            name: 'Экономика',
+            name: 'Конфиг. iBoard',
             active: false,
-            link: 'econimics'
+            link: 'iboardAdmin'
         },
         {
             id: 5,
             icon: finance_black,
-            name: 'Финансы',
+            name: 'Конфиг. Dashboard',
             active: false,
-            link: 'finance'
+            link: 'dashboardAdmin'
         },
         {
             id: 6,
             icon: equality_black,
-            name: 'Баланс',
+            name: 'Инвентаризация ИТ',
             active: false,
-            link: 'balance'
+            link: 'inventory'
         },
-        {
-            id: 7,
-            icon: resources_black,
-            name: 'Ресурсы',
-            active: false,
-            link: 'resources'
-        },
-        {
-            id: 8,
-            icon: guardian_black,
-            name: 'Потери, Разрывы, Развитие',
-            active: false,
-            link: 'lost_develop'
-        },
+
     ],
 }
 

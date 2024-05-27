@@ -1,3 +1,4 @@
+/*
 @font-face {
   font-family: "DINCyr";
   src: url("./fonts/DinCyRg.woff") format("woff"),
@@ -6,10 +7,12 @@
   url("./fonts/DinCyBk.woff") format("woff"),
   url("./fonts/DinCyBd.woff") format("woff");
 }
+*/
 
+/*DINCyr*/
 body {
   margin: 0;
-  font-family: DINCyr,Arial,sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: Arial,sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
