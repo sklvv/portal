@@ -2,14 +2,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import List from "@mui/material/List";
 import '../layout.scss'
-import {ListItemIcon, Typography} from "@mui/material";
+import {ListItemIcon} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import guardian_black from '../../img/sidebar/guardian_black.png'
 import {setActive} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
-
-import CoPresentIcon from '@mui/icons-material/CoPresent';
 
 
 const SideMenu = () => {
@@ -17,20 +15,24 @@ const SideMenu = () => {
     const menuList = useSelector(state => state.sidemenu.menuList);
     const dispatch = useDispatch()
 
-    const renderList = (data)=>{
+    const renderList = (data, admin = false)=>{
         if (data){
-            return data.map(item => {
+            let newData = []
+            if (!admin){
+                newData = data.filter(i => i.admin !== true)
+            } else {
+                newData = data.filter(i => i.admin === true)
+            }
+
+            return newData.map(item => {
                 return  <Link to={`/${item.link}`} key={item.id}>
                     <ListItem disablePadding  className={item.active ? 'active' : null}
                               onClick={()=> dispatch(setActive(item.id))}
                               sx={{'&:hover': {backgroundColor: mode === 'dark' ? 'rgb(81 81 81)' : ''}}}
                     >
                         {
-                            item.id === 8
-                            ?
-                                <SpecialId8 item={item}/>
-                            :
-                                <SideBarList item={item}/>
+                            <SideBarList item={item}/>
+                           /* item.id === 8 ?<SpecialId8 item={item}/> : <SideBarList item={item}/>*/
                         }
                     </ListItem>
                 </Link>
@@ -38,12 +40,19 @@ const SideMenu = () => {
         }
       }
     const sidebarData = renderList(menuList)
+    const sidebarAdmin = renderList(menuList, true)
 
     return (
         <div className='sideMenu' style={{background: useTheme('bg', 'sideBar')}}>
             <List>
                 {
                     sidebarData ? sidebarData : ''
+                }
+            </List>
+            <div className='divide'><span>Администрирование</span></div>
+            <List>
+                {
+                    sidebarAdmin ? sidebarAdmin : ''
                 }
             </List>
         </div>
@@ -58,12 +67,13 @@ const SideBarList = ({item})=>{
             {/*<img className='menuIcon' src={item.icon} alt={item.name}
                  style={{filter: useTheme() ? 'brightness(0) invert(1)': null}}
             />*/}
-            <ListItemIcon sx={{width: '44px'}}><CoPresentIcon/></ListItemIcon>
+            <ListItemIcon sx={{width: '44px', color: useTheme('text')}}>{item.icon}</ListItemIcon>
             <div>{item.name}</div>
         </ListItemButton>
     )
 }
 
+/*
 const SpecialId8 = (item) => {
     return (
             <ListItemButton sx={{height: 80,px: 2.5}}>
@@ -76,4 +86,4 @@ const SpecialId8 = (item) => {
                 </div>
             </ListItemButton>
     )
-}
+}*/

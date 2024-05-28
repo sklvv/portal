@@ -1,57 +1,69 @@
 import {createSlice} from '@reduxjs/toolkit'
-import production_black from "../../img/sidebar/production_black.png";
-import sales_black from "../../img/sidebar/sales_black.png";
-import goal_black from "../../img/sidebar/goal_black.png";
-import economics_black from "../../img/sidebar/economics_black.png";
-import finance_black from "../../img/sidebar/finance_black.png";
-import equality_black from "../../img/sidebar/equality_black.png";
-import resources_black from "../../img/sidebar/resources_black.png";
-import guardian_black from '../../img/sidebar/guardian_black.png'
+import CallIcon from '@mui/icons-material/Call';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
+import ApiIcon from '@mui/icons-material/Api';
+import NotListedLocationIcon from '@mui/icons-material/NotListedLocation';
+import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
+import CloudSyncIcon from '@mui/icons-material/CloudSync';
 
 const initialState = {
     activePageName: 'Портал',
     menuList: [
         {
             id: 1,
-            icon: production_black,
+            icon: <CoPresentIcon/>,
             name: 'Портал',
             active: true,
-            link: 'main'
+            link: 'main',
+            admin: false,
         },
         {
             id: 2,
-            icon: sales_black,
-            name: 'Телефоны',
+            icon: <CallIcon/>,
+            name: 'Тел. справочник',
             active: false,
-            link: 'phoneBook'
+            link: 'phoneBook',
+            admin: false,
         },
         {
             id: 3,
-            icon: goal_black,
+            icon: <NotListedLocationIcon/>,
             name: 'Пользователи',
             active: false,
-            link: 'userAdmin'
+            link: 'userAdmin',
+            admin: true,
         },
         {
             id: 4,
-            icon: economics_black,
-            name: 'Конфиг. iBoard',
+            icon: <ApiIcon/>,
+            name: 'iBoard',
             active: false,
-            link: 'iboardAdmin'
+            link: 'iboardAdmin',
+            admin: true,
         },
         {
             id: 5,
-            icon: finance_black,
-            name: 'Конфиг. Dashboard',
+            icon: <ApiIcon/>,
+            name: 'Dashboard',
             active: false,
-            link: 'dashboardAdmin'
+            link: 'dashboardAdmin',
+            admin: true,
         },
         {
             id: 6,
-            icon: equality_black,
-            name: 'Инвентаризация ИТ',
+            icon: <ImportantDevicesIcon/>,
+            name: 'Учет техники',
             active: false,
-            link: 'inventory'
+            link: 'inventory',
+            admin: true,
+        },
+        {
+            id: 7,
+            icon: <CloudSyncIcon/>,
+            name: 'Ресурсы',
+            active: false,
+            link: 'resources',
+            admin: false,
         },
 
     ],

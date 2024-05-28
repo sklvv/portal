@@ -48,6 +48,7 @@ function App() {
 
                         <Route  path='/dashboardAdmin' element={<Page404 />}/>
                         <Route  path='/inventory' element={<Page404 />}/>
+                        <Route  path='/resources' element={<Page404 />}/>
 
                         {/*<Route index element={<RequireAuth><Realization/></RequireAuth>}/>
                         <Route  path='/realisation' element={<RequireAuth><Realization /></RequireAuth>}/>

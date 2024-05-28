@@ -38,6 +38,18 @@ main>div {
         width: 230px;
         overflow: visible;
     }
+    .divide {
+        height: 24px;
+        padding-left: 30px;
+        color: grey;
+    }
+    .divide>span {
+        display: none;
+    }
+    &:hover .divide>span{
+        display: unset;
+    }
+
     .active {
         background: rgb(76, 178, 66);
         color: white;
