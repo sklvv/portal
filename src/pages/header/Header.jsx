@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {
     AppBar,
-    Box,
-    Toolbar,
+    Box, IconButton,
+    Toolbar, Tooltip,
     Typography
 } from "@mui/material";
 import {useAuth} from "../../hook/useAuth";
@@ -12,6 +12,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {setMode} from './HeaderSlice'
 import DropMenu from "./DropMenu";
 import {useTheme} from "../../hook/useTheme";
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import {useModal} from "../../hook/useModal";
+import Switch from "@mui/material/Switch";
+
 
 
 const Header = () => {
@@ -19,21 +23,31 @@ const Header = () => {
     const {signOut} = useAuth()
     const dispatch = useDispatch();
     const activePageName = useSelector(state => state.sidemenu.activePageName);
-
     const userName = localStorage.getItem('name') || ''
 
+    /*проверить есть ли логин и отобразить авторизацию или подтвердить*/
+    let authed = JSON.parse(localStorage.getItem('auth'))
+
+    const {setModal} = useModal()
+
     /* получить текущую тему*/
-    const getTheme = ()=>{
-        return  JSON.parse(localStorage.getItem('theme'))
-    }
+    const getTheme = localStorage.getItem('theme')
 
     // смена темы
-    const toggleTheme = () => {
-        let theme = JSON.parse(localStorage.getItem('theme'))
-        let toggle = !theme
-        localStorage.setItem('theme', JSON.stringify(toggle));
-        dispatch(setMode(toggle))
+    const toggleTheme = (newTheme) => {
+        localStorage.setItem('theme', newTheme);
+        dispatch(setMode(newTheme))
     }
+    // смена темы без авторизации
+    const [switchState, setSwitchState] = useState(true)
+    const unAuthTheme = ()=>{
+        let x = localStorage.getItem('theme')
+        setSwitchState(!switchState)
+        let y = x === 'dark' ? 'light' : 'dark'
+        toggleTheme(y)
+    }
+    const toolipState = switchState ? 'Вкл. темную тему' : 'Вкл. светлую тему'
+
 
     // разлогинить
     const handleLogout = () => {
@@ -46,7 +60,12 @@ const Header = () => {
 
     useEffect(() => {
         window.setInterval(() => setTime(new Date()), 60 * 1000);
-        dispatch(setMode(getTheme()))
+        toggleTheme(getTheme)
+        /*setSwitchState(useTheme)*/
+        if (getTheme === 'dark'){setSwitchState(false)}
+        else {setSwitchState(true)}
+
+
     }, []);
 
     const ruDate = new Intl.DateTimeFormat("ru", {
@@ -57,13 +76,14 @@ const Header = () => {
         .format(new Date())
         .replace(/(\u0433\.?)/, "");
 
+    const isTheme = useTheme('text')
 
       return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="fixed" sx={{background: useTheme('bg', 'header')}}>
                 <Toolbar  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pl: '0 !important', pr: '0 !important'}}>
                     <Box className='logo' >
-                        <img src={useTheme('logo')} alt="iBoard" style={{width: '190px'}}/>
+                        <img src={useTheme('logo')} alt="Portal" style={{width: '190px'}}/>
                         <Typography component="div" sx={{fontWeight: 600, fontSize: '14px', color: '#4cb242'}}>Portal</Typography>
                     </Box>
                     <Box sx={{
@@ -77,8 +97,20 @@ const Header = () => {
                             <Typography  component="div">{formattedTime}</Typography>
                             <Typography component="div">{ruDate}</Typography>
                         </Box>
-                        <Typography variant="h6" component="div" sx={{fontWeight: 600}}>{activePageName}</Typography>
-                        <DropMenu userName={userName} toggleTheme={toggleTheme} handleLogout={handleLogout} />
+                        <Typography  component="div" sx={{fontSize: 24, fontWeight: 500}}>{activePageName}</Typography>
+                        {
+                            authed
+                            ? <DropMenu userName={userName} toggleTheme={toggleTheme} handleLogout={handleLogout} />
+                            : <div>
+                                    <Tooltip title={<Typography variant="body2" gutterBottom>{toolipState}</Typography>}>
+                                        <Switch onClick={unAuthTheme} checked={switchState} color="success"/>
+                                    </Tooltip>
+                                    <Tooltip title={<Typography variant="body2" gutterBottom>Авторизация</Typography>}>
+                                        <IconButton size="large" sx={{color: isTheme}} onClick={()=>setModal('auth')}><EngineeringIcon /></IconButton>
+                                    </Tooltip>
+                              </div>
+                        }
+                        {/*<DropMenu userName={userName} toggleTheme={toggleTheme} handleLogout={handleLogout} />*/}
                     </Box>
                 </Toolbar>
             </AppBar>

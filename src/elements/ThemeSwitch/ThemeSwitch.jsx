@@ -3,6 +3,7 @@ import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
 import {FormControlLabel, Tooltip, Typography} from "@mui/material";
 import React from "react";
+import {useSelector} from "react-redux";
 
 
 
@@ -55,10 +56,27 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 
 export default function ThemeSwitch({toggleTheme, handleClose}) {
+    const mode = useSelector(state => state.header.mode);
+    console.log(mode)
+    const checkMode = mode !== 'dark'
+    console.log(checkMode)
+
+    const toggler = ()=>{
+        let newTheme;
+        if (mode === 'dark'){
+            newTheme = 'light'
+        } else {
+            newTheme = 'dark'
+        }
+        toggleTheme(newTheme)
+    }
+
+
+
     return (
         <FormGroup>
             <FormControlLabel
-                control={ <MaterialUISwitch defaultChecked={false} onClick={()=> {toggleTheme(); handleClose()}} />}
+                control={ <MaterialUISwitch defaultChecked={false} onClick={()=> {toggler(); handleClose()}} />}
                 label="Смена темы"
             />
            {/* <Tooltip title={<Typography variant="body2" gutterBottom>Смена темы</Typography>}>

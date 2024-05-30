@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 
 /*инпут селекта нижняя линия зеленая*/
 export const GFormControl = styled(FormControl)(({ theme }) => ({
-    "& .MuiInput-underline:after": { borderBottomColor: '#4cb242'}
+    "& .MuiInput-underline:after": { borderBottomColor: '#4cb242'},
 }));
 /*лейбл селекта*/
 export const GInputLabel = styled(InputLabel)(({ theme }) => ({
@@ -13,6 +13,7 @@ export const GInputLabel = styled(InputLabel)(({ theme }) => ({
 /*инпут поиска нижняя линия зеленая*/
 export const GTextField = styled(TextField)(({ theme }) => ({
     "& .MuiInput-underline:after": { borderBottomColor: '#4cb242'},
+    '& .Mui-focused': {color: '#4cb242'},
    /* 'input': {
         '&::placeholder': {
             color: 'white'

@@ -3,6 +3,7 @@ import * as React from "react";
 import {Chip} from "@mui/material";
 import './modal.scss'
 import {dark, light} from "../../utils/theme";
+import ModalAuth from "./subpages/ModalAuth";
 
 
 
@@ -20,6 +21,11 @@ export const modalData = (variant, mode)=>{
     let modalText = ''
 
     switch (variant){
+        case 'auth':
+            modalText =  <>
+                <ModalAuth />
+             </>
+            break;
         case '% СПД':
             modalText =  <>
                 <Typography variant="h5" gutterBottom sx={{fontWeight: 600}}>% Cуммы подписанных договорных документов</Typography>

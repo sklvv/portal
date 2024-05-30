@@ -23,7 +23,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Node/portal",
+    "last_opened_file_path": "C:/Node/dashboard",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -42,6 +42,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716798819819</updated>
       <workItem from="1716798822576" duration="17567000" />
+      <workItem from="1716956666377" duration="20214000" />
     </task>
     <servers />
   </component>

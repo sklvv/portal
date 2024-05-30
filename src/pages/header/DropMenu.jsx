@@ -7,7 +7,6 @@ import './header.scss'
 import ThemeSwitch from "../../elements/ThemeSwitch/ThemeSwitch";
 import {Divider, ListItemIcon, ListItemText} from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
-import {useSelector} from "react-redux";
 import Box from "@mui/material/Box";
 import {useTheme} from "../../hook/useTheme";
 
@@ -16,7 +15,6 @@ import {useTheme} from "../../hook/useTheme";
 
 export default function DropMenu({userName, toggleTheme, handleLogout}) {
     const [anchorEl, setAnchorEl] = useState(null);
-    const mode = useSelector(state => state.header.mode);
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {

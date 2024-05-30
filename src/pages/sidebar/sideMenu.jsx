@@ -4,7 +4,6 @@ import List from "@mui/material/List";
 import '../layout.scss'
 import {ListItemIcon} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import guardian_black from '../../img/sidebar/guardian_black.png'
 import {setActive} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
@@ -30,10 +29,7 @@ const SideMenu = () => {
                               onClick={()=> dispatch(setActive(item.id))}
                               sx={{'&:hover': {backgroundColor: mode === 'dark' ? 'rgb(81 81 81)' : ''}}}
                     >
-                        {
                             <SideBarList item={item}/>
-                           /* item.id === 8 ?<SpecialId8 item={item}/> : <SideBarList item={item}/>*/
-                        }
                     </ListItem>
                 </Link>
             })
@@ -73,17 +69,3 @@ const SideBarList = ({item})=>{
     )
 }
 
-/*
-const SpecialId8 = (item) => {
-    return (
-            <ListItemButton sx={{height: 80,px: 2.5}}>
-                <img className='menuIcon' src={guardian_black} alt={item.name}
-                     style={{filter: useTheme() ? 'brightness(0) invert(1)': null}}/>
-                <div>
-                    <Typography component="div">Потери</Typography>
-                    <Typography component="div">Разрывы</Typography>
-                    <Typography component="div">Развитие</Typography>
-                </div>
-            </ListItemButton>
-    )
-}*/
