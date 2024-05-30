@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import TextField from "@mui/material/TextField";
 import {Box, Button, IconButton, InputAdornment, Typography} from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
@@ -12,13 +11,15 @@ import {useNavigate} from "react-router-dom";
 import {useModal} from "../../../hook/useModal";
 import '../modal.scss'
 import {GTextField} from "../../CustomMui/customMui";
+import {useAuthUpdate} from "../../../hook/useAuthUpdate";
 
 const ModalAuth = () => {
     const navigate = useNavigate();
     const {signIn} = useAuth()
     const {exitModal} = useModal()
 
-    const [auth, setAuth] = useState(false)
+    /*const [auth, setAuth] = useState(false)*/
+    const {auth, setAuth} = useAuthUpdate()
     const [authMsg, setAuthMsg] = useState('')
 
     /*проверить что п-ль авторизован не более 1 дня*/
@@ -66,6 +67,7 @@ const ModalAuth = () => {
                 localStorage.setItem('name', response.data.name);
                 setAuth(true)
                 localStorage.setItem('login', loginDateCheck)
+                /*signIn(response.data.name, )*/
             }
         } catch (e) {
             if (e.response.status === 401) {

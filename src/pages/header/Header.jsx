@@ -15,6 +15,7 @@ import {useTheme} from "../../hook/useTheme";
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import {useModal} from "../../hook/useModal";
 import Switch from "@mui/material/Switch";
+import {useAuthUpdate} from "../../hook/useAuthUpdate";
 
 
 
@@ -26,8 +27,7 @@ const Header = () => {
     const userName = localStorage.getItem('name') || ''
 
     /*проверить есть ли логин и отобразить авторизацию или подтвердить*/
-    let authed = JSON.parse(localStorage.getItem('auth'))
-
+    const {auth, setAuth} = useAuthUpdate()
     const {setModal} = useModal()
 
     /* получить текущую тему*/
@@ -52,6 +52,7 @@ const Header = () => {
     // разлогинить
     const handleLogout = () => {
         localStorage.setItem('auth', JSON.stringify(false));
+        setAuth(false)
         signOut(()=> navigate('/', {replace: true}));
     }
 
@@ -99,7 +100,7 @@ const Header = () => {
                         </Box>
                         <Typography  component="div" sx={{fontSize: 24, fontWeight: 500}}>{activePageName}</Typography>
                         {
-                            authed
+                            auth
                             ? <DropMenu userName={userName} toggleTheme={toggleTheme} handleLogout={handleLogout} />
                             : <div>
                                     <Tooltip title={<Typography variant="body2" gutterBottom>{toolipState}</Typography>}>

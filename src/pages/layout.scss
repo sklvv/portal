@@ -60,6 +60,9 @@ main>div {
             filter: brightness(0) invert(1);
             transition: filter .5s ease-in-out;
         }
+        div {
+            color: white;
+        }
     }
 
     .menuIcon {

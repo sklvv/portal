@@ -7,20 +7,37 @@ import {useDispatch, useSelector} from "react-redux";
 import {setActive} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
+import {useEffect, useState} from "react";
+import {useAuthUpdate} from "../../hook/useAuthUpdate";
+
 
 
 const SideMenu = () => {
     const mode = useSelector(state => state.header.mode);
     const menuList = useSelector(state => state.sidemenu.menuList);
     const dispatch = useDispatch()
+    let authed = JSON.parse(localStorage.getItem('auth'))
+    console.log(authed)
+    /*const [show, setShow] = useState(false)*/
+
+/*    let sidebarAdmin = ''
+
+    useEffect(()=>{
+        setShow(authed)
+        if (authed){
+            sidebarAdmin = renderList(menuList, true)
+        }
+
+    },[])*/
+    const {auth, setAuth} = useAuthUpdate()
 
     const renderList = (data, admin = false)=>{
         if (data){
             let newData = []
-            if (!admin){
-                newData = data.filter(i => i.admin !== true)
-            } else {
+            if (admin ){
                 newData = data.filter(i => i.admin === true)
+            } else {
+                newData = data.filter(i => i.admin !== true)
             }
 
             return newData.map(item => {
@@ -48,7 +65,7 @@ const SideMenu = () => {
             <div className='divide'><span>Администрирование</span></div>
             <List>
                 {
-                    sidebarAdmin ? sidebarAdmin : ''
+                    auth && sidebarAdmin
                 }
             </List>
         </div>
@@ -63,7 +80,8 @@ const SideBarList = ({item})=>{
             {/*<img className='menuIcon' src={item.icon} alt={item.name}
                  style={{filter: useTheme() ? 'brightness(0) invert(1)': null}}
             />*/}
-            <ListItemIcon sx={{width: '44px', color: useTheme('text')}}>{item.icon}</ListItemIcon>
+            {/*<ListItemIcon sx={{width: '44px', color: useTheme('text')}}>{item.icon}</ListItemIcon>*/}
+            <ListItemIcon sx={{width: '44px', color: '#4ba93a'}}>{item.icon}</ListItemIcon>
             <div>{item.name}</div>
         </ListItemButton>
     )

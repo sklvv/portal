@@ -5,6 +5,11 @@ import SideMenu from "./sidebar/sideMenu";
 import {useTheme} from "../hook/useTheme";
 
 const Layout = () => {
+    let authed = JSON.parse(localStorage.getItem('auth'))
+    console.log(authed)
+    /*const [show, setShow] = useState(false)*/
+
+
     return (
         <>
             <header>
