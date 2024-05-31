@@ -8,7 +8,7 @@ import {setActive} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
 
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useAuth} from "../../hook/useAuth";
 
 
@@ -29,7 +29,6 @@ const SideMenu = () => {
             } else {
                 newData = data.filter(i => i.admin !== true)
             }
-
             return newData.map(item => {
                 return  <Link to={`/${item.link}`} key={item.id}>
                     <ListItem disablePadding  className={item.active ? 'active' : null}
@@ -47,11 +46,9 @@ const SideMenu = () => {
     let sidebarAdmin = renderList(menuList, true)
 
     useEffect(()=>{
-        console.log(auth)
         if (!auth){
             sidebarAdmin = ''
         }
-
     },[auth])
 
     return (
@@ -65,12 +62,6 @@ const SideMenu = () => {
                     </div>
                     : ''
             }
-            {/*<div className='divide'><span>Администрирование</span></div>
-            <List>
-                {
-                    auth && sidebarAdmin
-                }
-            </List>*/}
         </div>
     );
 };

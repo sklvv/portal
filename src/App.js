@@ -11,6 +11,7 @@ import {useSelector} from "react-redux";
 import TransitionsModal from "./elements/Modal/Modal";
 import PhoneBook from "./pages/PhoneBook/PhoneBook";
 import Main from "./pages/main/Main";
+import UserAdmin from "./pages/userAdmin/UserAdmin";
 
 
 function App() {
@@ -33,12 +34,12 @@ function App() {
                         <Route index element={<Main/>}/>
                         <Route  path='/main' element={<Main />}/>
                         <Route  path='/phoneBook' element={<PhoneBook />}/>
-                        <Route  path='/userAdmin' element={<Page404 />}/>
+                        <Route  path='/userAdmin' element={<RequireAuth><UserAdmin /></RequireAuth>}/>
                         <Route  path='/iboardAdmin' element={<Page404 />}/>
-
                         <Route  path='/dashboardAdmin' element={<Page404 />}/>
                         <Route  path='/inventory' element={<Page404 />}/>
                         <Route  path='/resources' element={<Page404 />}/>
+                        <Route  path='/transport' element={<Page404 />}/>
 
                         {/*<Route index element={<RequireAuth><Realization/></RequireAuth>}/>
                         <Route  path='/realisation' element={<RequireAuth><Realization /></RequireAuth>}/>

@@ -5,6 +5,7 @@ import ApiIcon from '@mui/icons-material/Api';
 import NotListedLocationIcon from '@mui/icons-material/NotListedLocation';
 import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
+import DriveEtaIcon from '@mui/icons-material/DriveEta';
 
 const initialState = {
     activePageName: 'Портал',
@@ -64,6 +65,14 @@ const initialState = {
             active: false,
             link: 'resources',
             admin: false,
+        },
+        {
+            id: 8,
+            icon: <DriveEtaIcon/>,
+            name: 'Транспорт',
+            active: false,
+            link: 'transport',
+            admin: true,
         },
 
     ],
