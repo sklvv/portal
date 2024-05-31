@@ -39,6 +39,7 @@ main>div {
         overflow: visible;
     }
     .divide {
+        margin-top: 20px;
         height: 24px;
         padding-left: 30px;
         color: grey;
@@ -54,14 +55,16 @@ main>div {
         background: rgb(76, 178, 66);
         color: white;
         transition: color .5s ease-in-out;
-        font-style: italic;
+       /* font-style: italic;*/
+        font-weight: 600;
         text-shadow: 1px 1px black;
-        img {
+        /*img {
             filter: brightness(0) invert(1);
             transition: filter .5s ease-in-out;
-        }
+        }*/
         div {
             color: white;
+            text-shadow: 1px 1px 1px black;
         }
     }
 

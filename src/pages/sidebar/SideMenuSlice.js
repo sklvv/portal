@@ -11,7 +11,7 @@ const initialState = {
     menuList: [
         {
             id: 1,
-            icon: <CoPresentIcon/>,
+            icon: <NotListedLocationIcon/>,
             name: 'Портал',
             active: true,
             link: 'main',
@@ -27,7 +27,7 @@ const initialState = {
         },
         {
             id: 3,
-            icon: <NotListedLocationIcon/>,
+            icon: <CoPresentIcon/>,
             name: 'Пользователи',
             active: false,
             link: 'userAdmin',

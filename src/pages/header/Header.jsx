@@ -6,7 +6,6 @@ import {
     Typography
 } from "@mui/material";
 import {useAuth} from "../../hook/useAuth";
-import {useNavigate} from "react-router";
 import './header.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {setMode} from './HeaderSlice'
@@ -20,7 +19,6 @@ import Switch from "@mui/material/Switch";
 
 
 const Header = () => {
-    const navigate = useNavigate();
     const {signOut,checkLogin, user} = useAuth()
     const dispatch = useDispatch();
     const activePageName = useSelector(state => state.sidemenu.activePageName);
@@ -97,13 +95,13 @@ const Header = () => {
                         <Typography  component="div" sx={{fontSize: 24, fontWeight: 500}}>{activePageName}</Typography>
                         {
                             user
-                            ? <DropMenu userName={userName} toggleTheme={toggleTheme} handleLogout={handleLogout} />
+                            ? <DropMenu user={user} toggleTheme={toggleTheme} handleLogout={handleLogout} />
                             : <div>
                                     <Tooltip title={<Typography variant="body2" gutterBottom>{toolipState}</Typography>}>
                                         <Switch onClick={unAuthTheme} checked={switchState} color="success"/>
                                     </Tooltip>
                                     <Tooltip title={<Typography variant="body2" gutterBottom>Авторизация</Typography>}>
-                                        <IconButton size="large" sx={{color: isTheme}} onClick={()=>setModal('auth')}><EngineeringIcon /></IconButton>
+                                        <IconButton size="large" sx={{color: isTheme, paddingRight: '10px'}} onClick={()=>setModal('auth')}><EngineeringIcon /></IconButton>
                                     </Tooltip>
                               </div>
                         }

@@ -1,8 +1,7 @@
-import React from 'react';
 import './404.scss'
 import {useNavigate} from "react-router";
-import {Box, Button, Card, CardContent} from "@mui/material";
-import {palette} from "../../utils/theme";
+import {Box, Button} from "@mui/material";
+
 
 const Page404 = () => {
     const navigate = useNavigate()
@@ -12,54 +11,11 @@ const Page404 = () => {
 
     return (
         <div className='block'>
-            {/*<Card sx={{maxWidth: 275}}>
-                <CardContent>
-                    <h2>Ошибка 404</h2>
-                    <p>Страница не найдена</p>
-                    <Button
-                        style={{ background: palette.primary[900], color: palette.white }}
-                        onClick={goBack}
-                        variant="contained"
-                    >
-                        Назад
-                    </Button>
-                    <Button
-                        style={{
-                            background: palette.primary[900],
-                            color: palette.white,
-                            marginLeft: "10px",
-                        }}
-                        onClick={goHome}
-                        variant="contained"
-                    >
-                        На главную
-                    </Button>
-                </CardContent>
-
-            </Card>*/}
             <Box sx={{maxWidth: 275}}>
-
-                    <h1>Ошибка 404</h1>
-                    <h2>Страница не найдена</h2>
-                    <Button
-                        style={{ background: palette.primary[900], color: palette.white }}
-                        onClick={goBack}
-                        variant="contained"
-                    >
-                        Назад
-                    </Button>
-                    <Button
-                        style={{
-                            background: palette.primary[900],
-                            color: palette.white,
-                            marginLeft: "10px",
-                        }}
-                        onClick={goHome}
-                        variant="contained"
-                    >
-                        На главную
-                    </Button>
-
+                <h1>Ошибка 404</h1>
+                <h2>Страница не найдена</h2>
+                {/*<Button color='success' onClick={goBack} variant="contained">Назад</Button>
+                <Button color='success' sx={{marginLeft: "10px", }} onClick={goHome} variant="contained">На главную</Button>*/}
             </Box>
         </div>
     );

@@ -2,13 +2,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import List from "@mui/material/List";
 import '../layout.scss'
-import {ListItemIcon} from "@mui/material";
+import {Divider, ListItemIcon} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {setActive} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
 
 import {useEffect, useState} from "react";
+import {useAuth} from "../../hook/useAuth";
 
 
 
@@ -16,23 +17,9 @@ const SideMenu = () => {
     const mode = useSelector(state => state.header.mode);
     const menuList = useSelector(state => state.sidemenu.menuList);
     const dispatch = useDispatch()
-    const isAuth = useSelector(state => state.header.isAuth);
+    const {auth} = useAuth()
 
-    /*надо ли???*/
-    let authed = JSON.parse(localStorage.getItem('auth'))
-
-    /*const [show, setShow] = useState(false)*/
-
-
-    const [show, setShow] = useState(false)
-    useEffect(()=>{
-
-        if (isAuth){
-            setShow(true)
-        }
-
-    },[isAuth])
-
+    const color = useTheme('divider')
 
     const renderList = (data, admin = false)=>{
         if (data){
@@ -51,29 +38,32 @@ const SideMenu = () => {
                     >
                             <SideBarList item={item}/>
                     </ListItem>
+                    <Divider sx={{borderColor: color}}/>
                 </Link>
             })
         }
       }
     const sidebarData = renderList(menuList)
-    let sidebarAdmin = isAuth && renderList(menuList, true) || ''
+    let sidebarAdmin = renderList(menuList, true)
+
+    useEffect(()=>{
+        console.log(auth)
+        if (!auth){
+            sidebarAdmin = ''
+        }
+
+    },[auth])
 
     return (
         <div className='sideMenu' style={{background: useTheme('bg', 'sideBar')}}>
-            <List>
-                {
-                    sidebarData ? sidebarData : ''
-                }
-            </List>
+            <List>{sidebarData ? sidebarData : ''}</List>
             {
-                isAuth && <div>
-                    <div className='divide'><span>Администрирование</span></div>
-                    <List>
-                        {
-                            sidebarAdmin
-                        }
-                    </List>
-                </div>
+                auth
+                    ? <div>
+                        <div className='divide'><span>Администрирование</span></div>
+                        <List>{sidebarAdmin}</List>
+                    </div>
+                    : ''
             }
             {/*<div className='divide'><span>Администрирование</span></div>
             <List>
