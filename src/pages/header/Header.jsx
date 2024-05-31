@@ -19,12 +19,9 @@ import Switch from "@mui/material/Switch";
 
 
 const Header = () => {
+    const activePageName = useSelector(state => state.sidemenu.activePageName);
     const {signOut,checkLogin, user} = useAuth()
     const dispatch = useDispatch();
-    const activePageName = useSelector(state => state.sidemenu.activePageName);
-    const userName = localStorage.getItem('name') || ''
-
-
     const {setModal} = useModal()
 
     /* получить текущую тему*/
@@ -43,7 +40,7 @@ const Header = () => {
         let y = x === 'dark' ? 'light' : 'dark'
         toggleTheme(y)
     }
-    const toolipState = switchState ? 'Вкл. темную тему' : 'Вкл. светлую тему'
+    const tooltipState = switchState ? 'Вкл. темную тему' : 'Вкл. светлую тему'
 
 
     // разлогинить
@@ -97,7 +94,7 @@ const Header = () => {
                             user
                             ? <DropMenu user={user} toggleTheme={toggleTheme} handleLogout={handleLogout} />
                             : <div>
-                                    <Tooltip title={<Typography variant="body2" gutterBottom>{toolipState}</Typography>}>
+                                    <Tooltip title={<Typography variant="body2" gutterBottom>{tooltipState}</Typography>}>
                                         <Switch onClick={unAuthTheme} checked={switchState} color="success"/>
                                     </Tooltip>
                                     <Tooltip title={<Typography variant="body2" gutterBottom>Авторизация</Typography>}>

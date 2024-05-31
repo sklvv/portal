@@ -40,16 +40,6 @@ function App() {
                         <Route  path='/inventory' element={<Page404 />}/>
                         <Route  path='/resources' element={<Page404 />}/>
                         <Route  path='/transport' element={<Page404 />}/>
-
-                        {/*<Route index element={<RequireAuth><Realization/></RequireAuth>}/>
-                        <Route  path='/realisation' element={<RequireAuth><Realization /></RequireAuth>}/>
-                        <Route  path='/sales' element={<RequireAuth><Page404 /></RequireAuth>}/>
-                        <Route  path='/goals' element={<RequireAuth><Page404 /></RequireAuth>}/>
-                        <Route  path='/econimics' element={<RequireAuth><Page404 /></RequireAuth>}/>
-                        <Route  path='/finance' element={<RequireAuth><Page404 /></RequireAuth>}/>
-                        <Route  path='/balance' element={<RequireAuth><Page404 /></RequireAuth>}/>
-                        <Route  path='/resources' element={<RequireAuth><Page404 /></RequireAuth>}/>
-                        <Route  path='/lost_develop' element={<RequireAuth><Page404 /></RequireAuth>}/>*/}
                     </Route>
                 </Routes>
                 <TransitionsModal/>

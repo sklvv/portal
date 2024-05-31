@@ -81,10 +81,12 @@ main>div {
 
 
 .pageContainer {
-    padding-left: 94px;
+    /*padding-left: 94px;*/
+    padding-left: 80px;
+    padding-right: 15px;
     flex: 1 0 auto;
     height: calc(100vh - 65px);
-    max-width: 90%;
+    /*max-width: 90%;*/
     .main {
         display: flex;
         flex-direction: column;

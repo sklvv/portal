@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {setActive} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
-
 import {useEffect} from "react";
 import {useAuth} from "../../hook/useAuth";
 
@@ -71,10 +70,6 @@ export default SideMenu;
 const SideBarList = ({item})=>{
     return (
         <ListItemButton sx={{height: 48,px: 2.5}}>
-            {/*<img className='menuIcon' src={item.icon} alt={item.name}
-                 style={{filter: useTheme() ? 'brightness(0) invert(1)': null}}
-            />*/}
-            {/*<ListItemIcon sx={{width: '44px', color: useTheme('text')}}>{item.icon}</ListItemIcon>*/}
             <ListItemIcon sx={{width: '44px', color: '#4ba93a'}}>{item.icon}</ListItemIcon>
             <div>{item.name}</div>
         </ListItemButton>
