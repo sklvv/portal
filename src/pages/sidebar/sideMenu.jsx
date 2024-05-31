@@ -7,8 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {setActive} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
+
 import {useEffect, useState} from "react";
-import {useAuthUpdate} from "../../hook/useAuthUpdate";
 
 
 
@@ -16,20 +16,23 @@ const SideMenu = () => {
     const mode = useSelector(state => state.header.mode);
     const menuList = useSelector(state => state.sidemenu.menuList);
     const dispatch = useDispatch()
+    const isAuth = useSelector(state => state.header.isAuth);
+
+    /*надо ли???*/
     let authed = JSON.parse(localStorage.getItem('auth'))
-    console.log(authed)
+
     /*const [show, setShow] = useState(false)*/
 
-/*    let sidebarAdmin = ''
 
+    const [show, setShow] = useState(false)
     useEffect(()=>{
-        setShow(authed)
-        if (authed){
-            sidebarAdmin = renderList(menuList, true)
+
+        if (isAuth){
+            setShow(true)
         }
 
-    },[])*/
-    const {auth, setAuth} = useAuthUpdate()
+    },[isAuth])
+
 
     const renderList = (data, admin = false)=>{
         if (data){
@@ -53,7 +56,7 @@ const SideMenu = () => {
         }
       }
     const sidebarData = renderList(menuList)
-    const sidebarAdmin = renderList(menuList, true)
+    let sidebarAdmin = isAuth && renderList(menuList, true) || ''
 
     return (
         <div className='sideMenu' style={{background: useTheme('bg', 'sideBar')}}>
@@ -62,12 +65,22 @@ const SideMenu = () => {
                     sidebarData ? sidebarData : ''
                 }
             </List>
-            <div className='divide'><span>Администрирование</span></div>
+            {
+                isAuth && <div>
+                    <div className='divide'><span>Администрирование</span></div>
+                    <List>
+                        {
+                            sidebarAdmin
+                        }
+                    </List>
+                </div>
+            }
+            {/*<div className='divide'><span>Администрирование</span></div>
             <List>
                 {
                     auth && sidebarAdmin
                 }
-            </List>
+            </List>*/}
         </div>
     );
 };

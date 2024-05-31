@@ -7,42 +7,16 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {loginSchema} from "../../../pages/login/verify";
 import {useAuth} from "../../../hook/useAuth";
-import {useNavigate} from "react-router-dom";
 import {useModal} from "../../../hook/useModal";
 import '../modal.scss'
 import {GTextField} from "../../CustomMui/customMui";
-import {useAuthUpdate} from "../../../hook/useAuthUpdate";
+
 
 const ModalAuth = () => {
-    const navigate = useNavigate();
-    const {signIn} = useAuth()
+    const {signIn, checkLogin} = useAuth()
     const {exitModal} = useModal()
 
-    /*const [auth, setAuth] = useState(false)*/
-    const {auth, setAuth} = useAuthUpdate()
     const [authMsg, setAuthMsg] = useState('')
-
-    /*проверить что п-ль авторизован не более 1 дня*/
-    const checkLogin = ()=>{
-        const date = localStorage.getItem('login')
-        const today = new Date();
-        const currentDay = today.toISOString().slice(0,10);
-
-        if(date !== currentDay){
-            localStorage.setItem('auth', false)
-        }
-        return currentDay
-    }
-
-    useEffect(() => {
-        checkLogin()
-        const authed = JSON.parse(localStorage.getItem('auth'))
-        if (authed) {
-            setAuth(true);
-            signIn('user', ()=> navigate('main', {replace: true}));
-            exitModal()
-        }
-    }, [auth]);
 
     const {
         register,
@@ -62,12 +36,12 @@ const ModalAuth = () => {
             const response = await axios.post('https://backend.s3grdn.ru/api/login', sendData)
             setAuthMsg(response.data.message)
             if (response.status === 200) {
-                setAuthMsg('')
                 localStorage.setItem('auth', true);
                 localStorage.setItem('name', response.data.name);
-                setAuth(true)
-                localStorage.setItem('login', loginDateCheck)
-                /*signIn(response.data.name, )*/
+                localStorage.setItem('logged', loginDateCheck)
+                setAuthMsg('')
+                signIn(response.data.name);
+                exitModal()
             }
         } catch (e) {
             if (e.response.status === 401) {
@@ -80,9 +54,7 @@ const ModalAuth = () => {
     }
 
     const [show, setShow] = useState(false)
-    const showPass = () =>{
-        setShow(!show)
-    }
+    const showPass = () =>{setShow(!show)}
 
     return (
         <Box

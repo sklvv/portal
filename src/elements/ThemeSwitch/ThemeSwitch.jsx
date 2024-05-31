@@ -57,10 +57,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 export default function ThemeSwitch({toggleTheme, handleClose}) {
     const mode = useSelector(state => state.header.mode);
-    console.log(mode)
-    const checkMode = mode !== 'dark'
-    console.log(checkMode)
-
     const toggler = ()=>{
         let newTheme;
         if (mode === 'dark'){
@@ -70,7 +66,6 @@ export default function ThemeSwitch({toggleTheme, handleClose}) {
         }
         toggleTheme(newTheme)
     }
-
 
 
     return (

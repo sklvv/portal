@@ -15,19 +15,18 @@ import {useTheme} from "../../hook/useTheme";
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import {useModal} from "../../hook/useModal";
 import Switch from "@mui/material/Switch";
-import {useAuthUpdate} from "../../hook/useAuthUpdate";
+
 
 
 
 const Header = () => {
     const navigate = useNavigate();
-    const {signOut} = useAuth()
+    const {signOut,checkLogin, user} = useAuth()
     const dispatch = useDispatch();
     const activePageName = useSelector(state => state.sidemenu.activePageName);
     const userName = localStorage.getItem('name') || ''
 
-    /*проверить есть ли логин и отобразить авторизацию или подтвердить*/
-    const {auth, setAuth} = useAuthUpdate()
+
     const {setModal} = useModal()
 
     /* получить текущую тему*/
@@ -51,9 +50,7 @@ const Header = () => {
 
     // разлогинить
     const handleLogout = () => {
-        localStorage.setItem('auth', JSON.stringify(false));
-        setAuth(false)
-        signOut(()=> navigate('/', {replace: true}));
+        signOut();
     }
 
     const [time, setTime] = useState(new Date())
@@ -62,10 +59,9 @@ const Header = () => {
     useEffect(() => {
         window.setInterval(() => setTime(new Date()), 60 * 1000);
         toggleTheme(getTheme)
-        /*setSwitchState(useTheme)*/
         if (getTheme === 'dark'){setSwitchState(false)}
         else {setSwitchState(true)}
-
+        checkLogin()
 
     }, []);
 
@@ -100,7 +96,7 @@ const Header = () => {
                         </Box>
                         <Typography  component="div" sx={{fontSize: 24, fontWeight: 500}}>{activePageName}</Typography>
                         {
-                            auth
+                            user
                             ? <DropMenu userName={userName} toggleTheme={toggleTheme} handleLogout={handleLogout} />
                             : <div>
                                     <Tooltip title={<Typography variant="body2" gutterBottom>{toolipState}</Typography>}>
