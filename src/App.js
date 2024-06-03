@@ -9,7 +9,7 @@ import {createTheme, ThemeProvider} from "@mui/material";
 import {themeMode} from "./utils/theme";
 import {useSelector} from "react-redux";
 import TransitionsModal from "./elements/Modal/Modal";
-import PhoneBook from "./pages/PhoneBook/PhoneBook";
+import PhoneBook from "./pages/phoneBook/PhoneBook";
 import Main from "./pages/main/Main";
 import UserAdmin from "./pages/userAdmin/UserAdmin";
 

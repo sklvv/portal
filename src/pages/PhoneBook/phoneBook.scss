@@ -1,0 +1,43 @@
+.list{
+    padding: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    &:hover {
+        background-color: #4cb242;
+    }
+    div {
+        flex-basis: 25%;
+    }
+}
+
+.listHeader {
+    padding: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #d3d3d3;
+    div {
+        text-align: center;
+        color: grey;
+        flex-basis: 25%;
+    }
+    .listIcon {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        svg {
+            font-size: 1.1rem;
+            padding-right: 5px;
+        }
+    }
+}
+
+
+
+.searchFilter {
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    .objects {
+        padding-bottom: 5px;
+    }
+}
