@@ -32,11 +32,15 @@ const PhoneBookFilters = () => {
 
 
     return (
-        <div style={{marginBottom: '10px'}}>
+        <div className='filters'>
             <ButtonGroup variant="outlined" size='small' sx={{verticalAlign: 'bottom'}}>
-                <Tooltip title={<Typography variant="body2"  gutterBottom>fdgdfghfgh</Typography>}>
+                <Tooltip title={<Typography variant="body2"  gutterBottom>Добавить номер пользователя</Typography>}>
                     <Button color={'success'}><PersonAddIcon/></Button>
                 </Tooltip>
+                <Tooltip title={<Typography variant="body2"  gutterBottom>fdgdfghfgh</Typography>}>
+                <Button color={'success'}><PersonAddIcon/></Button>
+            </Tooltip>
+
             </ButtonGroup>
             <div className='searchFilter'>
                 <GTextField id="realiz_search" sx={{pt: '15px', width: '300px', pr: '15px'}}  variant="standard" placeholder='Поиск' value={search}

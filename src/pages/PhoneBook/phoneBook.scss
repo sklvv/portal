@@ -2,11 +2,21 @@
     padding: 10px;
     display: flex;
     flex-flow: row nowrap;
+    position: relative;
     &:hover {
         background-color: #4cb242;
+        .edit {
+            display: block;
+        }
     }
-    div {
+    div:not(.edit) {
         flex-basis: 25%;
+    }
+    .edit {
+        position: absolute;
+        right: 2px;
+        bottom: 4px;
+        display: none;
     }
 }
 
@@ -32,12 +42,19 @@
 }
 
 
-
-.searchFilter {
+.filters {
+    margin-bottom: 10px;
     display: flex;
-    justify-content: end;
-    align-items: flex-end;
-    .objects {
-        padding-bottom: 5px;
+    justify-content: space-between;
+    align-items: end;
+
+    .searchFilter {
+        display: flex;
+        justify-content: end;
+        align-items: flex-end;
+        .objects {
+            padding-bottom: 5px;
+        }
     }
 }
+
