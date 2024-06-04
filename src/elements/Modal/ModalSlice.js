@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     open: false,
-    variant: ''
+    variant: '' // указания типа модалки, какую будет выведено
 }
 
 const modalSlice = createSlice({

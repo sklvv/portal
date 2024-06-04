@@ -6,11 +6,41 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import LanIcon from '@mui/icons-material/Lan';
 import PhoneBookFilters from "./subpages/PhoneBookFilters";
-import EditIcon from '@mui/icons-material/Edit';
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import Button from "@mui/material/Button";
+import PhoneBookList from "./subpages/PhoneBookList";
+import {useModal} from "../../hook/useModal";
 
 const PhoneBook = () => {
+
+    const data = [
+        {
+            id: 1,
+            name: 'Нуртинова Алиса Алекcеевна',
+            position: 'Инженер по комплектации оборудования',
+            dep: 'БСС',
+            phone: '156',
+        },
+        {
+            id: 2,
+            name: 'Савельев Евгений Леонидович',
+            position: 'CDO',
+            dep: 'ИТ Отдел',
+            phone: '168',
+        },
+        {
+            id: 3,
+            name: 'Зайцев Данил Юрьевич',
+            position: 'Системный администратор',
+            dep: 'ИТ Отдел',
+            phone: '246',
+        },
+    ]
+
+    const {setModal, setExtra} = useModal()
+    const updateItem = (item) =>{
+        setExtra(item)
+        setModal('phoneBook')
+    }
+
     return (
         <div>
             <PhoneBookFilters/>
@@ -22,35 +52,9 @@ const PhoneBook = () => {
                     <div className='listIcon'><PhoneIcon/> <span> Телефон</span></div>
                 </div>
             </BlockShadow>
-            <BlockShadow>
-                <div className='list'>
-                    <div>Нуртинова Алиса Алекcеевна</div>
-                    <div>Инженер по комплектации оборудования</div>
-                    <div>БСС</div>
-                    <div>156</div>
-                    <div className='edit'><Button size='small' color={'success'}><EditIcon/></Button></div>
-                </div>
-            </BlockShadow>
-            <BlockShadow>
-                <div className='list'>
-                    <div>Савельев Евгений Леонидович</div>
-                    <div>CDO</div>
-                    <div>ИТ Отдел</div>
-                    <div>168</div>
-                </div>
-            </BlockShadow>
-            <BlockShadow>
-                <div className='list'>
-                    <div>Зайцев Данил Юрьевич</div>
-                    <div>Системный администратор</div>
-                    <div>ИТ Отдел</div>
-                    <div>246</div>
-                </div>
-            </BlockShadow>
-
-
+            { data.map((item) => <PhoneBookList key={item.id} item={item} updateItem={updateItem}/>)}
         </div>
-    );
+    )
 };
 
 export default PhoneBook;
