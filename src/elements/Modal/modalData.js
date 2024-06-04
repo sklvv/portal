@@ -5,23 +5,16 @@ import ModalPhoneBook from "./subpages/ModalPhoneBook";
 
 
 export const modalData = (variant, mode)=>{
-    let modalText = ''
 
     switch (variant){
         case 'auth':
-            modalText =  <>
-                <ModalAuth />
-             </>
+            return <ModalAuth />
             break;
         case 'phoneBook':
-            modalText =  <>
-                <ModalPhoneBook />
-            </>
+            return  <ModalPhoneBook />
             break;
         default:
-            modalText = "Default";
+            return "Default";
             break;
     }
-
-    return modalText;
 }

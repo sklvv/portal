@@ -43,7 +43,7 @@ const PhoneBook = () => {
     const {setModal} = useModal()
     const updateItem = (item = false) =>{
         dispatch(resetDataForModal())
-        if (item) {
+        if (item.id) {
             dispatch(setDataForModal(item))
         }
          setModal('phoneBook')

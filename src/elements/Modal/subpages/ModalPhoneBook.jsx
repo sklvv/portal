@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import EditIcon from "@mui/icons-material/Edit";
 import {useSelector} from "react-redux";
 import {Box, Button, IconButton, InputAdornment, Typography} from "@mui/material";
@@ -15,16 +15,31 @@ import {phoneBookSchema} from "../modalSchema";
 
 const ModalPhoneBook = () => {
     const dataForModal = useSelector(state => state.phonebook.dataForModal);
-
-
     const {
-        register,
+        register, setValue,
         handleSubmit,
         formState: { errors },
     } = useForm({
         mode: "onTouched",
         resolver: yupResolver(phoneBookSchema)
     });
+
+    const edit = () =>{
+            Object.entries(dataForModal).forEach(
+                ([name, value]) => setValue(name, value)
+            );
+        /*setValue("name", dataForModal.name, {
+            shouldValidate: true,
+            shouldDirty: true
+        })*/
+    }
+    useEffect(()=>{
+        if (dataForModal){
+            Object.entries(dataForModal).forEach(
+                ([name, value]) => setValue(name, value)
+            );
+        }
+    },[dataForModal])
 
     const onSubmit = async (data) => {
         console.log(data)
@@ -33,9 +48,8 @@ const ModalPhoneBook = () => {
 
     return (
         <div>
-            <div style={{position: 'absolute', left: '-28px', top: '5%', color: '#ffffff'}}>
-                { dataForModal.length > 1 ? <EditIcon/> : <PersonAddIcon/>}
-
+            <div style={{position: 'absolute', left: '-27px', top: '45%', color: '#ffffff'}}>
+                { dataForModal.id ? <EditIcon/> : <PersonAddIcon/>}
             </div>
 
             <Box
@@ -45,12 +59,12 @@ const ModalPhoneBook = () => {
                 noValidate
                 autoComplete="off"
             >
-                <Typography variant="h5" gutterBottom className='modalAuthTitle'>Добавить/Изменить запись</Typography>
+                <Typography variant="h5" gutterBottom className='modalAuthTitle'>
+                    { dataForModal.id ? 'Изменить запись' : 'Добавить запись'}
+                  </Typography>
                 <GTextField fullWidth id="name" label="Ф.И.О." variant="standard" type='email' size='small'
                             InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start"><BadgeIcon /></InputAdornment>
-                                ),
+                                startAdornment: (<InputAdornment position="start"><BadgeIcon /></InputAdornment>),
                             }}
                             {...register("name")} error={errors.name && true}
                             helperText={
@@ -60,9 +74,7 @@ const ModalPhoneBook = () => {
                 />
                 <GTextField fullWidth id="position" label="Должность" variant="standard" type='email' size='small'
                             InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start"><HomeRepairServiceIcon /></InputAdornment>
-                                ),
+                                startAdornment: (<InputAdornment position="start"><HomeRepairServiceIcon /></InputAdornment>),
                             }}
                             {...register("position")} error={errors.position && true}
                             helperText={
@@ -72,9 +84,7 @@ const ModalPhoneBook = () => {
                 />
                 <GTextField fullWidth id="dep" label="Отдел" variant="standard" type='email' size='small'
                             InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start"><LanIcon /></InputAdornment>
-                                ),
+                                startAdornment: (<InputAdornment position="start"><LanIcon /></InputAdornment>),
                             }}
                             {...register("dep")} error={errors.dep && true}
                             helperText={
@@ -84,9 +94,7 @@ const ModalPhoneBook = () => {
                 />
                 <GTextField fullWidth id="phone" label="Телефон" variant="standard" type='email' size='small'
                             InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start"><PhoneIcon /></InputAdornment>
-                                ),
+                                startAdornment: (<InputAdornment position="start"><PhoneIcon /></InputAdornment>),
                             }}
                             {...register("phone")} error={errors.phone && true}
                             helperText={

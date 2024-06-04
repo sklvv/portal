@@ -6,9 +6,10 @@
   width: 600px;
   /*border: 1px solid rgba(0,0,0,.2);*/
   border-left: 30px solid rgb(76, 178, 66);
+  border-right: 30px solid rgb(76, 178, 66);
   padding: 14px 32px;
   outline: none;
-
+  border-radius: 50px 50px 50px 50px;
 }
 
 .modalBtn {
@@ -54,8 +55,9 @@ code {
 
 
 .modalAuthTitle{
-  position: fixed;
-  top: -36px;
+  /*position: fixed;
+  top: -36px;*/
+  text-align: center;
   font-style: italic;
   font-weight: 500;
   color: #4cb242;
