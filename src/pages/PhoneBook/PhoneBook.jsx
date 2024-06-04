@@ -8,6 +8,8 @@ import LanIcon from '@mui/icons-material/Lan';
 import PhoneBookFilters from "./subpages/PhoneBookFilters";
 import PhoneBookList from "./subpages/PhoneBookList";
 import {useModal} from "../../hook/useModal";
+import {useDispatch, useSelector} from "react-redux";
+import {resetDataForModal, setDataForModal} from "./PhoneBookSlice";
 
 const PhoneBook = () => {
 
@@ -35,15 +37,21 @@ const PhoneBook = () => {
         },
     ]
 
-    const {setModal, setExtra} = useModal()
-    const updateItem = (item) =>{
-        setExtra(item)
-        setModal('phoneBook')
+    const dispatch = useDispatch()
+    const dataForModal = useSelector(state => state.phonebook.dataForModal);
+
+    const {setModal} = useModal()
+    const updateItem = (item = false) =>{
+        dispatch(resetDataForModal())
+        if (item) {
+            dispatch(setDataForModal(item))
+        }
+         setModal('phoneBook')
     }
 
     return (
         <div>
-            <PhoneBookFilters/>
+            <PhoneBookFilters updateItem={updateItem}/>
             <BlockShadow>
                 <div className='listHeader'>
                     <div className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>

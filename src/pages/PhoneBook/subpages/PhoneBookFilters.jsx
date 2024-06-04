@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 
-const PhoneBookFilters = () => {
+const PhoneBookFilters = ({updateItem}) => {
     /*Поиск*/
     const [search, setSearch] = useState('')
     /*Очистка поля поиска*/
@@ -35,7 +35,7 @@ const PhoneBookFilters = () => {
         <div className='filters'>
             <ButtonGroup variant="outlined" size='small' sx={{verticalAlign: 'bottom'}}>
                 <Tooltip title={<Typography variant="body2"  gutterBottom>Добавить номер пользователя</Typography>}>
-                    <Button color={'success'}><PersonAddIcon/></Button>
+                    <Button onClick={updateItem} variant="contained" color={'success'}><PersonAddIcon/></Button>
                 </Tooltip>
                 <Tooltip title={<Typography variant="body2"  gutterBottom>fdgdfghfgh</Typography>}>
                 <Button color={'success'}><PersonAddIcon/></Button>

@@ -33,6 +33,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Node\portal\src\elements\Modal" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -43,7 +48,7 @@
       <updated>1716798819819</updated>
       <workItem from="1716798822576" duration="17567000" />
       <workItem from="1716956666377" duration="27824000" />
-      <workItem from="1717125960528" duration="36759000" />
+      <workItem from="1717125960528" duration="45108000" />
     </task>
     <servers />
   </component>

@@ -5,7 +5,7 @@ import BlockShadow from "../../../elements/BlockShadow";
 import React from "react";
 
 const PhoneBookList = ({item, updateItem}) => {
-    const {id, name, position, dep, phone} = item
+    const {name, position, dep, phone} = item
     return (
         <BlockShadow>
             <div className='list'>
@@ -13,7 +13,7 @@ const PhoneBookList = ({item, updateItem}) => {
                 <div>{position}</div>
                 <div>{dep}</div>
                 <div>{phone}</div>
-                <div className='edit'><Button onClick={()=> updateItem(item)} size='small' color={'success'}><EditIcon/></Button></div>
+                <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>
             </div>
         </BlockShadow>
     );
