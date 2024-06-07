@@ -1,4 +1,4 @@
-import {useQuery} from "react-query";
+import {useMutation, useQuery, useQueryClient} from "react-query";
 import axios from "axios";
 
 /*
@@ -28,4 +28,30 @@ export const useGetRealizationData = () => {
             keepPreviousData: true,
             refetchOnWindowFocus: false,
         })
+}
+
+
+async function fetchPhoneBook(){
+    return (await axios.get("http://grd228.grdn.ru:5000/api/portal/phoneBook")).data
+}
+export const useGetPhoneBook = () => {
+    return useQuery('phoneBook', fetchPhoneBook,
+        {
+            keepPreviousData: true,
+            refetchOnWindowFocus: true,
+        })
+}
+
+/**/
+export const useGetPhoneBook_add = () => {
+    const queryClient = useQueryClient();
+    return useMutation((phoneBookItem) =>
+            axios.post("http://grd228.grdn.ru:5000/api/portal/phoneBook_add", phoneBookItem),
+        {
+            onSuccess: () => {
+                // Инвалидация и обновление
+                queryClient.invalidateQueries('phoneBook');
+            }
+        }
+    );
 }

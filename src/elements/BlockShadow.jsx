@@ -6,7 +6,7 @@ const BlockShadow = ({children}) => {
     const theme = `blockShadow ${useTheme('select')}`
 
     return (
-        <div className={theme}>
+        <div className={theme} style={{borderRadius: '10px 10px 0 0'}}>
             {children}
         </div>
     );

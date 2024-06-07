@@ -12,6 +12,10 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {phoneBookSchema} from "../modalSchema";
+import {useModal} from "../../../hook/useModal";
+import {useGetPhoneBook_add} from "../../../hook/useGetQuery";
+
+
 
 const ModalPhoneBook = () => {
     const dataForModal = useSelector(state => state.phonebook.dataForModal);
@@ -23,16 +27,9 @@ const ModalPhoneBook = () => {
         mode: "onTouched",
         resolver: yupResolver(phoneBookSchema)
     });
+    const {exitModal} = useModal()
+    const mutation = useGetPhoneBook_add()
 
-    const edit = () =>{
-            Object.entries(dataForModal).forEach(
-                ([name, value]) => setValue(name, value)
-            );
-        /*setValue("name", dataForModal.name, {
-            shouldValidate: true,
-            shouldDirty: true
-        })*/
-    }
     useEffect(()=>{
         if (dataForModal){
             Object.entries(dataForModal).forEach(
@@ -42,14 +39,31 @@ const ModalPhoneBook = () => {
     },[dataForModal])
 
     const onSubmit = async (data) => {
-        console.log(data)
+        mutation.mutate(data);
+
+        setTimeout(() => {
+            exitModal()
+        }, 1000);
+
+    }
+
+    if (mutation.isLoading) {
+        return <span>Submitting...</span>;
+    }
+
+    if (mutation.isError) {
+        return <span>Error: {mutation.error.message}</span>;
+    }
+
+    if (mutation.isSuccess) {
+        return <div>Сохранение выполнено успешно</div>;
     }
 
 
     return (
         <div>
             <div style={{position: 'absolute', left: '-27px', top: '45%', color: '#ffffff'}}>
-                { dataForModal.id ? <EditIcon/> : <PersonAddIcon/>}
+                { dataForModal._id ? <EditIcon/> : <PersonAddIcon/>}
             </div>
 
             <Box
