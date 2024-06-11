@@ -2,21 +2,22 @@ import BlockShadow from "../../elements/BlockShadow";
 import './transport.scss'
 import PhoneIcon from '@mui/icons-material/Phone';
 import BadgeIcon from '@mui/icons-material/Badge';
-import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
-import LanIcon from '@mui/icons-material/Lan';
 import {useModal} from "../../hook/useModal";
 import {useDispatch, useSelector} from "react-redux";
-import {useGetPhoneBook} from "../../hook/useGetQuery";
 import Skelet from "../../elements/Skelet";
 import {useEffect} from "react";
 import TransportList from "./subpages/TransportList";
 import TransportFilters from "./subpages/TransportFilters";
 import {setTransportList} from "./TransportSlice";
 import {resetDataForModal, setDataForModal} from "../../elements/Modal/ModalSlice";
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
+import {useGetTransport} from "../../hook/useGetTransport";
+
 
 
 const PhoneBook = () => {
-    const {data: transport, isLoading, isError} = useGetPhoneBook()
+    const {data: transport, isLoading, isError} = useGetTransport()
     const dispatch = useDispatch()
     const {setModal} = useModal()
     const transportList = useSelector(state => state.transport.transportList);
@@ -45,8 +46,8 @@ const PhoneBook = () => {
             <BlockShadow >
                 <div  className='listHeader'>
                     <div className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
-                    <div className='listIcon'><HomeRepairServiceIcon/> <span> ДОЛЖНОСТЬ</span></div>
-                    <div className='listIcon'><LanIcon/> <span> ОТДЕЛ</span></div>
+                    <div className='listIcon'><DirectionsCarIcon/> <span> АВТОМОБИЛЬ</span></div>
+                    <div className='listIcon'><DisplaySettingsIcon/> <span> ГОС НОМЕР</span></div>
                     <div className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
                 </div>
             </BlockShadow>

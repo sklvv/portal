@@ -1,6 +1,7 @@
 import './modal.scss'
 import ModalAuth from "./subpages/ModalAuth";
 import ModalPhoneBook from "./subpages/ModalPhoneBook";
+import ModalTransport from "./subpages/ModalTransport";
 
 
 
@@ -14,7 +15,7 @@ export const modalData = (variant, mode)=>{
             return  <ModalPhoneBook />
             break;
         case 'transport':
-            return  <ModalPhoneBook />
+            return  <ModalTransport />
             break;
         default:
             return "Default";

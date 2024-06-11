@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import {useDispatch} from "react-redux";
 import {setPhoneBookList} from "../PhoneBookSlice";
-import {useGetPhoneBook} from "../../../hook/useGetQuery";
+import {useGetPhoneBook} from "../../../hook/useGetPhoneBook";
 import {useTheme} from "../../../hook/useTheme";
 import {useAuth} from "../../../hook/useAuth";
 

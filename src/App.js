@@ -12,6 +12,7 @@ import TransitionsModal from "./elements/Modal/Modal";
 import PhoneBook from "./pages/phoneBook/PhoneBook";
 import Main from "./pages/main/Main";
 import UserAdmin from "./pages/userAdmin/UserAdmin";
+import Transport from "./pages/transport/Transport";
 
 
 function App() {
@@ -22,13 +23,6 @@ function App() {
         <AuthProvider>
             <ThemeProvider theme={theme}>
                 <Routes>
-                    {/*<Route element={<Auth/>}>
-                        <Route path='login' element={<Login/>}/>
-                        <Route path='register' element={<Register/>}/>
-                        <Route path='resetPassword' element={<ResetPassword/>}/>
-                    </Route>*/}
-
-
                     <Route path='*' element={<Page404/>}/>
                     <Route path='/' element={<Layout/>}>
                         <Route index element={<Main/>}/>
@@ -39,7 +33,7 @@ function App() {
                         <Route  path='/dashboardAdmin' element={<Page404 />}/>
                         <Route  path='/inventory' element={<Page404 />}/>
                         <Route  path='/resources' element={<Page404 />}/>
-                        <Route  path='/transport' element={<Page404 />}/>
+                        <Route  path='/transport' element={<Transport />}/>
                     </Route>
                 </Routes>
                 <TransitionsModal/>

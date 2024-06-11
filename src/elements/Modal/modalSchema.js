@@ -17,4 +17,13 @@ export const phoneBookSchema = yup.object().shape({
         .min(3, txt.min)
         .max(11, txt.max),
 });
+export const transportSchema = yup.object().shape({
+    name: yup.string(),
+    car: yup.string(),
+    number: yup.string(),
+    phone: yup.string()
+        .required("Введите номер")
+        .min(3, txt.min)
+        .max(11, txt.max),
+});
 

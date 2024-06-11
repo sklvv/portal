@@ -9,7 +9,7 @@ import PhoneBookList from "./subpages/PhoneBookList";
 import {useModal} from "../../hook/useModal";
 import {useDispatch, useSelector} from "react-redux";
 import {setPhoneBookList} from "./PhoneBookSlice";
-import {useGetPhoneBook} from "../../hook/useGetQuery";
+import {useGetPhoneBook} from "../../hook/useGetPhoneBook";
 import Skelet from "../../elements/Skelet";
 import {useEffect} from "react";
 import {resetDataForModal, setDataForModal} from "../../elements/Modal/ModalSlice";

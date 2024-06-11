@@ -14,7 +14,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {phoneBookSchema} from "../modalSchema";
 import {useModal} from "../../../hook/useModal";
-import {useGetPhoneBook_add, useGetPhoneBook_del} from "../../../hook/useGetQuery";
+import {useGetPhoneBook_add, useGetPhoneBook_del} from "../../../hook/useGetPhoneBook";
 
 
 

@@ -11,7 +11,7 @@ const modalSlice = createSlice({
     initialState,
     reducers: {
         setTransportList: (state, action) => {
-            state.phonebookList = action.payload
+            state.transportList = action.payload
         },
     },
 });
