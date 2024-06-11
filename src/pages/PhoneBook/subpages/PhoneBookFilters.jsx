@@ -6,14 +6,23 @@ import {GTextField} from "../../../elements/CustomMui/customMui";
 import {useState} from "react";
 import Button from "@mui/material/Button";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import {useDispatch} from "react-redux";
+import {setPhoneBookList} from "../PhoneBookSlice";
+import {useGetPhoneBook} from "../../../hook/useGetQuery";
+import {useTheme} from "../../../hook/useTheme";
+import {useAuth} from "../../../hook/useAuth";
 
 
 const PhoneBookFilters = ({updateItem}) => {
+    const dispatch = useDispatch()
+    const {data: phonebook} = useGetPhoneBook()
+    const {user} = useAuth()
     /*Поиск*/
     const [search, setSearch] = useState('')
     /*Очистка поля поиска*/
     const resetSearch = ()=> {
         setSearch('')
+        dispatch(setPhoneBookList(phonebook))
     }
     /*Обновление поля поиска*/
     const handleSearch = (e) =>{
@@ -22,31 +31,33 @@ const PhoneBookFilters = ({updateItem}) => {
     }
     /*ф-я поиска*/
     const handleKeyDown = (e)=>{
-        /*if (e.key === 'Enter' && search.length > 2) {
-            const searchedData = filteredData.filter(i => {
-                return i.Объект.toLowerCase().includes(search.toLowerCase()) || i.КодОбъекта.includes(search)
+        if (e.key === 'Enter' && search.length > 2) {
+            const searchedData = phonebook.filter(i => {
+                return i.name.toLowerCase().includes(search.toLowerCase())
+                    || i.phone.includes(search)
+                    || i.dep.includes(search)
+                    || i.position.includes(search)
             })
-            dispatch(setFilteredData(searchedData))
-        }*/
+            dispatch(setPhoneBookList(searchedData))
+        }
     }
 
 
     return (
         <div className='filters'>
-            <ButtonGroup variant="outlined" size='small' sx={{verticalAlign: 'bottom'}}>
-                <Tooltip title={<Typography variant="body2"  gutterBottom>Добавить номер пользователя</Typography>}>
-                    <Button onClick={updateItem} variant="contained" color={'success'}><PersonAddIcon/></Button>
-                </Tooltip>
-                <Tooltip title={<Typography variant="body2"  gutterBottom>fdgdfghfgh</Typography>}>
-                <Button color={'success'}><PersonAddIcon/></Button>
-            </Tooltip>
 
+            <ButtonGroup variant="outlined" size='small' sx={{verticalAlign: 'bottom'}}>
+                {
+                    user && <Tooltip title={<Typography variant="body2"  gutterBottom>Добавить номер пользователя</Typography>}>
+                        <Button onClick={updateItem} color={'success'}><PersonAddIcon/></Button>
+                    </Tooltip>
+                }
             </ButtonGroup>
             <div className='searchFilter'>
-                <GTextField id="realiz_search" sx={{pt: '15px', width: '300px', pr: '15px'}}  variant="standard" placeholder='Поиск' value={search}
+                <GTextField id="realiz_search" sx={{pt: '15px', width: '300px', pr: '15px', color: useTheme('text')}}  variant="standard" placeholder='Поиск' value={search}
                             onKeyDown={handleKeyDown}  onChange={handleSearch} InputProps={{
-                    startAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>),
-                    endAdornment:(<InputAdornment position="end"><IconButton onClick={resetSearch}><CloseIcon /></IconButton></InputAdornment>)
+                    startAdornment: (<InputAdornment position="start"><SearchIcon sx={{color: useTheme('text')}} /></InputAdornment>),
+                    endAdornment:(<InputAdornment position="end"><IconButton onClick={resetSearch}><CloseIcon sx={{color: useTheme('text')}} /></IconButton ></InputAdornment>)
                 }}/>
             </div>
         </div>

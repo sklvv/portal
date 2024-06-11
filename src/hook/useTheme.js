@@ -5,14 +5,18 @@ import lion from '../img/bg_lionRight2.png'
 import lionBlack from '../img/bg_lionRight4.png'
 import logoLight from '../img/header/logoLight.png';
 import logoDark from '../img/header/logoDark.png';
-
+import fon from '../img/test/fon8.jpg'
+import lionGreen from '../img/lionGrey10.png'
+/*1  2  3   4 cut   5    8   12   13-50/50     15             */
 /*главная тема*/
 const dark = {
     text: "#ffffff", // цвет текста
-    lion: lionBlack, // фон со львом
+    /*lion: lionBlack, // фон со львом*/
+    lion: lionGreen, // фон со львом
     logo: logoDark, // логотип
     bg: {
-        main: "#515151",// фон основной страницы
+        /*main: "#515151",// фон основной страницы*/
+        main: fon,// фон основной страницы
         sideBar: '#333333',// фон сайдбара
         header: '#333333', // фон хедера
         modal:  "#7c7c7c", // фон модалки

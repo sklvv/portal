@@ -1,19 +1,20 @@
 import React, {useEffect} from 'react';
 import EditIcon from "@mui/icons-material/Edit";
 import {useSelector} from "react-redux";
-import {Box, Button, IconButton, InputAdornment, Typography} from "@mui/material";
+import {Box, Button, IconButton, InputAdornment, Tooltip, Typography} from "@mui/material";
 import {GTextField} from "../../CustomMui/customMui";
 import SaveIcon from '@mui/icons-material/Save';
 import PhoneIcon from '@mui/icons-material/Phone';
 import BadgeIcon from '@mui/icons-material/Badge';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import LanIcon from '@mui/icons-material/Lan';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {phoneBookSchema} from "../modalSchema";
 import {useModal} from "../../../hook/useModal";
-import {useGetPhoneBook_add} from "../../../hook/useGetQuery";
+import {useGetPhoneBook_add, useGetPhoneBook_del} from "../../../hook/useGetQuery";
 
 
 
@@ -29,6 +30,7 @@ const ModalPhoneBook = () => {
     });
     const {exitModal} = useModal()
     const mutation = useGetPhoneBook_add()
+    const mutate_del = useGetPhoneBook_del()
 
     useEffect(()=>{
         if (dataForModal){
@@ -46,19 +48,20 @@ const ModalPhoneBook = () => {
         }, 1000);
 
     }
-
-    if (mutation.isLoading) {
-        return <span>Submitting...</span>;
+    const onDelete = async (id)=>{
+        mutate_del.mutate({_id: id})
+        setTimeout(() => {
+            exitModal()
+        }, 500);
     }
 
-    if (mutation.isError) {
-        return <span>Error: {mutation.error.message}</span>;
-    }
+    if (mutation.isLoading) {return <span>Submitting...</span>;}
+    if (mutation.isError) {return <span>Error: {mutation.error.message}</span>;}
+    if (mutation.isSuccess) {return <div>Сохранение выполнено успешно</div>;}
 
-    if (mutation.isSuccess) {
-        return <div>Сохранение выполнено успешно</div>;
-    }
-
+    if (mutate_del.isLoading) {return <span>Submitting...</span>;}
+    if (mutate_del.isError) {return <span>Error: {mutation.error.message}</span>;}
+    if (mutate_del.isSuccess) {return <div>Удаление выполнено успешно</div>;}
 
     return (
         <div>
@@ -118,7 +121,12 @@ const ModalPhoneBook = () => {
                 />
 
                 <div >
-                    <Button sx={{float: 'right'}}  variant="contained" type='submit' size='small' color="success" startIcon={<SaveIcon />}>Сохранить</Button>
+                    <Tooltip title={<Typography variant="body2"  gutterBottom>Сохранить данные</Typography>}>
+                        <Button sx={{float: 'right'}}  variant="contained" type='submit' size='small' color="success" startIcon={<SaveIcon />}>Сохранить</Button>
+                    </Tooltip>
+                    <Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
+                        <Button onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color="error" startIcon={<DeleteForeverIcon />}>Удалить</Button>
+                    </Tooltip>
                 </div>
             </Box>
         </div>
@@ -126,3 +134,7 @@ const ModalPhoneBook = () => {
 };
 
 export default ModalPhoneBook;
+
+
+
+

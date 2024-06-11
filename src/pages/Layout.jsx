@@ -11,14 +11,23 @@ const Layout = () => {
             <header>
                 <Header/>
             </header>
-            <main style={{background: useTheme('bg', 'main'),color: useTheme('text')}} >
+            {/*<main style={{background: `url(${(useTheme('bg', 'main'))})`, backgroundSize: 'contain',color: useTheme('text')}} >*/}
+            <main style={{color: useTheme('text')}} className='container' >
+                <div className="stars"></div>
+                <div className="twinkling"></div>
                 <div style={{
                     backgroundImage: `url(${useTheme('lion')})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'bottom right',
                     backgroundSize: '34%',
-                    backgroundBlendMode: 'hard-light'
-                }}>
+                    /*backgroundBlendMode: 'hard-light',*/
+                    position: 'fixed',
+                    zIndex: 0,
+                    right: '0%',
+                    width: '105%',
+                    height: '100%'
+                }}> </div>
+                <div>
                     <SideMenu/>
                     <div className='pageContainer'>
                         <Outlet />

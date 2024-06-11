@@ -3,9 +3,11 @@ import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import BlockShadow from "../../../elements/BlockShadow";
 import React from "react";
+import {useAuth} from "../../../hook/useAuth";
 
 const PhoneBookList = ({item, updateItem}) => {
     const {name, position, dep, phone} = item
+    const {user} = useAuth()
     return (
         <BlockShadow>
             <div className='list'>
@@ -13,7 +15,10 @@ const PhoneBookList = ({item, updateItem}) => {
                 <div>{position}</div>
                 <div>{dep}</div>
                 <div>{phone}</div>
-                <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>
+                {
+                    user && <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>
+                }
+
             </div>
         </BlockShadow>
     );

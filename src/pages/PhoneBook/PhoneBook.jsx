@@ -1,4 +1,3 @@
-import React, {useEffect} from 'react';
 import BlockShadow from "../../elements/BlockShadow";
 import './phoneBook.scss'
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -9,17 +8,17 @@ import PhoneBookFilters from "./subpages/PhoneBookFilters";
 import PhoneBookList from "./subpages/PhoneBookList";
 import {useModal} from "../../hook/useModal";
 import {useDispatch, useSelector} from "react-redux";
-import {resetDataForModal, setDataForModal, setPhoneBook} from "./PhoneBookSlice";
+import {resetDataForModal, setDataForModal, setPhoneBookList} from "./PhoneBookSlice";
 import {useGetPhoneBook} from "../../hook/useGetQuery";
 import Skelet from "../../elements/Skelet";
-import {useQueryClient} from "react-query";
+import {useEffect} from "react";
+
 
 const PhoneBook = () => {
     const {data: phonebook, isLoading, isError} = useGetPhoneBook()
-
-    /*const phonebook = useSelector(state => state.phonebook.phonebook);*/
     const dispatch = useDispatch()
     const {setModal} = useModal()
+    const phonebookList = useSelector(state => state.phonebook.phonebookList);
 
     const updateItem = (item = false) =>{
         dispatch(resetDataForModal())
@@ -29,9 +28,9 @@ const PhoneBook = () => {
          setModal('phoneBook')
     }
 
-    /*useEffect(()=>{
-        dispatch(setPhoneBook(phonebook))
-    },[phonebook])*/
+    useEffect(()=>{
+        dispatch(setPhoneBookList(phonebook))
+    },[phonebook])
 
 
 
@@ -42,17 +41,18 @@ const PhoneBook = () => {
     return (
         <div>
             <PhoneBookFilters updateItem={updateItem}/>
-            <BlockShadow>
-                <div className='listHeader' >
+            <BlockShadow >
+                <div  className='listHeader'>
                     <div className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
-                    <div className='listIcon'><HomeRepairServiceIcon/> <span> Должность</span></div>
-                    <div className='listIcon'><LanIcon/> <span> Отдел</span></div>
-                    <div className='listIcon'><PhoneIcon/> <span> Телефон</span></div>
+                    <div className='listIcon'><HomeRepairServiceIcon/> <span> ДОЛЖНОСТЬ</span></div>
+                    <div className='listIcon'><LanIcon/> <span> ОТДЕЛ</span></div>
+                    <div className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
                 </div>
             </BlockShadow>
-            { phonebook?.map((item) => <PhoneBookList key={item._id} item={item} updateItem={updateItem}/>)}
+            { phonebookList?.map((item) => <PhoneBookList key={item._id} item={item} updateItem={updateItem}/>)}
         </div>
     )
 };
 
 export default PhoneBook;
+
