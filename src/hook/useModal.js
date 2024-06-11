@@ -7,7 +7,16 @@ export const useModal = ()=> {
     const dispatch = useDispatch()
 
     const setModal= (variant) => dispatch(openModal(variant))
-    const exitModal = () => dispatch(closeModal())
+    /*const exitModal = () => dispatch(closeModal())*/
+
+    const exitModal = (time = 100) => {
+        setTimeout(() => {
+            dispatch(closeModal())
+        }, time);
+    }
+
+
+
 
     return {setModal,exitModal}
 }

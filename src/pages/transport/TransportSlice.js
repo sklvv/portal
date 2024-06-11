@@ -1,17 +1,16 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    phonebookList: [],
-
+    transportList: [],
+    dataForModal: false,
 
 }
 
 const modalSlice = createSlice({
-    name: 'phonebook',
+    name: 'transport',
     initialState,
     reducers: {
-
-        setPhoneBookList: (state, action) => {
+        setTransportList: (state, action) => {
             state.phonebookList = action.payload
         },
     },
@@ -21,5 +20,5 @@ const {actions, reducer} = modalSlice;
 
 export default reducer;
 export const {
-    setPhoneBookList
+    setTransportList
 } = actions;

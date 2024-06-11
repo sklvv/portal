@@ -2,7 +2,8 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     open: false,
-    variant: '' // указания типа модалки, какую будет выведено
+    variant: '', // указания типа модалки, какую будет выведено
+    dataForModal: false,
 }
 
 const modalSlice = createSlice({
@@ -16,6 +17,15 @@ const modalSlice = createSlice({
         closeModal: (state) => {
             state.open = false;
         },
+        setDataForModal: (state, action) => {
+            state.dataForModal = action.payload
+        },
+        setIconForModal: (state) => {
+            state.iconForModal = true
+        },
+        resetDataForModal: (state) => {
+            state.dataForModal = false
+        },
     },
 });
 
@@ -23,5 +33,5 @@ const {actions, reducer} = modalSlice;
 
 export default reducer;
 export const {
-    openModal,closeModal
+    openModal,closeModal, setDataForModal, resetDataForModal
 } = actions;

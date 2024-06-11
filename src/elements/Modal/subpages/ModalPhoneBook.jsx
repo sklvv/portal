@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import EditIcon from "@mui/icons-material/Edit";
 import {useSelector} from "react-redux";
-import {Box, Button, IconButton, InputAdornment, Tooltip, Typography} from "@mui/material";
+import {Box, Button, InputAdornment, Tooltip, Typography} from "@mui/material";
 import {GTextField} from "../../CustomMui/customMui";
 import SaveIcon from '@mui/icons-material/Save';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -19,7 +19,7 @@ import {useGetPhoneBook_add, useGetPhoneBook_del} from "../../../hook/useGetQuer
 
 
 const ModalPhoneBook = () => {
-    const dataForModal = useSelector(state => state.phonebook.dataForModal);
+    const dataForModal = useSelector(state => state.modal.dataForModal);
     const {
         register, setValue,
         handleSubmit,
@@ -42,17 +42,11 @@ const ModalPhoneBook = () => {
 
     const onSubmit = async (data) => {
         mutation.mutate(data);
-
-        setTimeout(() => {
-            exitModal()
-        }, 1000);
-
+        exitModal(1000)
     }
     const onDelete = async (id)=>{
         mutate_del.mutate({_id: id})
-        setTimeout(() => {
-            exitModal()
-        }, 500);
+        exitModal(1000)
     }
 
     if (mutation.isLoading) {return <span>Submitting...</span>;}

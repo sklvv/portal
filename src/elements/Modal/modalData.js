@@ -13,6 +13,9 @@ export const modalData = (variant, mode)=>{
         case 'phoneBook':
             return  <ModalPhoneBook />
             break;
+        case 'transport':
+            return  <ModalPhoneBook />
+            break;
         default:
             return "Default";
             break;
