@@ -15,15 +15,17 @@ export const phoneBookSchema = yup.object().shape({
     phone: yup.string()
         .required("Введите номер")
         .min(3, txt.min)
-        .max(11, txt.max),
+        .max(12, txt.max),
 });
 export const transportSchema = yup.object().shape({
     name: yup.string(),
     car: yup.string(),
+    carmodel: yup.string(),
     number: yup.string(),
     phone: yup.string()
         .required("Введите номер")
         .min(3, txt.min)
-        .max(11, txt.max),
 });
+
+
 

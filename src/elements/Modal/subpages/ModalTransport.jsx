@@ -91,6 +91,16 @@ const ModalTransport = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
+                <GTextField fullWidth id="carmodel" label="Модель" variant="standard" type='email' size='small'
+                            InputProps={{
+                                startAdornment: (<InputAdornment position="start"><DirectionsCarIcon /></InputAdornment>),
+                            }}
+                            {...register("carmodel")} error={errors.carmodel && true}
+                            helperText={
+                                errors.carmodel ? <span style={{color: 'red'}}>{errors.carmodel.message}</span>
+                                    : <span style={{height: '20px'}}> </span>
+                            }
+                />
                 <GTextField fullWidth id="number" label="Гос. номер" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><DisplaySettingsIcon /></InputAdornment>),

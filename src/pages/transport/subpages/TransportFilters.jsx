@@ -10,6 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import {setTransportList} from "../TransportSlice";
 import {useGetTransport} from "../../../hook/useGetTransport";
+import '../transport.scss'
 
 const TransportFilters = ({updateItem}) => {
     const dispatch = useDispatch()
@@ -33,6 +34,7 @@ const TransportFilters = ({updateItem}) => {
             const searchedData = transport.filter(i => {
                 return i.name.toLowerCase().includes(search.toLowerCase())
                     || i.car.includes(search)
+                    || i.carmodel.includes(search)
                     || i.number.includes(search)
                     || i.phone.includes(search)
             })

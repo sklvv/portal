@@ -46,7 +46,8 @@ const PhoneBook = () => {
             <BlockShadow >
                 <div  className='listHeader'>
                     <div className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
-                    <div className='listIcon'><DirectionsCarIcon/> <span> АВТОМОБИЛЬ</span></div>
+                    <div className='listIcon'><DirectionsCarIcon/> <span> МАРКА</span></div>
+                    <div className='listIcon'><DirectionsCarIcon/> <span> МОДЕЛЬ</span></div>
                     <div className='listIcon'><DisplaySettingsIcon/> <span> ГОС НОМЕР</span></div>
                     <div className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
                 </div>
