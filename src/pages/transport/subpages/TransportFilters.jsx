@@ -49,7 +49,7 @@ const TransportFilters = ({updateItem}) => {
             <ButtonGroup variant="outlined" size='small' sx={{verticalAlign: 'bottom'}}>
                 {
                     user && <Tooltip title={<Typography variant="body2"  gutterBottom>Добавить номер пользователя</Typography>}>
-                        <Button onClick={updateItem} color={'success'}><CarRentalIcon/></Button>
+                        <Button onClick={updateItem} color={'success'}><CarRentalIcon/> Добавить</Button>
                     </Tooltip>
                 }
             </ButtonGroup>

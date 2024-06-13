@@ -14,6 +14,8 @@ export const GInputLabel = styled(InputLabel)(({ theme }) => ({
 export const GTextField = styled(TextField)(({ theme }) => ({
     "& .MuiInput-underline:after": { borderBottomColor: '#4cb242'},
     '& .Mui-focused': {color: '#4cb242 !important'},
+    'input:before': {borderBottomColor: '#7d7d7d6b'},
+    '& .MuiInput-root' : {color: '#7d7d7d'},
    /* '& .MuiInputAdornment-root' : {color: '#4cb242'},*/
    /* 'input': {
         '&::placeholder': {

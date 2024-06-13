@@ -49,7 +49,7 @@ const PhoneBookFilters = ({updateItem}) => {
             <ButtonGroup variant="outlined" size='small' sx={{verticalAlign: 'bottom'}}>
                 {
                     user && <Tooltip title={<Typography variant="body2"  gutterBottom>Добавить номер пользователя</Typography>}>
-                        <Button onClick={updateItem} color={'success'}><PersonAddIcon/></Button>
+                        <Button onClick={updateItem} color={'success'}><PersonAddIcon/> Добавить</Button>
                     </Tooltip>
                 }
             </ButtonGroup>

@@ -16,7 +16,7 @@ const dark = {
     logo: logoDark, // логотип
     bg: {
         /*main: "#515151",// фон основной страницы*/
-        main: fon,// фон основной страницы
+        main: '',// фон основной страницы
         sideBar: '#333333',// фон сайдбара
         header: '#333333', // фон хедера
         modal:  "#7c7c7c", // фон модалки
@@ -28,7 +28,10 @@ const dark = {
         red: '#db2823',
         green: '#9fdb21',
         grey: '#8795a1',
-    }
+    },
+    listHeader: '#333333',
+    listHeaderText: '#9f9f9f',
+
 }
 
 const light = {
@@ -36,7 +39,7 @@ const light = {
     lion: lion,
     logo: logoLight,
     bg: {
-        main: "#ffffff",
+        main: "#fafafb",
         sideBar: '#F5F5F5',
         header: '#F5F5F5',
         modal:  "#fff", // фон модалки
@@ -48,7 +51,9 @@ const light = {
         red: '#f11010',
         green: '#1cc700',
         grey: '#9f9f9f',
-    }
+    },
+    listHeader: '#4cb242',
+    listHeaderText: '#ffffff',
 }
 
 

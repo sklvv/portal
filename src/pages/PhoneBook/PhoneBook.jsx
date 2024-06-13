@@ -13,13 +13,15 @@ import {useGetPhoneBook} from "../../hook/useGetPhoneBook";
 import Skelet from "../../elements/Skelet";
 import {useEffect} from "react";
 import {resetDataForModal, setDataForModal} from "../../elements/Modal/ModalSlice";
-
+import {useTheme} from "../../hook/useTheme";
 
 const PhoneBook = () => {
     const {data: phonebook, isLoading, isError} = useGetPhoneBook()
     const dispatch = useDispatch()
     const {setModal} = useModal()
     const phonebookList = useSelector(state => state.phonebook.phonebookList);
+    const styleBgColor = useTheme('listHeader')
+    const styleColor = useTheme('listHeaderText')
 
     const updateItem = (item = false) =>{
         dispatch(resetDataForModal())
@@ -39,18 +41,22 @@ const PhoneBook = () => {
     if (isError) {return <h3>Нет подключения к серверу</h3>}
     if (!phonebook) {return <h3>Нет данных с сервера</h3>}
 
+
+
     return (
         <div>
             <PhoneBookFilters updateItem={updateItem}/>
             <BlockShadow >
-                <div  className='listHeader'>
+                <div  className='listHeader' style={{backgroundColor: styleBgColor, color: styleColor}}>
                     <div className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
                     <div className='listIcon'><HomeRepairServiceIcon/> <span> ДОЛЖНОСТЬ</span></div>
                     <div className='listIcon'><LanIcon/> <span> ОТДЕЛ</span></div>
                     <div className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
                 </div>
             </BlockShadow>
-            { phonebookList?.map((item) => <PhoneBookList key={item._id} item={item} updateItem={updateItem}/>)}
+             <div className='scroll' style={{overflow: 'overlay', height: 'calc(100vh - 166px)'}}>
+                { phonebookList?.map((item) => <PhoneBookList key={item._id} item={item} updateItem={updateItem}/>)}
+            </div>
         </div>
     )
 };

@@ -13,6 +13,7 @@ import {resetDataForModal, setDataForModal} from "../../elements/Modal/ModalSlic
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import {useGetTransport} from "../../hook/useGetTransport";
+import {useTheme} from "../../hook/useTheme";
 
 
 
@@ -21,6 +22,8 @@ const PhoneBook = () => {
     const dispatch = useDispatch()
     const {setModal} = useModal()
     const transportList = useSelector(state => state.transport.transportList);
+    const styleBgColor = useTheme('listHeader')
+    const styleColor = useTheme('listHeaderText')
 
     const updateItem = (item = false) =>{
         dispatch(resetDataForModal())
@@ -44,7 +47,7 @@ const PhoneBook = () => {
         <div>
             <TransportFilters updateItem={updateItem}/>
             <BlockShadow >
-                <div  className='listHeader'>
+                <div  className='listHeader' style={{backgroundColor: styleBgColor, color: styleColor}}>
                     <div className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
                     <div className='listIcon'><DirectionsCarIcon/> <span> МАРКА</span></div>
                     <div className='listIcon'><DirectionsCarIcon/> <span> МОДЕЛЬ</span></div>

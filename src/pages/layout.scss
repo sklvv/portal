@@ -7,8 +7,17 @@ header {
     width: 100%;
     z-index: 1000;
 }
-
-main>div {
+.lion {
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 34%;
+    position: fixed;
+    z-index: 0;
+    right: 0%;
+    width: 105%;
+    height: 100%;
+}
+main .pageWrapper {
     display: flex;
 
     justify-content: flex-start;
@@ -103,12 +112,6 @@ main>div {
             padding-top: 15px;
         }
     }
-}
-
-
-* {
-    margin: 0;
-    padding: 0;
 }
 
 
