@@ -50,8 +50,10 @@ main .pageWrapper {
     .divide {
         margin-top: 20px;
         height: 24px;
-        padding-left: 30px;
+        text-align: center;
+        letter-spacing: 1px;
         color: grey;
+        font-size: 14px;
     }
     .divide>span {
         display: none;
