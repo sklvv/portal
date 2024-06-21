@@ -17,7 +17,7 @@ import Transport from "./pages/transport/Transport";
 
 function App() {
     const mode = useSelector(state => state.header.mode);
-    const theme = useMemo(() => createTheme(themeMode),[mode]);
+    const theme = useMemo(() => createTheme(themeMode),[]);
 
     return (
         <AuthProvider>

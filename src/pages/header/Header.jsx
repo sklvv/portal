@@ -16,13 +16,12 @@ import {useModal} from "../../hook/useModal";
 import Switch from "@mui/material/Switch";
 
 
-
-
 const Header = () => {
     const activePageName = useSelector(state => state.sidemenu.activePageName);
     const {signOut,checkLogin, user} = useAuth()
     const dispatch = useDispatch();
     const {setModal} = useModal()
+
 
     /* получить текущую тему*/
     const getTheme = localStorage.getItem('theme')

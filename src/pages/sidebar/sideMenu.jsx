@@ -4,7 +4,7 @@ import List from "@mui/material/List";
 import '../layout.scss'
 import {Divider, ListItemIcon} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {setActive} from "./SideMenuSlice";
+import {setActive, setPage} from "./SideMenuSlice";
 import {Link} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
 import {useEffect} from "react";
@@ -17,8 +17,12 @@ const SideMenu = () => {
     const menuList = useSelector(state => state.sidemenu.menuList);
     const dispatch = useDispatch()
     const {auth} = useAuth()
-
     const color = useTheme('divider')
+    const currentPath = (window.location.pathname).replace('/', '');
+
+    useEffect(()=>{
+        dispatch(setPage(currentPath))
+    },[])
 
     const renderList = (data, admin = false)=>{
         if (data){

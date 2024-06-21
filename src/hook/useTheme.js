@@ -1,9 +1,7 @@
 import {useSelector} from "react-redux";
 import lion from '../img/bg_lionRight2.png'
-import lionBlack from '../img/bg_lionRight4.png'
 import logoLight from '../img/header/logoLight.png';
 import logoDark from '../img/header/logoDark.png';
-import fon from '../img/test/fon8.jpg'
 import lionGreen from '../img/lionGrey10.png'
 
 /*главная тема*/

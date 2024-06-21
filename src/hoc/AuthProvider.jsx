@@ -28,7 +28,7 @@ export const AuthProvider = ({children}) => {
         localStorage.setItem('logged', currentDay)
         setUser(newUser)
         setAuth(true)
-        navigate('/', {replace: true})
+        /*navigate('/', {replace: true})*/
     }
     const signOut = ()=> {
         localStorage.removeItem('auth');

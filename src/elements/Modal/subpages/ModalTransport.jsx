@@ -71,7 +71,7 @@ const ModalTransport = () => {
                 <Typography variant="h5" gutterBottom className='modalAuthTitle'>
                     { dataForModal.id ? 'Изменить запись' : 'Добавить запись'}
                 </Typography>
-                <GTextField fullWidth id="name" label="Ф.И.О." variant="standard" type='email' size='small'
+                <GTextField style={{width: "93%"}} id="name" label="Ф.И.О." variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><BadgeIcon /></InputAdornment>),
                             }}
@@ -81,7 +81,7 @@ const ModalTransport = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="car" label="Автомобиль" variant="standard" type='email' size='small'
+                <GTextField style={{width: "45%"}} id="car" label="Автомобиль" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><DirectionsCarIcon /></InputAdornment>),
                             }}
@@ -91,7 +91,7 @@ const ModalTransport = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="carmodel" label="Модель" variant="standard" type='email' size='small'
+                <GTextField style={{width: "45%"}} id="carmodel" label="Модель" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><DirectionsCarIcon /></InputAdornment>),
                             }}
@@ -101,7 +101,7 @@ const ModalTransport = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="number" label="Гос. номер" variant="standard" type='email' size='small'
+                <GTextField style={{width: "93%"}} id="number" label="Гос. номер" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><DisplaySettingsIcon /></InputAdornment>),
                             }}
@@ -111,7 +111,7 @@ const ModalTransport = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="phone" label="Телефон" variant="standard" type='email' size='small'
+                <GTextField style={{width: "93%"}} id="phone" label="Телефон" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><PhoneIcon /></InputAdornment>),
                             }}

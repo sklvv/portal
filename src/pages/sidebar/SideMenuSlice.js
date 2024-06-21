@@ -78,6 +78,7 @@ const initialState = {
     ],
 }
 
+
 const sidemenuSlice = createSlice({
     name: 'sidemenu',
     initialState,
@@ -94,8 +95,23 @@ const sidemenuSlice = createSlice({
                 x.push(item)
             }))
             state.menuList = x
-
         },
+        setPage: (state,action) =>{
+            const y = state.menuList.find(item => item.link === action.payload)
+            state.activePageName = y.name
+
+            let x = []
+            state.menuList.forEach((item => {
+                if (item.id === y.id){
+                    item.active = true
+                    state.activePageName = item.name
+                } else {
+                    item.active = false
+                }
+                x.push(item)
+            }))
+            state.menuList = x
+        }
     },
 });
 
@@ -103,5 +119,5 @@ const {actions, reducer} = sidemenuSlice;
 
 export default reducer;
 export const {
-    setActive,
+    setActive,setPage,
 } = actions;
