@@ -48,11 +48,11 @@ const PhoneBook = () => {
             <TransportFilters updateItem={updateItem}/>
             <BlockShadow >
                 <TableHead>
-                    <div className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
-                    <div className='listIcon'><DirectionsCarIcon/> <span> МАРКА</span></div>
-                    <div className='listIcon'><DirectionsCarIcon/> <span> МОДЕЛЬ</span></div>
-                    <div className='listIcon'><DisplaySettingsIcon/> <span> ГОС НОМЕР</span></div>
-                    <div className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
+                    <div style={{flexBasis: '25%'}} className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
+                    <div style={{flexBasis: '15%'}} className='listIcon'><DirectionsCarIcon/> <span> МАРКА</span></div>
+                    <div style={{flexBasis: '15%'}} className='listIcon'><DirectionsCarIcon/> <span> МОДЕЛЬ</span></div>
+                    <div style={{flexBasis: '20%'}} className='listIcon'><DisplaySettingsIcon/> <span> ГОС НОМЕР</span></div>
+                    <div style={{flexBasis: ''}} className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
                 </TableHead>
             </BlockShadow>
             <Scroll>

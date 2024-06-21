@@ -9,10 +9,10 @@ const PhoneBookList = ({item, updateItem}) => {
     const {user} = useAuth()
     return (
         <TableItem>
-            <div>{name}</div>
-            <div>{position}</div>
-            <div>{dep}</div>
-            <div>{phone}</div>
+            <div style={{flexBasis: '30%'}}>{name}</div>
+            <div style={{flexBasis: '30%'}}>{position}</div>
+            <div style={{flexBasis: '25%'}}>{dep}</div>
+            <div style={{flexBasis: '15%'}}>{phone}</div>
             {
                 user && <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>
             }

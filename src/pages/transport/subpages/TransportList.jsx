@@ -9,11 +9,11 @@ const TransportList = ({item, updateItem}) => {
     const {user} = useAuth()
     return (
         <TableItem>
-            <div>{name}</div>
-            <div>{car}</div>
-            <div>{carmodel}</div>
-            <div>{number}</div>
-            <div>{phone}</div>
+            <div style={{flexBasis: '25%'}}>{name}</div>
+            <div style={{flexBasis: '15%'}}>{car}</div>
+            <div style={{flexBasis: '15%'}}>{carmodel}</div>
+            <div style={{flexBasis: '20%'}}>{number}</div>
+            <div style={{flexBasis: ''}}>{phone}</div>
             {
                 user && <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>
             }

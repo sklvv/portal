@@ -32,9 +32,9 @@
             display: block;
         }
     }
-    div:not(.edit) {
+   /* div:not(.edit) {
         flex-basis: 25%;
-    }
+    }*/
     .edit {
         position: absolute;
         right: 2px;

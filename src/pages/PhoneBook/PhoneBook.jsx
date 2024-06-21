@@ -47,10 +47,10 @@ const PhoneBook = () => {
             <PhoneBookFilters updateItem={updateItem}/>
             <BlockShadow >
                 <TableHead>
-                    <div className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
-                    <div className='listIcon'><HomeRepairServiceIcon/> <span> ДОЛЖНОСТЬ</span></div>
-                    <div className='listIcon'><LanIcon/> <span> ОТДЕЛ</span></div>
-                    <div className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
+                    <div style={{flexBasis: '30%'}} className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
+                    <div style={{flexBasis: '30%'}} className='listIcon'><HomeRepairServiceIcon/> <span> ДОЛЖНОСТЬ</span></div>
+                    <div style={{flexBasis: '25%'}} className='listIcon'><LanIcon/> <span> ОТДЕЛ</span></div>
+                    <div style={{flexBasis: '15%'}} className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
                 </TableHead>
             </BlockShadow>
             <Scroll>
