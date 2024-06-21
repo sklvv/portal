@@ -1,8 +1,9 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import axios from "axios";
+const link = "http://grd228.grdn.ru:5000/api/portal/transport"
 
 async function fetchTransport(){
-    const data = (await axios.get("http://grd228.grdn.ru:5000/api/portal/transport")).data
+    const data = (await axios.get(link)).data
     data.sort((a, b)=>{
         if (a.name < b.name) {
             return -1;
@@ -21,12 +22,11 @@ export const useGetTransport = () => {
             refetchOnWindowFocus: true,
         })
 }
-
 /**/
 export const useGetTransport_add = () => {
     const queryClient = useQueryClient();
     return useMutation((transportItem) =>
-            axios.post("http://grd228.grdn.ru:5000/api/portal/transport_add", transportItem),
+            axios.post(link, transportItem),
         {
             onSuccess: () => {
                 // Инвалидация и обновление
@@ -38,7 +38,7 @@ export const useGetTransport_add = () => {
 export const useGetTransport_del = () => {
     const queryClient = useQueryClient();
     return useMutation((id) =>
-            axios.post("http://grd228.grdn.ru:5000/api/portal/transport", id),
+            axios.delete(link, { data: { id: id } }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление

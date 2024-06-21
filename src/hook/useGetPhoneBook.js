@@ -1,8 +1,9 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import axios from "axios";
+const link = "http://grd228.grdn.ru:5000/api/portal/phoneBook"
 
 async function fetchPhoneBook(){
-    const data = (await axios.get("http://grd228.grdn.ru:5000/api/portal/phoneBook")).data
+    const data = (await axios.get(link)).data
     data.sort((a, b)=>{
         if (a.name < b.name) {
             return -1;
@@ -21,12 +22,11 @@ export const useGetPhoneBook = () => {
             refetchOnWindowFocus: true,
         })
 }
-
 /**/
 export const useGetPhoneBook_add = () => {
     const queryClient = useQueryClient();
     return useMutation((phoneBookItem) =>
-            axios.post("http://grd228.grdn.ru:5000/api/portal/phoneBook_add", phoneBookItem),
+            axios.post(link, phoneBookItem),
         {
             onSuccess: () => {
                 // Инвалидация и обновление
@@ -38,7 +38,7 @@ export const useGetPhoneBook_add = () => {
 export const useGetPhoneBook_del = () => {
     const queryClient = useQueryClient();
     return useMutation((id) =>
-            axios.post("http://grd228.grdn.ru:5000/api/portal/phoneBook", id),
+        axios.delete(link, { data: { id: id } }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление

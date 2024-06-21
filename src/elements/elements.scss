@@ -11,3 +11,10 @@
   /*border: 1px solid white;*/
   max-width: 300px;
 }
+
+.scroll {
+  scrollbar-width: thin;
+  scrollbar-color: green black;
+  overflow: overlay;
+  height: calc(100vh - 166px);
+}

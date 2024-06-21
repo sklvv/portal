@@ -12,7 +12,7 @@ const Layout = () => {
                 <Header/>
             </header>
             {/*<main style={{background: `url(${(useTheme('bg', 'main'))})`, backgroundSize: 'contain',color: useTheme('text')}} >*/}
-            <main style={{background: `url(${(useTheme('bg', 'main'))})`, backgroundSize: 'contain',color: useTheme('text')}} className='container' >
+            <main style={{background: `url(${(useTheme('bg', 'main'))})`, color: useTheme('text')}} className='container' >
                 {
                     useTheme()
                         ? <div>
