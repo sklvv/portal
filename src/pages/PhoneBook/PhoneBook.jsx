@@ -13,7 +13,6 @@ import {useGetPhoneBook} from "../../hook/useGetPhoneBook";
 import Skelet from "../../elements/Skelet";
 import {useEffect} from "react";
 import {resetDataForModal, setDataForModal} from "../../elements/Modal/ModalSlice";
-import {useTheme} from "../../hook/useTheme";
 import TableHead from "../../elements/Table/TableHead";
 import Scroll from "../../elements/Scroll";
 
@@ -34,6 +33,7 @@ const PhoneBook = () => {
 
     useEffect(()=>{
         dispatch(setPhoneBookList(phonebook))
+        // eslint-disable-next-line no-use-before-define
     },[phonebook])
 
 

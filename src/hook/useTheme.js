@@ -1,13 +1,11 @@
-
 import {useSelector} from "react-redux";
-
 import lion from '../img/bg_lionRight2.png'
 import lionBlack from '../img/bg_lionRight4.png'
 import logoLight from '../img/header/logoLight.png';
 import logoDark from '../img/header/logoDark.png';
 import fon from '../img/test/fon8.jpg'
 import lionGreen from '../img/lionGrey10.png'
-/*1  2  3   4 cut   5    8   12   13-50/50     15             */
+
 /*главная тема*/
 const dark = {
     text: "#ffffff", // цвет текста
@@ -31,6 +29,7 @@ const dark = {
     },
     listHeader: '#333333',
     listHeaderText: '#9f9f9f',
+    scroll: 'black',
 
 }
 
@@ -54,6 +53,7 @@ const light = {
     },
     listHeader: '#4cb242',
     listHeaderText: '#ffffff',
+    scroll: '',
 }
 
 

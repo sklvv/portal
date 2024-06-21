@@ -3,7 +3,6 @@
   margin: 5px;
 }
 
-
 .custom-tooltip {
   background-color: #7C7C7C;
   padding: 3px 5px;
@@ -18,3 +17,5 @@
   overflow: overlay;
   height: calc(100vh - 166px);
 }
+
+/*# sourceMappingURL=elements.css.map */

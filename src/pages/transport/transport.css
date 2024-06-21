@@ -1,0 +1,16 @@
+.filters {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.filters .searchFilter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.filters .searchFilter .objects {
+  padding-bottom: 5px;
+}
+
+/*# sourceMappingURL=transport.css.map */

@@ -13,7 +13,6 @@ import {resetDataForModal, setDataForModal} from "../../elements/Modal/ModalSlic
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import {useGetTransport} from "../../hook/useGetTransport";
-import {useTheme} from "../../hook/useTheme";
 import TableHead from "../../elements/Table/TableHead";
 import Scroll from "../../elements/Scroll";
 
@@ -35,6 +34,7 @@ const PhoneBook = () => {
 
     useEffect(()=>{
         dispatch(setTransportList(transport))
+        // eslint-disable-next-line no-use-before-define
     },[transport])
 
 
