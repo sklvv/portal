@@ -4,14 +4,11 @@ import {Controller, useController, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {userSchema} from "../modalSchema";
 import {useModal} from "../../../hook/useModal";
-import {useGetPhoneBook_add, useGetPhoneBook_del} from "../../../hook/useGetPhoneBook";
 import {
     Box,
     Button,
-    Checkbox,
     Divider,
     FormControlLabel,
-    FormGroup,
     InputAdornment,
     Tooltip,
     Typography
@@ -23,6 +20,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import Switch from "@mui/material/Switch";
+import {useGetUsers_add} from "../../../hook/useGetUsers";
 
 
 const ModalUsers = () => {
@@ -39,8 +37,8 @@ const ModalUsers = () => {
 
 
     const {exitModal} = useModal()
-    const mutation = useGetPhoneBook_add()
-    const mutate_del = useGetPhoneBook_del()
+    const mutation = useGetUsers_add()
+    const mutate_del = useGetUsers_add()
 
     useEffect(()=>{
         if (dataForModal){
@@ -58,8 +56,9 @@ const ModalUsers = () => {
     },[dataForModal])
 
     const onSubmit = async (data) => {
-        mutation.mutate(data);
-        exitModal(1000)
+        console.log(data)
+        /*mutation.mutate(data);
+        exitModal(1000)*/
     }
     const onDelete = async (id)=>{
         mutate_del.mutate({_id: id})
@@ -145,22 +144,6 @@ const ModalUsers = () => {
                             />
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <div >
                     <Tooltip title={<Typography variant="body2"  gutterBottom>Сохранить данные</Typography>}>
