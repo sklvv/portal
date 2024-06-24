@@ -1,117 +1,66 @@
 import BlockShadow from "../../elements/BlockShadow";
-import List from "@mui/material/List";
-import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary, FormControlLabel,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Typography
-} from "@mui/material";
-import ListItemButton from "@mui/material/ListItemButton";
-import Switch from "@mui/material/Switch";
+import ApiIcon from '@mui/icons-material/Api';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import {useState} from "react";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {useEffect, useState} from "react";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import PeopleIcon from '@mui/icons-material/People';
+import './usersAdmin.scss'
+import {useDispatch, useSelector} from "react-redux";
+import {useModal} from "../../hook/useModal";
+import {useGetUsers} from "../../hook/useGetUsers";
+import Skelet from "../../elements/Skelet";
+import TableHead from "../../elements/Table/TableHead";
+import BadgeIcon from "@mui/icons-material/Badge";
+import Scroll from "../../elements/Scroll";
+import {setUserList} from "./UserAdminSlice";
+import {resetDataForModal, setDataForModal} from "../../elements/Modal/ModalSlice";
+import UserAdminList from "./subpages/UserAdminList";
 
 
 const UserAdmin = () => {
+    const {data: users, isLoading, isError} = useGetUsers()
+    const dispatch = useDispatch()
+    const {setModal} = useModal()
+    const userList = useSelector(state => state.userAdmin.userList);
+
+    useEffect(()=>{
+        dispatch(setUserList(users))
+        // eslint-disable-next-line no-use-before-define
+    },[users])
+
+    const updateItem = (item = false) =>{
+        dispatch(resetDataForModal())
+        if (item._id) {
+            dispatch(setDataForModal(item))
+        }
+        setModal('users')
+    }
+
     /*accordeon*/
     const [expanded, setExpanded] = useState(false);
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
 
+
+    if (isLoading) {return <Skelet/>}
+    if (isError) {return <h3>Нет подключения к серверу</h3>}
+    if (!users) {return <h3>Нет данных с сервера</h3>}
+
     return (
         <div>
-            <BlockShadow>
-                <List >
-                    <ListItem disablePadding divider>
-                        <ListItem>
-                            <ListItemIcon><PeopleIcon/></ListItemIcon>
-                            <ListItemText sx={{width: '10%'}} primary="Имя"  />
-                            <ListItemText sx={{width: '10%'}} primary={<AlternateEmailIcon/>}  />
-                            <ListItemText primary="iBoard"  />
-                            <ListItemText primary="Dashboard"  />
-                            <ListItemText primary="Portal"  />
-                            <ListItemText primary="Роль"  />
-                            <ListItemText primary="Действия"  />
-                        </ListItem>
-                    </ListItem>
-                    <ListItem disablePadding divider>
-                        <ListItemButton>
-                            <ListItemIcon><PersonOutlineIcon/></ListItemIcon>
-                            <ListItemText primary="Вадим Кузнецовм"  />
-                            <ListItemText sx={{textAlign: 'left'}} primary="vadya@grdn.ru"  />
-                            <ListItemText primary={<FormControlLabel control={<Switch />} label="iBoard" />}/>
-                            <ListItemText primary={<Switch/>}  label="Dashboard"/>
-                            <ListItemText primary={<Switch/>}  label="Portal"/>
-                            <ListItemText primary="Админ"  />
-                            <ListItemText primary="Действия"  />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding divider>
-                        <ListItemButton>
-                            <ListItemIcon><AdminPanelSettingsIcon/></ListItemIcon>
-                            <ListItemText primary="Дмитрий Лебедев"  />
-                            <ListItemText primary="dima@grdn.ru"  />
-                            <ListItemText primary={<Switch/>}  />
-                            <ListItemText primary={<Switch/>}  />
-                            <ListItemText primary={<Switch/>}  />
-                            <ListItemText primary="Пользователь"  />
-                            <ListItemText primary="Действия"  />
-                        </ListItemButton>
-                    </ListItem>
-                </List>
+            <BlockShadow >
+                <TableHead>
+                    <div style={{flexBasis: '25%'}} className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
+                    <div style={{flexBasis: '25%'}} className='listIcon'><AlternateEmailIcon/> <span> Почта</span></div>
+                    <div style={{flexBasis: '20%'}} className='listIcon'><AdminPanelSettingsIcon/> <span> Роль</span></div>
+                    <div style={{flexBasis: '10%'}} className='listIcon'><ApiIcon/> <span> iBoard</span></div>
+                    <div style={{flexBasis: '10%'}} className='listIcon'><ApiIcon/> <span> Dashboard</span></div>
+                    <div style={{flexBasis: '10%'}} className='listIcon'><ApiIcon/> <span> Portal</span></div>
+                </TableHead>
             </BlockShadow>
-
-
-
-            <div>
-                <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1bh-content"
-                        id="panel1bh-header"
-                    >
-                        <div style={{lineHeight: '2.3'}}><AdminPanelSettingsIcon/></div>
-                        <div style={{lineHeight: '2.3'}}>Дмитрий Лебедев</div>
-                        <div style={{lineHeight: '2.3'}}>dima-lebed@grdn.ru</div>
-                        <div><FormControlLabel control={<Switch />} labelPlacement="start" label="iBoard" /></div>
-                        <div><FormControlLabel control={<Switch />} labelPlacement="start" label="Dashboard" /></div>
-                        <div><FormControlLabel control={<Switch />} labelPlacement="start" label="Portal" /></div>
-                    </AccordionSummary>
-                    <AccordionDetails>
-
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel2bh-content"
-                        id="panel2bh-header"
-                    >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>Users</Typography>
-                        <Typography sx={{ color: 'text.secondary' }}>
-                            You are currently not an owner
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
-                            varius pulvinar diam eros in elit. Pellentesque convallis laoreet
-                            laoreet.
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-
-            </div>
-
-
+            <Scroll>
+                { userList?.map((item) => <UserAdminList key={item._id} item={item} updateItem={updateItem}/>)}
+            </Scroll>
 
 
 

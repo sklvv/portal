@@ -1,0 +1,17 @@
+.filters {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 5px;
+}
+.filters .searchFilter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.filters .searchFilter .objects {
+  padding-bottom: 5px;
+}
+
+/*# sourceMappingURL=usersAdmin.css.map */

@@ -97,7 +97,7 @@ const sidemenuSlice = createSlice({
             state.menuList = x
         },
         setPage: (state,action) =>{
-            const y = state.menuList.find(item => item.link === action.payload)
+            /*const y = state.menuList.find(item => item.link === action.payload)
             state.activePageName = y.name
 
             let x = []
@@ -110,7 +110,7 @@ const sidemenuSlice = createSlice({
                 }
                 x.push(item)
             }))
-            state.menuList = x
+            state.menuList = x*/
         }
     },
 });

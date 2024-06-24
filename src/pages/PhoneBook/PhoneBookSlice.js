@@ -6,7 +6,7 @@ const initialState = {
 
 }
 
-const modalSlice = createSlice({
+const phoneBookSlice = createSlice({
     name: 'phonebook',
     initialState,
     reducers: {
@@ -17,7 +17,7 @@ const modalSlice = createSlice({
     },
 });
 
-const {actions, reducer} = modalSlice;
+const {actions, reducer} = phoneBookSlice;
 
 export default reducer;
 export const {

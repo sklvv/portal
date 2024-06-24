@@ -26,6 +26,14 @@ export const transportSchema = yup.object().shape({
         .required("Введите номер")
         .min(3, txt.min)
 });
+export const userSchema = yup.object().shape({
+    name: yup.string().required("Укажите имя"),
+    login: yup.string().required("Укажите имя"),
+    position: yup.string(),
+    dashboard: yup.boolean(),
+    iboard: yup.boolean(),
+    portal: yup.boolean(),
 
+});
 
 

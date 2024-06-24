@@ -6,7 +6,7 @@ const initialState = {
 
 }
 
-const modalSlice = createSlice({
+const transportSlice = createSlice({
     name: 'transport',
     initialState,
     reducers: {
@@ -16,7 +16,7 @@ const modalSlice = createSlice({
     },
 });
 
-const {actions, reducer} = modalSlice;
+const {actions, reducer} = transportSlice;
 
 export default reducer;
 export const {
