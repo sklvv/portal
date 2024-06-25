@@ -39,7 +39,6 @@ const UserAdmin = () => {
     if (isError) {return <h3>Нет подключения к серверу</h3>}
     if (!users) {return <h3>Нет данных с сервера</h3>}
 
-    console.log(users)
     return (
         <div>
             <BlockShadow >

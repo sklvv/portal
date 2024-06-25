@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import {Controller, useController, useForm} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {userSchema} from "../modalSchema";
 import {useModal} from "../../../hook/useModal";
@@ -20,7 +20,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import Switch from "@mui/material/Switch";
-import {useGetUsers_add} from "../../../hook/useGetUsers";
+import {useGetUsers_update} from "../../../hook/useGetUsers";
 
 
 const ModalUsers = () => {
@@ -37,8 +37,8 @@ const ModalUsers = () => {
 
 
     const {exitModal} = useModal()
-    const mutation = useGetUsers_add()
-    const mutate_del = useGetUsers_add()
+    const mutation = useGetUsers_update()
+    const mutate_del = useGetUsers_update()
 
     useEffect(()=>{
         if (dataForModal){

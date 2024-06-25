@@ -23,7 +23,7 @@ export const useGetUsers = () => {
         })
 }
 /**/
-export const useGetUsers_add = () => {
+export const useGetUsers_update = () => {
     const queryClient = useQueryClient();
     return useMutation((userItem) =>
             axios.post(link, userItem),

@@ -31,17 +31,17 @@ const ModalAuth = () => {
     const onSubmit = async (data) => {
         setAuthMsg('Проверка данных')
         const loginDateCheck = checkLogin()
-/*дописать ф-ю авторизаии через портал*/
         try {
-            let sendData = {...data, from: 'iboard'}
-            const response = await axios.post('https://backend.s3grdn.ru/api/login', sendData)
+            let sendData = {...data, from: 'portal'}
+            const response = await axios.post('http://grd228.grdn.ru:5000/api/login', sendData)
             setAuthMsg(response.data.message)
             if (response.status === 200) {
                 localStorage.setItem('auth', true);
                 localStorage.setItem('name', response.data.name);
+                localStorage.setItem('position', response.data.position);
                 localStorage.setItem('logged', loginDateCheck)
                 setAuthMsg('')
-                signIn(response.data.name);
+                signIn(response.data.name, response.data.position);
                 exitModal()
             }
         } catch (e) {
