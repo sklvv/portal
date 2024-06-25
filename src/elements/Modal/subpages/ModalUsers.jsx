@@ -56,9 +56,8 @@ const ModalUsers = () => {
     },[dataForModal])
 
     const onSubmit = async (data) => {
-        console.log(data)
-        /*mutation.mutate(data);
-        exitModal(1000)*/
+        mutation.mutate(data);
+        exitModal(1000)
     }
     const onDelete = async (id)=>{
         mutate_del.mutate({_id: id})
@@ -117,29 +116,29 @@ const ModalUsers = () => {
                         <Tooltip title={<Typography variant="body2"  gutterBottom>Отправить пароль на почту</Typography>}>
                             <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color='warning' startIcon={<DeleteForeverIcon />}>Сброс пароля</Button>
                         </Tooltip>
-                        <Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
+                        {/*<Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
                             <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color="error" startIcon={<DeleteForeverIcon />}>Удалить</Button>
-                        </Tooltip>
+                        </Tooltip>*/}
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                         <Divider>Авторизация в приложениях:</Divider>
                             <Controller
                                 name="iboard" control={control}
                                 render={({ field: { onChange, value } }) => (
-                                    <FormControlLabel control={<Switch color='success' checked={value} onChange={onChange} />} label="Dashboard"/>
+                                    <FormControlLabel control={<Switch color='success' checked={!!value} onChange={onChange} />} label="Dashboard"/>
                                 )}
                             />
                             <Controller
                                 name="dashboard" control={control}
                                 render={({ field: { onChange, value } }) => (
-                                    <FormControlLabel control={<Switch color='success' checked={value} onChange={onChange} />} label="iBoard"/>
+                                    <FormControlLabel control={<Switch color='success' checked={!!value} onChange={onChange} />} label="iBoard"/>
                                 )}
                             />
 
                             <Controller
                                 name="portal" control={control}
                                 render={({ field: { onChange, value } }) => (
-                                    <FormControlLabel control={<Switch color='success' checked={value} onChange={onChange} />} label="Portal" />
+                                    <FormControlLabel control={<Switch color='success' checked={!!value} onChange={onChange} />} label="Portal" />
                                 )}
                             />
                     </div>

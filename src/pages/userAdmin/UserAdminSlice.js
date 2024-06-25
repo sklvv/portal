@@ -10,7 +10,6 @@ const userAdmin = createSlice({
     name: 'userAdmin',
     initialState,
     reducers: {
-
         setUserList: (state, action) => {
             state.userList = action.payload
         },

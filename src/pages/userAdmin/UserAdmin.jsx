@@ -1,7 +1,7 @@
 import BlockShadow from "../../elements/BlockShadow";
 import ApiIcon from '@mui/icons-material/Api';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import './usersAdmin.scss'
 import {useDispatch, useSelector} from "react-redux";
@@ -35,17 +35,11 @@ const UserAdmin = () => {
         setModal('users')
     }
 
-    /*accordeon*/
-    const [expanded, setExpanded] = useState(false);
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-    };
-
-
     if (isLoading) {return <Skelet/>}
     if (isError) {return <h3>Нет подключения к серверу</h3>}
     if (!users) {return <h3>Нет данных с сервера</h3>}
 
+    console.log(users)
     return (
         <div>
             <BlockShadow >
