@@ -13,6 +13,7 @@ import PhoneBook from "./pages/phoneBook/PhoneBook";
 import Main from "./pages/main/Main";
 import UserAdmin from "./pages/userAdmin/UserAdmin";
 import Transport from "./pages/transport/Transport";
+import Resources from "./pages/resources/Resources";
 
 
 function App() {
@@ -24,14 +25,14 @@ function App() {
                 <Routes>
                     <Route path='*' element={<Page404/>}/>
                     <Route path='/' element={<Layout/>}>
-                        <Route index element={<Main/>}/>
+                        <Route index element={<PhoneBook/>}/>
                         <Route  path='/main' element={<Main />}/>
                         <Route  path='/phoneBook' element={<PhoneBook />}/>
                         <Route  path='/userAdmin' element={<RequireAuth><UserAdmin /></RequireAuth>}/>
                         <Route  path='/iboardAdmin' element={<Page404 />}/>
                         <Route  path='/dashboardAdmin' element={<Page404 />}/>
                         <Route  path='/inventory' element={<Page404 />}/>
-                        <Route  path='/resources' element={<Page404 />}/>
+                        <Route  path='/resources' element={<Resources />}/>
                         <Route  path='/transport' element={<Transport />}/>
                     </Route>
                 </Routes>
