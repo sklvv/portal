@@ -26,7 +26,7 @@ function App() {
                     <Route path='*' element={<Page404/>}/>
                     <Route path='/' element={<Layout/>}>
                         <Route index element={<PhoneBook/>}/>
-                        <Route  path='/main' element={<Main />}/>
+                        {/*<Route  path='/main' element={<Main />}/>*/}
                         <Route  path='/phoneBook' element={<PhoneBook />}/>
                         <Route  path='/userAdmin' element={<RequireAuth><UserAdmin /></RequireAuth>}/>
                         <Route  path='/iboardAdmin' element={<Page404 />}/>

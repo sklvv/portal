@@ -31,7 +31,9 @@
    }*/
 }
 .tableItem:hover {
-  background-color: #4cb242;
+  /*background-color: #4cb242;*/
+  background-color: #17fa2f;
+  color: black;
 }
 .tableItem:hover .edit {
   display: block;

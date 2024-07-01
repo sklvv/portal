@@ -17,12 +17,12 @@
   position: absolute;
   right: -37px;
   top: -37px;
-  button {
-    color: white;
-  }
+}
+.modalBtn button {
+  color: white;
 }
 
-.modalBody2{
+.modalBody2 {
   font-size: 0.875rem;
 }
 
@@ -37,9 +37,7 @@ code {
   background-color: #fff;
 }
 
-
-
-.modalAuthTitle{
+.modalAuthTitle {
   font-style: italic;
   font-weight: 500;
   /*color: #4cb242;*/
@@ -49,3 +47,5 @@ code {
   text-align: center;
   /*text-shadow: 1px 1px 1px black;*/
 }
+
+/*# sourceMappingURL=modal.css.map */

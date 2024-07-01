@@ -4,6 +4,7 @@ import logoLight from '../img/header/logoLight.png';
 import logoDark from '../img/header/logoDark.png';
 import lionGreen from '../img/lionGrey10.png'
 
+
 /*главная тема*/
 const dark = {
     text: "#ffffff", // цвет текста
@@ -15,7 +16,8 @@ const dark = {
         main: '',// фон основной страницы
         sideBar: '#333333',// фон сайдбара
         header: '#333333', // фон хедера
-        modal:  "#7c7c7c", // фон модалки
+       /* modal:  "#7c7c7c",*/ // фон модалки
+        modal:  "#0e0f0e", // фон модалки
     },
     select : '#333333', // select, dropdown
     divider: '#00000096', // divider for SB
@@ -52,6 +54,7 @@ const light = {
     listHeader: '#4cb242',
     listHeaderText: '#ffffff',
     scroll: '',
+
 }
 
 

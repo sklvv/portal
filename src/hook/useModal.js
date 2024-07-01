@@ -1,6 +1,5 @@
 import {useDispatch} from "react-redux";
 import {closeModal, openModal} from "../elements/Modal/ModalSlice";
-import {useState} from "react";
 
 
 export const useModal = ()=> {

@@ -1,6 +1,7 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import axios from "axios";
-const link = "http://grd228.grdn.ru:5000/api/portal/phoneBook"
+import {BACK} from "../utils/links";
+const link = `${BACK}/api/portal/phoneBook`
 
 async function fetchPhoneBook(){
     const data = (await axios.get(link)).data

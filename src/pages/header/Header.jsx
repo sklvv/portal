@@ -75,7 +75,7 @@ const Header = () => {
                 <Toolbar  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pl: '0 !important', pr: '0 !important'}}>
                     <Box className='logo' >
                         <img src={useTheme('logo')} alt="Portal" style={{width: '190px'}}/>
-                        <Typography component="div" sx={{fontWeight: 600, fontSize: '14px', color: '#4cb242'}}>Portal</Typography>
+                        <Typography className='appName neonGreen' component="div">Portal</Typography>
                     </Box>
                     <Box sx={{
                         display: 'flex',

@@ -10,14 +10,14 @@ import DriveEtaIcon from '@mui/icons-material/DriveEta';
 const initialState = {
     activePageName: 'Портал',
     menuList: [
-        {
+        /*{
             id: 1,
             icon: <NotListedLocationIcon/>,
             name: 'Портал',
             active: true,
             link: 'main',
             admin: false,
-        },
+        },*/
         {
             id: 2,
             icon: <CallIcon/>,

@@ -12,6 +12,7 @@ import '../modal.scss'
 import {GTextField} from "../../CustomMui/customMui";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import PasswordIcon from '@mui/icons-material/Password';
+import {BACK} from "../../../utils/links";
 
 const ModalAuth = () => {
     const {signIn, checkLogin} = useAuth()
@@ -33,7 +34,7 @@ const ModalAuth = () => {
         const loginDateCheck = checkLogin()
         try {
             let sendData = {...data, from: 'portal'}
-            const response = await axios.post('http://grd228.grdn.ru:5000/api/login', sendData)
+            const response = await axios.post(`${BACK}/api/login`, sendData)
             setAuthMsg(response.data.message)
             if (response.status === 200) {
                 localStorage.setItem('auth', true);
@@ -65,7 +66,7 @@ const ModalAuth = () => {
             noValidate
             autoComplete="off"
         >
-            <Typography variant="h5" gutterBottom className='modalAuthTitle'>Авторизация в панеле управления</Typography>
+            <Typography variant="h5" gutterBottom className='modalAuthTitle'>Авторизация в панель управления</Typography>
             <GTextField fullWidth id="login" label="E-mail" variant="standard" type='email' size='small'
                        {...register("login")} error={errors.login && true}
                        helperText={
@@ -85,14 +86,14 @@ const ModalAuth = () => {
                        }
                        InputProps={{
                            startAdornment: (<InputAdornment position="start"><PasswordIcon /></InputAdornment>),
-                           endAdornment:(<InputAdornment position="end" onClick={showPass}><IconButton sx={{padding: 0}}>
+                           endAdornment:(<InputAdornment position="end" onClick={showPass}><IconButton className='black' sx={{padding: 0}}>
                                { show ?   <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
                            </IconButton></InputAdornment>)
                        }}
             />
             <div >
-                <Button  variant="contained" type='submit' size='small' color="success">Войти</Button>
-                <span style={{float: 'right', color: "red"}}>{authMsg}</span>
+                <Button sx={{float: 'right'}}  variant="contained" type='submit' size='small' color="success">Войти</Button>
+                <span style={{float: 'left', color: "red"}}>{authMsg}</span>
             </div>
         </Box>
     );
