@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import '../modal.scss'
 import EditIcon from "@mui/icons-material/Edit";
 import {useSelector} from "react-redux";
 import {Box, Button, InputAdornment, Tooltip, Typography} from "@mui/material";
@@ -59,8 +60,8 @@ const ModalPhoneBook = () => {
 
     return (
         <div>
-            <div style={{position: 'absolute', left: '-27px', top: '45%', color: '#ffffff'}}>
-                { dataForModal._id ? <EditIcon/> : <PersonAddIcon/>}
+            <div className='modalIcon'>
+                { dataForModal ? <EditIcon/> : <PersonAddIcon/>}
             </div>
 
             <Box
@@ -71,9 +72,9 @@ const ModalPhoneBook = () => {
                 autoComplete="off"
             >
                 <Typography variant="h5" gutterBottom className='modalAuthTitle'>
-                    { dataForModal.id ? 'Изменить запись' : 'Добавить запись'}
+                    { dataForModal ? 'Изменить запись' : 'Добавить запись'}
                   </Typography>
-                <GTextField fullWidth id="name" label="Ф.И.О." variant="standard" type='email' size='small'
+                <GTextField fullWidth id="name" label="Ф.И.О.*" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><BadgeIcon /></InputAdornment>),
                             }}
@@ -103,7 +104,7 @@ const ModalPhoneBook = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="phone" label="Телефон" variant="standard" type='email' size='small'
+                <GTextField fullWidth id="phone" label="Телефон*" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><PhoneIcon /></InputAdornment>),
                             }}

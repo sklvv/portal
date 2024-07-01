@@ -1,3 +1,4 @@
+import '../modal.scss'
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
@@ -55,10 +56,12 @@ const ModalTransport = () => {
     if (mutate_del.isError) {return <span>Error: {mutation.error.message}</span>;}
     if (mutate_del.isSuccess) {return <div>Удаление выполнено успешно</div>;}
 
+    console.log(dataForModal)
+
     return (
         <div>
-            <div style={{position: 'absolute', left: '-27px', top: '45%', color: '#ffffff'}}>
-                { dataForModal._id ? <EditIcon/> : <PersonAddIcon/>}
+            <div className='modalIcon'>
+                { dataForModal ? <EditIcon/> : <PersonAddIcon/>}
             </div>
 
             <Box
@@ -69,7 +72,7 @@ const ModalTransport = () => {
                 autoComplete="off"
             >
                 <Typography variant="h5" gutterBottom className='modalAuthTitle'>
-                    { dataForModal.id ? 'Изменить запись' : 'Добавить запись'}
+                    { dataForModal ? 'Изменить запись' : 'Добавить запись'}
                 </Typography>
                 <GTextField style={{width: "93%"}} id="name" label="Ф.И.О." variant="standard" type='email' size='small'
                             InputProps={{
@@ -111,7 +114,7 @@ const ModalTransport = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField style={{width: "93%"}} id="phone" label="Телефон" variant="standard" type='email' size='small'
+                <GTextField style={{width: "93%"}} id="phone" label="Телефон*" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><PhoneIcon /></InputAdornment>),
                             }}

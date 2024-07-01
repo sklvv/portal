@@ -88,7 +88,7 @@ const Header = () => {
                             <Typography  component="div">{formattedTime}</Typography>
                             <Typography component="div">{ruDate}</Typography>
                         </Box>
-                        <Typography  component="div" sx={{fontSize: 24, fontWeight: 500}}>{activePageName}</Typography>
+                        <Typography className='neonGreen'  component="div" sx={{fontSize: 24, fontWeight: 500}}>{activePageName}</Typography>
                         {
                             user
                             ? <DropMenu user={user} toggleTheme={toggleTheme} handleLogout={handleLogout} />
