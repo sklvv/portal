@@ -21,10 +21,13 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import Switch from "@mui/material/Switch";
 import {useGetUsers_update} from "../../../hook/useGetUsers";
+import {useTheme} from "../../../hook/useTheme";
 
 
 const ModalUsers = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
+    const neonGreen = useTheme('neonGreen')
+    const neonGreenShadow = useTheme('neonGreenShadow')
     const {
         register, setValue, control,
         handleSubmit,
@@ -74,7 +77,7 @@ const ModalUsers = () => {
 
     return (
         <div>
-            <div style={{position: 'absolute', left: '-27px', top: '45%', color: '#ffffff'}}>
+            <div className='modalIcon' style={{boxShadow: neonGreenShadow}}>
                 <PersonSearchIcon/>
             </div>
 
@@ -85,7 +88,7 @@ const ModalUsers = () => {
                 noValidate
                 autoComplete="off"
             >
-                <Typography variant="h5" gutterBottom className='modalAuthTitle'>Редактировать профиль пользователя</Typography>
+                <Typography variant="h5" gutterBottom className='modalAuthTitle' sx={{color: neonGreen}}>Редактировать профиль пользователя</Typography>
                 <GTextField fullWidth id="name" label="Ф.И.О." variant="standard" type='email' size='small'
                             InputProps={{startAdornment: (<InputAdornment position="start"><BadgeIcon /></InputAdornment>)}}
                             {...register("name")} error={errors.name && true}

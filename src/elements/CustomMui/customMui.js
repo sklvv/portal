@@ -20,7 +20,7 @@ export const GTextField = styled(TextField)(({ theme }) => ({
     'input:before': {borderBottomColor: '#7d7d7d6b'},
     '& .MuiFormLabel-root': {color: 'grey'},
     '& .MuiInput-root' : {color: '#fff'},
-    '& .MuiInputAdornment-root' : {color:'white'},
+    /*'& .MuiInputAdornment-root' : {color:'white'},*/
 
     '& .MuiButtonBase-root .black' : {backgroundColor: 'white'},
     '&:hover .black': {backgroundColor: 'grey'}

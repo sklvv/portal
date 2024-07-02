@@ -16,11 +16,14 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {phoneBookSchema} from "../modalSchema";
 import {useModal} from "../../../hook/useModal";
 import {useGetPhoneBook_add, useGetPhoneBook_del} from "../../../hook/useGetPhoneBook";
+import {useTheme} from "../../../hook/useTheme";
 
 
 
 const ModalPhoneBook = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
+    const neonGreen = useTheme('neonGreen')
+    const neonGreenShadow = useTheme('neonGreenShadow')
     const {
         register, setValue,
         handleSubmit,
@@ -60,10 +63,7 @@ const ModalPhoneBook = () => {
 
     return (
         <div>
-            <div className='modalIcon'>
-                { dataForModal ? <EditIcon/> : <PersonAddIcon/>}
-            </div>
-
+            <div className='modalIcon' style={{boxShadow: neonGreenShadow}}>{ dataForModal ? <EditIcon/> : <PersonAddIcon/>}</div>
             <Box
                 onSubmit={handleSubmit(onSubmit)}
                 component="form"
@@ -71,7 +71,7 @@ const ModalPhoneBook = () => {
                 noValidate
                 autoComplete="off"
             >
-                <Typography variant="h5" gutterBottom className='modalAuthTitle'>
+                <Typography variant="h5" gutterBottom className='modalAuthTitle' sx={{color: neonGreen}}>
                     { dataForModal ? 'Изменить запись' : 'Добавить запись'}
                   </Typography>
                 <GTextField fullWidth id="name" label="Ф.И.О.*" variant="standard" type='email' size='small'

@@ -13,10 +13,13 @@ import {GTextField} from "../../CustomMui/customMui";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import PasswordIcon from '@mui/icons-material/Password';
 import {BACK} from "../../../utils/links";
+import {useTheme} from "../../../hook/useTheme";
 
 const ModalAuth = () => {
     const {signIn, checkLogin} = useAuth()
     const {exitModal} = useModal()
+    const neonGreen = useTheme('neonGreen')
+    const neonGreenShadow = useTheme('neonGreenShadow')
 
     const [authMsg, setAuthMsg] = useState('')
 
@@ -66,16 +69,16 @@ const ModalAuth = () => {
             noValidate
             autoComplete="off"
         >
-            <Typography variant="h5" gutterBottom className='modalAuthTitle'>Авторизация в панель управления</Typography>
+            <Typography variant="h5" gutterBottom className='modalAuthTitle' sx={{color: neonGreen}}>Авторизация в панель управления</Typography>
             <GTextField fullWidth id="login" label="E-mail" variant="standard" type='email' size='small'
                        {...register("login")} error={errors.login && true}
                        helperText={
                            errors.login ? <span style={{color: 'red'}}>{errors.login.message}</span>
                                : <span style={{height: '20px'}}> </span>
                        }
-                        InputProps={{
+                        /*InputProps={{
                             startAdornment: (<InputAdornment position="start"><AlternateEmailIcon /></InputAdornment>),
-                        }}
+                        }}*/
             />
             <GTextField fullWidth id="password" label="Пароль" variant="standard" type={ show ? 'text' : 'password'} size='small'
                        {...register("password")} error={errors.password && true}
@@ -85,7 +88,7 @@ const ModalAuth = () => {
                                : <span style={{height: '40px'}}> </span>
                        }
                        InputProps={{
-                           startAdornment: (<InputAdornment position="start"><PasswordIcon /></InputAdornment>),
+                           /*startAdornment: (<InputAdornment position="start"><PasswordIcon /></InputAdornment>),*/
                            endAdornment:(<InputAdornment position="end" onClick={showPass}><IconButton className='black' sx={{padding: 0}}>
                                { show ?   <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
                            </IconButton></InputAdornment>)

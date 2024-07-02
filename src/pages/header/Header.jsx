@@ -75,7 +75,7 @@ const Header = () => {
                 <Toolbar  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pl: '0 !important', pr: '0 !important'}}>
                     <Box className='logo' >
                         <img src={useTheme('logo')} alt="Portal" style={{width: '190px', paddingTop: '2px'}}/>
-                        <Typography className='appName neonGreen' component="div">Portal</Typography>
+                        <Typography className='appName neonGreen' style={{color: useTheme('neonGreen')}} component="div">Portal</Typography>
                     </Box>
                     <Box sx={{
                         display: 'flex',
@@ -88,7 +88,7 @@ const Header = () => {
                             <Typography  component="div">{formattedTime}</Typography>
                             <Typography component="div">{ruDate}</Typography>
                         </Box>
-                        <Typography className='neonGreen'  component="div" sx={{fontSize: 24, fontWeight: 500}}>{activePageName}</Typography>
+                        <Typography className='neonGreen'  component="div" sx={{fontSize: 24, fontWeight: 500, color: useTheme('neonGreen')}}>{activePageName}</Typography>
                         {
                             user
                             ? <DropMenu user={user} toggleTheme={toggleTheme} handleLogout={handleLogout} />

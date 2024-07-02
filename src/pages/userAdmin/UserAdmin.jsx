@@ -45,10 +45,10 @@ const UserAdmin = () => {
                 <TableHead>
                     <div style={{flexBasis: '25%'}} className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
                     <div style={{flexBasis: '25%'}} className='listIcon'><AlternateEmailIcon/> <span> Почта</span></div>
-                    <div style={{flexBasis: '20%'}} className='listIcon'><AdminPanelSettingsIcon/> <span> Роль</span></div>
-                    <div style={{flexBasis: '10%'}} className='listIcon'><ApiIcon/> <span> iBoard</span></div>
-                    <div style={{flexBasis: '10%'}} className='listIcon'><ApiIcon/> <span> Dashboard</span></div>
-                    <div style={{flexBasis: '10%'}} className='listIcon'><ApiIcon/> <span> Portal</span></div>
+                    <div style={{flexBasis: '20%'}} className='listIcon flexCenter'><AdminPanelSettingsIcon/> <span> Роль</span></div>
+                    <div style={{flexBasis: '10%'}} className='listIcon flexCenter'><ApiIcon/> <span> iBoard</span></div>
+                    <div style={{flexBasis: '10%'}} className='listIcon flexCenter'><ApiIcon/> <span> Dashboard</span></div>
+                    <div style={{flexBasis: '10%'}} className='listIcon flexCenter'><ApiIcon/> <span> Portal</span></div>
                 </TableHead>
             </BlockShadow>
             <Scroll>

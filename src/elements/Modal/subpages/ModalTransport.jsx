@@ -16,9 +16,12 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {useGetTransport_add, useGetTransport_del} from "../../../hook/useGetTransport";
+import {useTheme} from "../../../hook/useTheme";
 
 const ModalTransport = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
+    const neonGreen = useTheme('neonGreen')
+    const neonGreenShadow = useTheme('neonGreenShadow')
     const {
         register, setValue,
         handleSubmit,
@@ -58,7 +61,7 @@ const ModalTransport = () => {
 
     return (
         <div>
-            <div className='modalIcon'>
+            <div className='modalIcon' style={{boxShadow: neonGreenShadow}}>
                 { dataForModal ? <EditIcon/> : <PersonAddIcon/>}
             </div>
 
@@ -69,7 +72,7 @@ const ModalTransport = () => {
                 noValidate
                 autoComplete="off"
             >
-                <Typography variant="h5" gutterBottom className='modalAuthTitle'>
+                <Typography variant="h5" gutterBottom className='modalAuthTitle' sx={{color: neonGreen}}>
                     { dataForModal ? 'Изменить запись' : 'Добавить запись'}
                 </Typography>
                 <GTextField style={{width: "93%"}} id="name" label="Ф.И.О." variant="standard" type='email' size='small'
