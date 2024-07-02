@@ -32,6 +32,7 @@
 }
 .tableItem:hover {
   background-color: #3fb329;
+  /*background-color: #4cb242;*/
   color: black;
 }
 .tableItem:hover .edit {
@@ -42,6 +43,19 @@
   right: 2px;
   bottom: 3px;
   display: none;
+}
+
+.transport {
+  width: fit-content;
+  background: white;
+  color: black;
+  padding: 0.2rem;
+  margin: 0 auto;
+  font-weight: 600;
+}
+
+.flexCenter {
+  justify-content: center;
 }
 
 /*# sourceMappingURL=table.css.map */

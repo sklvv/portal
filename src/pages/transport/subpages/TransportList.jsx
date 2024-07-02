@@ -12,7 +12,7 @@ const TransportList = ({item, updateItem}) => {
             <div style={{flexBasis: '30%'}}>{name}</div>
             <div style={{flexBasis: '10%'}}>{car}</div>
             <div style={{flexBasis: '10%'}}>{carmodel}</div>
-            <div style={{flexBasis: '15%'}}>{number}</div>
+            <div style={{flexBasis: '15%'}}><div className="transport">{number}</div></div>
             <div style={{flexBasis: ''}}>{phone}</div>
             {
                 user && <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>

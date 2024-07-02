@@ -49,8 +49,8 @@ const PhoneBook = () => {
                 <TableHead>
                     <div style={{flexBasis: '40%'}} className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
                     <div style={{flexBasis: '35%'}} className='listIcon'><HomeRepairServiceIcon/> <span> ДОЛЖНОСТЬ</span></div>
-                    <div style={{flexBasis: '15%'}} className='listIcon'><LanIcon/> <span> ОТДЕЛ</span></div>
-                    <div style={{flexBasis: '10%'}} className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
+                    <div style={{flexBasis: '15%'}} className='listIcon flexCenter'><LanIcon/> <span> ОТДЕЛ</span></div>
+                    <div style={{flexBasis: '10%'}} className='listIcon flexCenter'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
                 </TableHead>
             </BlockShadow>
             <Scroll>

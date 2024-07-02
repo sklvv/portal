@@ -56,8 +56,6 @@ const ModalTransport = () => {
     if (mutate_del.isError) {return <span>Error: {mutation.error.message}</span>;}
     if (mutate_del.isSuccess) {return <div>Удаление выполнено успешно</div>;}
 
-    console.log(dataForModal)
-
     return (
         <div>
             <div className='modalIcon'>

@@ -51,7 +51,7 @@ const PhoneBook = () => {
                     <div style={{flexBasis: '30%'}} className='listIcon'><BadgeIcon/> <span> Ф.И.О.</span></div>
                     <div style={{flexBasis: '10%'}} className='listIcon'><DirectionsCarIcon/> <span> МАРКА</span></div>
                     <div style={{flexBasis: '10%'}} className='listIcon'><DirectionsCarIcon/> <span> МОДЕЛЬ</span></div>
-                    <div style={{flexBasis: '15%'}} className='listIcon'><DisplaySettingsIcon/> <span> ГОС НОМЕР</span></div>
+                    <div style={{flexBasis: '15%'}} className='listIcon flexCenter'><DisplaySettingsIcon/> <span> ГОС НОМЕР</span></div>
                     <div style={{flexBasis: ''}} className='listIcon'><PhoneIcon/> <span> ТЕЛЕФОН</span></div>
                 </TableHead>
             </BlockShadow>
