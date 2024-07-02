@@ -9,10 +9,10 @@ const PhoneBookList = ({item, updateItem}) => {
     const {user} = useAuth()
     return (
         <TableItem>
-            <div style={{flexBasis: '30%'}}>{name}</div>
-            <div style={{flexBasis: '30%'}}>{position}</div>
-            <div style={{flexBasis: '25%'}}>{dep}</div>
-            <div style={{flexBasis: '15%'}}>{phone}</div>
+            <div style={{flexBasis: '40%'}}>{name}</div>
+            <div style={{flexBasis: '35%'}}>{position}</div>
+            <div style={{flexBasis: '15%'}}>{dep}</div>
+            <div style={{flexBasis: '10%'}}>{phone}</div>
             {
                 user && <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>
             }
@@ -21,3 +21,6 @@ const PhoneBookList = ({item, updateItem}) => {
 };
 
 export default PhoneBookList;
+
+
+

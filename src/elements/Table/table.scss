@@ -4,9 +4,8 @@
     flex-flow: row nowrap;
     div {
         text-align: center;
-        /*color: grey;*/
         flex-basis: 25%;
-        font-size: 14px;
+        font-size: 15px;
     }
     .listIcon {
         display: flex;
@@ -24,19 +23,19 @@
     display: flex;
     flex-flow: row nowrap;
     position: relative;
-    min-height: 18px;
+    min-height: 16px;
+    font-size: 14px;
     border: 1px solid #80808045;
+    :nth-child(n+3) {
+        text-align: center;
+    }
     &:hover {
-        /*background-color: #4cb242;*/
-        background-color: #17fa2f;
+        background-color: #3fb329;
         color: black;
         .edit {
             display: block;
         }
     }
-   /* div:not(.edit) {
-        flex-basis: 25%;
-    }*/
     .edit {
         position: absolute;
         right: 2px;

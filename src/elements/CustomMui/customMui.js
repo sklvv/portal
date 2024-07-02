@@ -13,6 +13,9 @@ export const GInputLabel = styled(InputLabel)(({ theme }) => ({
 /*инпут поиска нижняя линия зеленая*/
 export const GTextField = styled(TextField)(({ theme }) => ({
     "& .MuiInput-underline:after": { borderBottomColor: '#4cb242'},
+
+    "& .MuiInput-root:before": {borderBottom: '1px solid rgb(132 132 132 / 74%)'},
+
     '& .Mui-focused': {color: '#4cb242 !important'},
     'input:before': {borderBottomColor: '#7d7d7d6b'},
     '& .MuiFormLabel-root': {color: 'grey'},

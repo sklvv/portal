@@ -74,7 +74,8 @@ export default SideMenu;
 const SideBarList = ({item})=>{
     return (
         <ListItemButton sx={{height: 48,px: 2.5}}>
-            <ListItemIcon sx={{width: '44px', color: '#4ba93a'}}>{item.icon}</ListItemIcon>
+            {/*<ListItemIcon sx={{width: '44px', color: '#4ba93a'}}>{item.icon}</ListItemIcon>*/}
+            <ListItemIcon sx={{width: '44px', color: '#39ff14'}}>{item.icon}</ListItemIcon>
             <div>{item.name}</div>
         </ListItemButton>
     )

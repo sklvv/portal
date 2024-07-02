@@ -5,9 +5,8 @@
 }
 .tableHeader div {
   text-align: center;
-  /*color: grey;*/
   flex-basis: 25%;
-  font-size: 14px;
+  font-size: 15px;
 }
 .tableHeader .listIcon {
   display: flex;
@@ -24,15 +23,15 @@
   display: flex;
   flex-flow: row nowrap;
   position: relative;
-  min-height: 18px;
+  min-height: 16px;
+  font-size: 14px;
   border: 1px solid rgba(128, 128, 128, 0.2705882353);
-  /* div:not(.edit) {
-       flex-basis: 25%;
-   }*/
+}
+.tableItem :nth-child(n+3) {
+  text-align: center;
 }
 .tableItem:hover {
-  /*background-color: #4cb242;*/
-  background-color: #17fa2f;
+  background-color: #3fb329;
   color: black;
 }
 .tableItem:hover .edit {

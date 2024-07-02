@@ -14,20 +14,20 @@ const dark = {
     bg: {
         /*main: "#515151",// фон основной страницы*/
         main: '',// фон основной страницы
-        sideBar: '#333333',// фон сайдбара
-        header: '#333333', // фон хедера
+        sideBar: '#100f0f',// фон сайдбара
+        header: '#100f0f', // фон хедера
        /* modal:  "#7c7c7c",*/ // фон модалки
         modal:  "#0e0f0e", // фон модалки
     },
     select : '#333333', // select, dropdown
-    divider: '#00000096', // divider for SB
+    divider: '#80808096', // divider for SB
     chart: { // цвета для графиков
         yellow: '#ffff00',
         red: '#db2823',
         green: '#9fdb21',
         grey: '#8795a1',
     },
-    listHeader: '#333333',
+    listHeader: '#171717',
     listHeaderText: '#9f9f9f',
     scroll: 'black',
 

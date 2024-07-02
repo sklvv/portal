@@ -74,7 +74,7 @@ const Header = () => {
             <AppBar position="fixed" sx={{background: useTheme('bg', 'header')}}>
                 <Toolbar  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pl: '0 !important', pr: '0 !important'}}>
                     <Box className='logo' >
-                        <img src={useTheme('logo')} alt="Portal" style={{width: '190px'}}/>
+                        <img src={useTheme('logo')} alt="Portal" style={{width: '190px', paddingTop: '2px'}}/>
                         <Typography className='appName neonGreen' component="div">Portal</Typography>
                     </Box>
                     <Box sx={{
