@@ -3,7 +3,8 @@ import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import {useAuth} from "../../../hook/useAuth";
 import TableItem from "../../../elements/Table/TableItem";
-
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 const UserAdminList = ({item, updateItem}) => {
     const {login, name, position, iboard, dashboard, portal} = item
@@ -14,10 +15,9 @@ const UserAdminList = ({item, updateItem}) => {
             <div style={{flexBasis: '25%'}}>{name}</div>
             <div style={{flexBasis: '25%'}}>{login}</div>
             <div style={{flexBasis: '20%'}}>{position}</div>
-            <div style={{flexBasis: '10%'}}>{ iboard ? <span style={{color: 'green'}}>OK</span> : <span style={{color: 'red'}}>НЕТ</span>}</div>
-            <div style={{flexBasis: '10%'}}>{ dashboard ? <span style={{color: 'green'}}>OK</span> : <span style={{color: 'red'}}>НЕТ</span>}</div>
-            <div style={{flexBasis: '10%'}}>{ portal ? <span style={{color: 'green'}}>OK</span> : <span style={{color: 'red'}}>НЕТ</span>}</div>
-
+            <div style={{flexBasis: '10%', position: 'relative'}}><CheckBtn item={iboard}/></div>
+            <div style={{flexBasis: '10%', position: 'relative'}}><CheckBtn item={dashboard}/></div>
+            <div style={{flexBasis: '10%', position: 'relative'}}><CheckBtn item={portal}/></div>
             {
                 user && <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>
             }
@@ -26,3 +26,14 @@ const UserAdminList = ({item, updateItem}) => {
 };
 
 export default UserAdminList;
+
+const CheckBtn = ({item}) => {
+    return (
+        <>
+        { item
+            ? <Button className='status' size='small' color={'success'}><CheckBoxIcon/></Button>
+            : <Button className='status' size='small' color={'error'}><CheckBoxOutlineBlankIcon/></Button>
+        }
+        </>
+    )
+}

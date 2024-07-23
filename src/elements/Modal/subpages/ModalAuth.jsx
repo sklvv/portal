@@ -10,8 +10,6 @@ import {useAuth} from "../../../hook/useAuth";
 import {useModal} from "../../../hook/useModal";
 import '../modal.scss'
 import {GTextField} from "../../CustomMui/customMui";
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import PasswordIcon from '@mui/icons-material/Password';
 import {BACK} from "../../../utils/links";
 import {useTheme} from "../../../hook/useTheme";
 

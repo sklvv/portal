@@ -8,11 +8,9 @@ import lionGreen from '../img/lionGrey10.png'
 /*главная тема*/
 const dark = {
     text: "#ffffff", // цвет текста
-    /*lion: lionBlack, // фон со львом*/
     lion: lionGreen, // фон со львом
     logo: logoDark, // логотип
     bg: {
-        /*main: "#515151",// фон основной страницы*/
         main: '',// фон основной страницы
         sideBar: '#100f0f',// фон сайдбара
         header: '#100f0f', // фон хедера

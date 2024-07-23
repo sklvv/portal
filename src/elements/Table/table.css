@@ -44,6 +44,11 @@
   bottom: 3px;
   display: none;
 }
+.tableItem .status {
+  position: absolute;
+  bottom: -8px;
+  left: 10px;
+}
 
 .transport {
   width: fit-content;

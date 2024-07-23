@@ -19,6 +19,7 @@ import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import LockResetIcon from '@mui/icons-material/LockReset';
 import Switch from "@mui/material/Switch";
 import {useGetUsers_update} from "../../../hook/useGetUsers";
 import {useTheme} from "../../../hook/useTheme";
@@ -117,7 +118,10 @@ const ModalUsers = () => {
                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                         <Divider>Управление:</Divider>
                         <Tooltip title={<Typography variant="body2"  gutterBottom>Отправить пароль на почту</Typography>}>
-                            <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color='warning' startIcon={<DeleteForeverIcon />}>Сброс пароля</Button>
+                            <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color='warning' startIcon={<LockResetIcon />}>Сброс пароля</Button>
+                        </Tooltip>
+                        <Tooltip title={<Typography variant="body2"  gutterBottom>Активировать пользователя</Typography>}>
+                            <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color='warning' startIcon={<LockResetIcon />}>Активировать</Button>
                         </Tooltip>
                         {/*<Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
                             <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color="error" startIcon={<DeleteForeverIcon />}>Удалить</Button>

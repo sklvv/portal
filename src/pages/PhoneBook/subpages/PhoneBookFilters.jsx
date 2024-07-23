@@ -35,8 +35,8 @@ const PhoneBookFilters = ({updateItem}) => {
             const searchedData = phonebook.filter(i => {
                 return i.name.toLowerCase().includes(search.toLowerCase())
                     || i.phone.includes(search)
-                    || i.dep.includes(search)
-                    || i.position.includes(search)
+                    || i.dep.toLowerCase().includes(search)
+                    || i.position.toLowerCase().includes(search)
             })
             dispatch(setPhoneBookList(searchedData))
         }

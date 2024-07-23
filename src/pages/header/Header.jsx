@@ -22,7 +22,6 @@ const Header = () => {
     const dispatch = useDispatch();
     const {setModal} = useModal()
 
-
     /* получить текущую тему*/
     const getTheme = localStorage.getItem('theme')
 
