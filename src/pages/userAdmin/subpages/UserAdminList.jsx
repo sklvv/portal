@@ -15,8 +15,8 @@ const UserAdminList = ({item, updateItem}) => {
             <div style={{flexBasis: '25%'}}>{name}</div>
             <div style={{flexBasis: '25%'}}>{login}</div>
             <div style={{flexBasis: '20%'}}>{position}</div>
-            <div style={{flexBasis: '10%', position: 'relative'}}><CheckBtn item={iboard}/></div>
             <div style={{flexBasis: '10%', position: 'relative'}}><CheckBtn item={dashboard}/></div>
+            <div style={{flexBasis: '10%', position: 'relative'}}><CheckBtn item={iboard}/></div>
             <div style={{flexBasis: '10%', position: 'relative'}}><CheckBtn item={portal}/></div>
             {
                 user && <div className='edit'><Button onClick={()=> updateItem(item)}  size='small' color={'success'}><EditIcon/></Button></div>

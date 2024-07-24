@@ -130,13 +130,13 @@ const ModalUsers = () => {
                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                         <Divider>Авторизация в приложениях:</Divider>
                             <Controller
-                                name="iboard" control={control}
+                                name="dashboard" control={control}
                                 render={({ field: { onChange, value } }) => (
                                     <FormControlLabel control={<Switch color='success' checked={!!value} onChange={onChange} />} label="Dashboard"/>
                                 )}
                             />
                             <Controller
-                                name="dashboard" control={control}
+                                name="iboard" control={control}
                                 render={({ field: { onChange, value } }) => (
                                     <FormControlLabel control={<Switch color='success' checked={!!value} onChange={onChange} />} label="iBoard"/>
                                 )}
