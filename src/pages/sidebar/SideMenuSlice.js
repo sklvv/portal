@@ -53,7 +53,7 @@ const initialState = {
         {
             id: 6,
             icon: <ImportantDevicesIcon/>,
-            name: 'Учет техники',
+            name: 'Учёт',
             active: false,
             link: 'inventory',
             admin: true,

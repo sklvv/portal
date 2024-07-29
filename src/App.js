@@ -7,13 +7,13 @@ import {RequireAuth} from "./hoc/RequireAuth";
 import {AuthProvider} from "./hoc/AuthProvider";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {themeMode} from "./utils/theme";
-import {useSelector} from "react-redux";
 import TransitionsModal from "./elements/Modal/Modal";
 import PhoneBook from "./pages/phoneBook/PhoneBook";
-import Main from "./pages/main/Main";
 import UserAdmin from "./pages/userAdmin/UserAdmin";
 import Transport from "./pages/transport/Transport";
 import Resources from "./pages/resources/Resources";
+import Inventory from "./pages/inventory/Inventory";
+
 
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
                         <Route  path='/userAdmin' element={<RequireAuth><UserAdmin /></RequireAuth>}/>
                         <Route  path='/iboardAdmin' element={<Page404 />}/>
                         <Route  path='/dashboardAdmin' element={<Page404 />}/>
-                        <Route  path='/inventory' element={<Page404 />}/>
+                        <Route  path='/inventory' element={<Inventory/>}/>
                         <Route  path='/resources' element={<Resources />}/>
                         <Route  path='/transport' element={<Transport />}/>
                     </Route>
