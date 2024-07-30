@@ -3,6 +3,7 @@ import ModalAuth from "./subpages/ModalAuth";
 import ModalPhoneBook from "./subpages/ModalPhoneBook";
 import ModalTransport from "./subpages/ModalTransport";
 import ModalUsers from "./subpages/ModalUsers";
+import ModalLicence from "./subpages/ModalLicence";
 
 
 
@@ -17,6 +18,9 @@ export const modalData = (variant, mode)=>{
             break;
         case 'transport':
             return  <ModalTransport />
+            break;
+        case 'licence':
+            return  <ModalLicence />
             break;
         case 'users':
             return  <ModalUsers />

@@ -3,8 +3,6 @@
     display: flex;
     flex-flow: row nowrap;
     div {
-        text-align: center;
-        flex-basis: 25%;
         font-size: 15px;
     }
     .listIcon {
@@ -26,9 +24,9 @@
     min-height: 16px;
     font-size: 14px;
     border: 1px solid #80808045;
-    :nth-child(n+3) {
+    /*:nth-child(n+3) {
         text-align: center;
-    }
+    }*/
     &:hover {
         background-color: #3fb329;
         color: black;

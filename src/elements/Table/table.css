@@ -4,8 +4,6 @@
   flex-flow: row nowrap;
 }
 .tableHeader div {
-  text-align: center;
-  flex-basis: 25%;
   font-size: 15px;
 }
 .tableHeader .listIcon {
@@ -26,9 +24,9 @@
   min-height: 16px;
   font-size: 14px;
   border: 1px solid rgba(128, 128, 128, 0.2705882353);
-}
-.tableItem :nth-child(n+3) {
-  text-align: center;
+  /*:nth-child(n+3) {
+      text-align: center;
+  }*/
 }
 .tableItem:hover {
   background-color: #3fb329;

@@ -31,8 +31,8 @@ const CheckBtn = ({item}) => {
     return (
         <>
         { item
-            ? <Button className='status' size='small' color={'success'}><CheckBoxIcon/></Button>
-            : <Button className='status' size='small' color={'error'}><CheckBoxOutlineBlankIcon/></Button>
+            ? <Button className='status green' size='small' ><CheckBoxIcon/></Button>
+            : <Button className='status red' size='small' ><CheckBoxOutlineBlankIcon/></Button>
         }
         </>
     )

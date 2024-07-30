@@ -33,7 +33,18 @@ export const userSchema = yup.object().shape({
     dashboard: yup.boolean(),
     iboard: yup.boolean(),
     portal: yup.boolean(),
-
+});
+export const LicenceSchema = yup.object().shape({
+    org: yup.string().required("Укажите организацию"),
+    seller: yup.string(),
+    vendor: yup.string().required("Укажите вендора"),
+    lic: yup.string(),
+    key: yup.string().required("Укажите ключ продукта"),
+    start: yup.string(),
+    exp: yup.string(),
+    info: yup.string(),
+    notes: yup.string(),
+    amount: yup.string(),
 });
 
 
