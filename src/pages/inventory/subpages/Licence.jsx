@@ -5,8 +5,6 @@ import TableItem from "../../../elements/Table/TableItem";
 import {useAuth} from "../../../hook/useAuth";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
-import SportsScoreIcon from '@mui/icons-material/SportsScore';
-import StartIcon from '@mui/icons-material/Start';
 import {useModal} from "../../../hook/useModal";
 import {useGetLicence} from "../../../hook/useGetLicence";
 import {useDispatch} from "react-redux";
@@ -14,6 +12,7 @@ import {useEffect, useState} from "react";
 import {resetDataForModal, setDataForModal} from "../../../elements/Modal/ModalSlice";
 import Skelet from "../../../elements/Skelet";
 import LicenceFilters from "./LicenceFilters";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const Licence = () => {
     const {user} = useAuth()
@@ -47,12 +46,11 @@ const Licence = () => {
                     <div style={{width: '3%'}} >№</div>
                     <div style={{width: '15%'}} ><span> Ораганизация</span></div>
                     <div style={{width: '15%'}} ><span> Поставщик</span></div>
-                    <div style={{width: '12%'}} className='listIcon'><span> Продукт</span></div>
-                    <div style={{width: '10%'}} className='listIcon'>№ Лицензии</div>
-                    <div style={{width: '10%'}} className='listIcon'><span> Ключ</span></div>
-                    <div style={{width: '10%'}} className='listIcon'><StartIcon/><span> Дата</span></div>
-                    <div style={{width: '10%'}} className='listIcon'><SportsScoreIcon/><span> Дата</span></div>
-                    <div style={{width: '15%'}} className='listIcon'><span> User/Кол-во</span></div>
+                    <div style={{width: '25%'}} className='listIcon'><span> Продукт</span></div>
+                    <div style={{width: '15%'}} className='listIcon'>№ Лицензии</div>
+                    <div style={{width: '10%'}} className='listIcon'><AccessTimeIcon/><span> Начало</span></div>
+                    <div style={{width: '10%'}} className='listIcon'><AccessTimeIcon/><span> Конец</span></div>
+                    <div style={{width: '17%'}} className='listIcon'><span> User/Кол-во</span></div>
                 </TableHead>
             </BlockShadow>
             <Scroll>
@@ -61,32 +59,16 @@ const Licence = () => {
                         <div style={{width: '3%'}}>{i +1}</div>
                         <div style={{width: '15%'}}>{item.org}</div>
                         <div style={{width: '15%'}}>{item.seller}</div>
-                        <div style={{width: '12%'}}>{item.vendor}</div>
-                        <div style={{width: '10%'}}>{item.lic}</div>
-                        <div style={{width: '10%'}}>{item.key} </div>
+                        <div style={{width: '25%'}}>{item.vendor}</div>
+                        <div style={{width: '15%'}}>{item.lic}</div>
                         <div style={{width: '10%'}}>{item.start}</div>
                         <div style={{width: '10%'}}>{item.exp}</div>
-                        <div style={{width: '15%'}}>{item.info}</div>
+                        <div style={{width: '17%'}}>{item.info}</div>
                         {
                             user && <div className='edit'><Button onClick={()=> updateItem(item)} size='small' color={'success'}><EditIcon/></Button></div>
                         }
                     </TableItem>)
                 }
-                <TableItem>
-                    <div style={{width: '3%'}}>10</div>
-                    <div style={{width: '15%'}}>2 Капитана</div>
-                    <div style={{width: '15%'}}>Легион ООО</div>
-                    <div style={{width: '12%'}}>Kaspersky Antivirus</div>
-                    <div style={{width: '10%'}}>номер</div>
-                    <div style={{width: '10%'}}>ключ </div>
-                    <div style={{width: '10%'}}>14.07.2023</div>
-                    <div style={{width: '10%'}}>19.08.2024</div>
-                    <div style={{width: '15%'}}>- / 130</div>
-                    {
-                        user && <div className='edit'><Button onClick={()=> updateItem('item')} size='small' color={'success'}><EditIcon/></Button></div>
-                    }
-                </TableItem>
-
             </Scroll>
         </div>
     );

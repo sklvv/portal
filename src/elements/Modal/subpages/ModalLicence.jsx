@@ -14,10 +14,11 @@ import {GTextField} from "../../CustomMui/customMui";
 import BadgeIcon from "@mui/icons-material/Badge";
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import LanIcon from "@mui/icons-material/Lan";
-import PhoneIcon from "@mui/icons-material/Phone";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import InputIcon from '@mui/icons-material/Input';
 
 const ModalLicence = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
@@ -62,7 +63,7 @@ const ModalLicence = () => {
 
     return (
         <div>
-            <div className='modalIcon' style={{boxShadow: neonGreenShadow}}>{ dataForModal ? <EditIcon/> : <PersonAddIcon/>}</div>
+            <div className='modalIcon' style={{boxShadow: neonGreenShadow}}>{ dataForModal ? <EditIcon/> : <AddCircleOutlineIcon/>}</div>
             <Box
                 onSubmit={handleSubmit(onSubmit)}
                 component="form"
@@ -74,102 +75,73 @@ const ModalLicence = () => {
                     { dataForModal ? 'Изменить запись' : 'Добавить запись'}
                 </Typography>
                 <GTextField fullWidth id="org" label="Организация*" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><BadgeIcon /></InputAdornment>),
-                            }}
                             {...register("org")} error={errors.org && true}
                             helperText={
-                                errors.name ? <span style={{color: 'red'}}>{errors.org.message}</span>
+                                errors.org ? <span style={{color: 'red'}}>{errors.org.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
                 <GTextField fullWidth id="seller" label="Поставщик" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><HomeRepairServiceIcon /></InputAdornment>),
-                            }}
                             {...register("seller")} error={errors.seller && true}
                             helperText={
-                                errors.position ? <span style={{color: 'red'}}>{errors.seller.message}</span>
+                                errors.seller ? <span style={{color: 'red'}}>{errors.seller.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField style={{width: "45%"}} id="vendor" label="Продукт" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><DirectionsCarIcon /></InputAdornment>),
-                            }}
+                <GTextField fullWidth id="vendor" label="Продукт*" variant="standard" type='text' size='small'
                             {...register("vendor")} error={errors.vendor && true}
                             helperText={
-                                errors.car ? <span style={{color: 'red'}}>{errors.vendor.message}</span>
+                                errors.vendor ? <span style={{color: 'red'}}>{errors.vendor.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
                 <GTextField style={{width: "45%"}} id="lic" label="№ Лицензии" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><DirectionsCarIcon /></InputAdornment>),
-                            }}
                             {...register("lic")} error={errors.lic && true}
                             helperText={
-                                errors.car ? <span style={{color: 'red'}}>{errors.lic.message}</span>
+                                errors.lic ? <span style={{color: 'red'}}>{errors.lic.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="key" label="Ключ" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><LanIcon /></InputAdornment>),
-                            }}
+                <GTextField style={{width: "45%"}} id="key" label="Ключ*" variant="standard" type='text' size='small'
                             {...register("key")} error={errors.key && true}
                             helperText={
-                                errors.dep ? <span style={{color: 'red'}}>{errors.key.message}</span>
+                                errors.key ? <span style={{color: 'red'}}>{errors.key.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
                 <GTextField style={{width: "45%"}} id="start" label="Дата начало" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><DirectionsCarIcon /></InputAdornment>),
-                            }}
                             {...register("start")} error={errors.start && true}
                             helperText={
-                                errors.car ? <span style={{color: 'red'}}>{errors.start.message}</span>
+                                errors.start ? <span style={{color: 'red'}}>{errors.start.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
                 <GTextField style={{width: "45%"}} id="exp" label="Дата конец" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><DirectionsCarIcon /></InputAdornment>),
-                            }}
                             {...register("exp")} error={errors.exp && true}
                             helperText={
-                                errors.car ? <span style={{color: 'red'}}>{errors.exp.message}</span>
+                                errors.exp ? <span style={{color: 'red'}}>{errors.exp.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="info" label="User Кол-во" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><LanIcon /></InputAdornment>),
-                            }}
-                            {...register("info")} error={errors.info && true}
-                            helperText={
-                                errors.dep ? <span style={{color: 'red'}}>{errors.info.message}</span>
-                                    : <span style={{height: '20px'}}> </span>
-                            }
-                />
-                <GTextField fullWidth id="notes" label="Заметки" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><LanIcon /></InputAdornment>),
-                            }}
+
+                <GTextField fullWidth id="notes" label="Заметки" variant="standard" type='text' size='small' multiline rows={4}
                             {...register("notes")} error={errors.notes && true}
                             helperText={
-                                errors.dep ? <span style={{color: 'red'}}>{errors.notes.message}</span>
+                                errors.notes ? <span style={{color: 'red'}}>{errors.notes.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="amount" label="Сумма" variant="standard" type='text' size='small'
-                            InputProps={{
-                                startAdornment: (<InputAdornment position="start"><LanIcon /></InputAdornment>),
-                            }}
+                <GTextField style={{width: "45%"}} id="info" label="User Кол-во" variant="standard" type='text' size='small'
+                            {...register("info")} error={errors.info && true}
+                            helperText={
+                                errors.info ? <span style={{color: 'red'}}>{errors.info.message}</span>
+                                    : <span style={{height: '20px'}}> </span>
+                            }
+                />
+                <GTextField style={{width: "45%"}} id="amount" label="Сумма ₽" variant="standard" type='text' size='small'
                             {...register("amount")} error={errors.amount && true}
                             helperText={
-                                errors.dep ? <span style={{color: 'red'}}>{errors.amount.message}</span>
+                                errors.amount ? <span style={{color: 'red'}}>{errors.amount.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
@@ -179,9 +151,9 @@ const ModalLicence = () => {
                     <Tooltip title={<Typography variant="body2"  gutterBottom>Сохранить данные</Typography>}>
                         <Button sx={{float: 'right'}}  variant="contained" type='submit' size='small' color="success" startIcon={<SaveIcon />}>Сохранить</Button>
                     </Tooltip>
-                    <Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
+                    {/*<Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
                         <Button onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color="error" startIcon={<DeleteForeverIcon />}>Удалить</Button>
-                    </Tooltip>
+                    </Tooltip>*/}
                 </div>
             </Box>
         </div>
@@ -189,3 +161,4 @@ const ModalLicence = () => {
 };
 
 export default ModalLicence;
+
