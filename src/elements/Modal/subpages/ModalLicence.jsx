@@ -74,14 +74,14 @@ const ModalLicence = () => {
                 <Typography variant="h5" gutterBottom className='modalAuthTitle' sx={{color: neonGreen}}>
                     { dataForModal ? 'Изменить запись' : 'Добавить запись'}
                 </Typography>
-                <GTextField fullWidth id="org" label="Организация*" variant="standard" type='text' size='small'
+                <GTextField style={{width: "45%"}} id="org" label="Организация*" variant="standard" type='text' size='small'
                             {...register("org")} error={errors.org && true}
                             helperText={
                                 errors.org ? <span style={{color: 'red'}}>{errors.org.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="seller" label="Поставщик" variant="standard" type='text' size='small'
+                <GTextField style={{width: "45%"}} id="seller" label="Поставщик" variant="standard" type='text' size='small'
                             {...register("seller")} error={errors.seller && true}
                             helperText={
                                 errors.seller ? <span style={{color: 'red'}}>{errors.seller.message}</span>
@@ -123,14 +123,6 @@ const ModalLicence = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-
-                <GTextField fullWidth id="notes" label="Заметки" variant="standard" type='text' size='small' multiline rows={4}
-                            {...register("notes")} error={errors.notes && true}
-                            helperText={
-                                errors.notes ? <span style={{color: 'red'}}>{errors.notes.message}</span>
-                                    : <span style={{height: '20px'}}> </span>
-                            }
-                />
                 <GTextField style={{width: "45%"}} id="info" label="User Кол-во" variant="standard" type='text' size='small'
                             {...register("info")} error={errors.info && true}
                             helperText={
@@ -145,7 +137,13 @@ const ModalLicence = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-
+                <GTextField fullWidth id="notes" label="Заметки" variant="standard" type='text' size='small' multiline rows={10}
+                            {...register("notes")} error={errors.notes && true}
+                            helperText={
+                                errors.notes ? <span style={{color: 'red'}}>{errors.notes.message}</span>
+                                    : <span style={{height: '20px'}}> </span>
+                            }
+                />
 
                 <div >
                     <Tooltip title={<Typography variant="body2"  gutterBottom>Сохранить данные</Typography>}>

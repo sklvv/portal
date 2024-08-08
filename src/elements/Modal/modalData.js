@@ -4,6 +4,7 @@ import ModalPhoneBook from "./subpages/ModalPhoneBook";
 import ModalTransport from "./subpages/ModalTransport";
 import ModalUsers from "./subpages/ModalUsers";
 import ModalLicence from "./subpages/ModalLicence";
+import ModalResMailGroups from "./subpages/ModalResMailGroups";
 
 
 
@@ -24,6 +25,9 @@ export const modalData = (variant, mode)=>{
             break;
         case 'users':
             return  <ModalUsers />
+            break;
+        case 'ModalResMailGroups':
+            return  <ModalResMailGroups />
             break;
         default:
             return "Default";

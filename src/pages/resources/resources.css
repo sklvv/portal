@@ -42,4 +42,12 @@
   text-overflow: ellipsis;
 }
 
+.neon .neonBlue {
+  cursor: grab;
+  letter-spacing: 0.7px;
+  font-style: italic;
+  color: green;
+  font-weight: 600;
+}
+
 /*# sourceMappingURL=resources.css.map */

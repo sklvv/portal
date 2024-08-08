@@ -1,10 +1,10 @@
 import './table.scss'
 import BlockShadow from "../BlockShadow";
 
-const TableItem = ({children}) => {
+const TableItem = ({children, extra = ''}) => {
     return (
         <BlockShadow>
-            <div className='tableItem'>
+            <div className={`tableItem ${extra}`}>
                 {children}
             </div>
         </BlockShadow>
