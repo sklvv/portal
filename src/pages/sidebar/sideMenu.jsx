@@ -52,16 +52,7 @@ const SideMenu = () => {
                 : ''
             }
             <SimpleTreeView sx={{position: 'absolute', bottom: '64px', width: '100%'}}>
-                <Link to={'/versionLog'} onClick={()=>{dispatch(setActive('versionLog'))}}>
-                    <TreeItem itemId={'versionLog'} className={themeColor}
-                              label={
-                                  <ListItemButton sx={{height: 40}}>
-                                      <ListItemIcon className='ver' sx={{width: '44px', color: useTheme('text')}}><PrivacyTipIcon/></ListItemIcon>
-                                      <div style={{color: '#18f12f'}}>О версии</div>
-                                  </ListItemButton>
-                              }>
-                    </TreeItem>
-                </Link>
+                <Tree name={'О версии'} ico={<PrivacyTipIcon/>} link={'versionLog'} />
             </SimpleTreeView>
 
         </div>
