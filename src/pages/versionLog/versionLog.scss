@@ -1,0 +1,19 @@
+.versionPage {
+    width: 90%;
+    margin: 0 auto;
+}
+.verLog {
+    margin-bottom: 20px;
+    border-bottom: 1px solid;
+    .version {
+        display: flex;
+        gap: 30px;
+        font-size: 18px;
+    }
+    .page {
+        padding-left: 16px;
+        padding-top: 10px;
+        font-weight: 500;
+    }
+
+}

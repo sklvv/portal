@@ -25,7 +25,6 @@ main .pageWrapper {
 }
 
 .sideMenu {
-  /*flex-basis: 60px;*/
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   background: #F5F5F5;
@@ -59,9 +58,58 @@ main .pageWrapper {
 .sideMenu:hover .divide > span {
   display: unset;
 }
+.sideMenu .menuIcon {
+  width: 24px;
+  margin-right: 20px;
+}
+.sideMenu .menuIcon.themeColor {
+  filter: brightness(0);
+}
+.sideMenu a {
+  text-decoration: none;
+  color: inherit;
+}
+.sideMenu .active .MuiTreeItem-content {
+  background-color: rgba(255, 255, 255, 0.1411764706);
+  border-left: 3px solid green;
+}
+.sideMenu .MuiTreeItem-content {
+  padding: 4px 0px;
+  border-radius: 0;
+  gap: 0;
+}
+.sideMenu .MuiTreeItem-content:hover, .sideMenu .MuiTreeItem-content:focus {
+  background-color: rgba(255, 255, 255, 0.1411764706);
+  border-left: 3px solid green;
+}
+.sideMenu .MuiTreeItem-content:hover:after, .sideMenu .MuiTreeItem-content:focus:after {
+  content: "";
+  transform: rotate(135deg);
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  width: 4px;
+  height: 4px;
+}
+.sideMenu .MuiTreeItem-content:hover img, .sideMenu .MuiTreeItem-content:hover .img, .sideMenu .MuiTreeItem-content:hover .ver, .sideMenu .MuiTreeItem-content:focus img, .sideMenu .MuiTreeItem-content:focus .img, .sideMenu .MuiTreeItem-content:focus .ver {
+  animation: swing ease-in-out 0.5s 1 alternate;
+}
+.sideMenu .MuiCollapse-root {
+  padding-left: 5px;
+}
+.sideMenu .MuiCollapse-wrapper {
+  border-left: 1px dashed rgba(255, 255, 255, 0.3019607843);
+}
+.sideMenu .MuiListItemButton-root {
+  padding-left: 4px;
+}
+.sideMenu .MuiListItemButton-root:hover {
+  background-color: inherit !important;
+}
+.sideMenu .MuiListItemIcon-root {
+  min-width: 44px;
+}
 .sideMenu .active {
-  background: rgb(76, 178, 66);
-  color: white;
+  background-color: rgba(189, 189, 189, 0.38) !important;
   transition: color 0.5s ease-in-out;
   font-weight: 600;
   text-shadow: 1px 1px black;
@@ -70,21 +118,38 @@ main .pageWrapper {
   color: white;
   text-shadow: 1px 1px 1px black;
 }
-.sideMenu .menuIcon {
-  width: 24px;
-  margin-right: 20px;
-}
-.sideMenu a {
-  text-decoration: none;
-  color: inherit;
+.sideMenu .active .themeColor {
+  background-color: rgb(76, 178, 66) !important;
 }
 
+@keyframes swing {
+  0%, 30%, 50%, 70%, 100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+}
 .pageContainer {
-  padding-left: 80px;
+  /*padding-left: 80px;
   padding-right: 15px;
   flex: 1 0 90%;
   z-index: 100;
-  min-height: 100%;
+  min-height: 100%;*/
+  padding-left: 94px;
+  flex: 1 0 auto;
+  height: calc(100vh - 65px);
+  max-width: 90%;
+  z-index: 100;
 }
 .pageContainer .main {
   display: flex;

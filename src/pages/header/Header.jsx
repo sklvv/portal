@@ -64,7 +64,7 @@ const Header = () => {
         year: "numeric",
     })
         .format(new Date())
-        .replace(/(\u0433\.?)/, "");
+        /*.replace(/(\u0433\.?)/, "");*/
 
     const isTheme = useTheme('text')
 

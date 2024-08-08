@@ -13,6 +13,7 @@ import UserAdmin from "./pages/userAdmin/UserAdmin";
 import Transport from "./pages/transport/Transport";
 import Resources from "./pages/resources/Resources";
 import Inventory from "./pages/inventory/Inventory";
+import VersionLog from "./pages/versionLog/VersionLog";
 
 
 
@@ -34,6 +35,7 @@ function App() {
                         <Route  path='/inventory' element={<Inventory/>}/>
                         <Route  path='/resources' element={<Resources />}/>
                         <Route  path='/transport' element={<Transport />}/>
+                        <Route path='/versionLog' element={<VersionLog/>}/>
                     </Route>
                 </Routes>
                 <TransitionsModal/>

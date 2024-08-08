@@ -10,7 +10,7 @@ const Resources = () => {
 
 
     return (
-            <ElemTab arr={['Ресурсы компании', 'Почтовые группы рассылок']}>
+            <ElemTab arr={['Ресурсы компании', 'Почтовые группы']}>
                 <ResLinks/>
                 <ResMailGroups/>
             </ElemTab>

@@ -1,16 +1,21 @@
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import List from "@mui/material/List";
 import '../layout.scss'
 import {Divider, ListItemIcon} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {setActive, setPage} from "./SideMenuSlice";
-import {Link} from "react-router-dom";
+import {setActive} from "./SideMenuSlice";
+import {Link, NavLink} from "react-router-dom";
 import {useTheme} from "../../hook/useTheme";
 import {useEffect} from "react";
 import {useAuth} from "../../hook/useAuth";
-
-
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
+import { TreeItem } from '@mui/x-tree-view/TreeItem';
+import CallIcon from "@mui/icons-material/Call";
+import CloudSyncIcon from '@mui/icons-material/CloudSync';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
+import ApiIcon from '@mui/icons-material/Api';
+import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
+import DriveEtaIcon from '@mui/icons-material/DriveEta';
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 
 const SideMenu = () => {
     const mode = useSelector(state => state.header.mode);
@@ -20,64 +25,78 @@ const SideMenu = () => {
     const color = useTheme('divider')
     const currentPath = (window.location.pathname).replace('/', '');
 
-    useEffect(()=>{
+    const themeColor = useTheme() ? '' : 'themeColor'
+
+    /*useEffect(()=>{
         dispatch(setPage(currentPath))
-    },[])
+    },[])*/
 
-    const renderList = (data, admin = false)=>{
-        if (data){
-            let newData = []
-            if (admin ){
-                newData = data.filter(i => i.admin === true)
-            } else {
-                newData = data.filter(i => i.admin !== true)
-            }
-            return newData.map(item => {
-                return  <Link to={`/${item.link}`} key={item.id}>
-                    <ListItem disablePadding  className={item.active ? 'active' : null}
-                              onClick={()=> dispatch(setActive(item.id))}
-                              sx={{'&:hover': {backgroundColor: mode === 'dark' ? 'rgb(81 81 81)' : ''}}}
-                    >
-                            <SideBarList item={item}/>
-                    </ListItem>
-                    <Divider sx={{borderColor: color}}/>
-                </Link>
-            })
-        }
-      }
-    const sidebarData = renderList(menuList)
-    let sidebarAdmin = renderList(menuList, true)
 
-    useEffect(()=>{
-        if (!auth){
-            sidebarAdmin = ''
-        }
-    },[auth])
 
     return (
         <div className='sideMenu' style={{background: useTheme('bg', 'sideBar')}}>
-            <List>{sidebarData ? sidebarData : ''}</List>
+            <SimpleTreeView>
+                <Tree name={'Тел. справочник'} ico={<CallIcon/>} link={'phoneBook'} />
+                <Tree name={'Ресурсы'} ico={<CloudSyncIcon/>} link={'resources'} />
+            </SimpleTreeView>
             {
                 auth
-                    ? <div>
+                ? <SimpleTreeView>
                         <div className='divide'><span>Администрирование</span></div>
-                        <List>{sidebarAdmin}</List>
-                    </div>
-                    : ''
+                        <Tree name={'Пользователи'} ico={<CoPresentIcon/>} link={'userAdmin'} />
+                        <Tree name={'iBoard'} ico={<ApiIcon/>} link={'iboardAdmin'} />
+                        <Tree name={'Dashboard'} ico={<ApiIcon/>} link={'dashboardAdmin'} />
+                        <Tree name={'Учёт'} ico={<ImportantDevicesIcon/>} link={'inventory'} />
+                        <Tree name={'Транспорт'} ico={<DriveEtaIcon/>} link={'transport'} />
+                    </SimpleTreeView>
+                : ''
             }
+            <SimpleTreeView sx={{position: 'absolute', bottom: '64px', width: '100%'}}>
+                <Link to={'/versionLog'} onClick={()=>{dispatch(setActive('versionLog'))}}>
+                    <TreeItem itemId={'versionLog'} className={themeColor}
+                              label={
+                                  <ListItemButton sx={{height: 40}}>
+                                      <ListItemIcon className='ver' sx={{width: '44px', color: useTheme('text')}}><PrivacyTipIcon/></ListItemIcon>
+                                      <div style={{color: '#18f12f'}}>О версии</div>
+                                  </ListItemButton>
+                              }>
+                    </TreeItem>
+                </Link>
+            </SimpleTreeView>
+
         </div>
     );
 };
 
 export default SideMenu;
 
-const SideBarList = ({item})=>{
+const Tree = ({name, img = false, ico = false, link = false, children})=>{
+    const links = link ? `/${link}` : ''
+    const color = useTheme('divider')
+    const themeColor = useTheme() ? 'xxx' : 'themeColor'
+    const dispatch = useDispatch()
+    const neon = useTheme('neonGreen')
+
+    const activate = (page)=>{
+        dispatch(setActive(page))
+    }
+
+
     return (
-        <ListItemButton sx={{height: 48,px: 2.5}}>
-            {/*<ListItemIcon sx={{width: '44px', color: '#4ba93a'}}>{item.icon}</ListItemIcon>*/}
-            <ListItemIcon sx={{width: '44px', color: useTheme('neonGreen')}}>{item.icon}</ListItemIcon>
-            <div>{item.name}</div>
-        </ListItemButton>
+        <NavLink to={links} onClick={()=>{activate(name)}} >
+            <TreeItem itemId={name + Math.random()} className={themeColor}
+                      label={
+                          <ListItemButton sx={{height: 40}}>
+                              { img &&
+                                  <img className={`menuIcon ${themeColor}`} src={img} alt={name}/>
+                              }
+                              { ico &&
+                                  <ListItemIcon className={`menuIcon img `} sx={{width: '44px', color: neon}}>{ico}</ListItemIcon>
+                              }
+                              <div>{name}</div>
+                          </ListItemButton>
+                      }>{children}</TreeItem>
+            <Divider sx={{borderColor: color}}/>
+        </NavLink>
     )
 }
-
