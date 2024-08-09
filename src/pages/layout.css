@@ -19,7 +19,7 @@ header {
 
 main .pageWrapper {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   padding-top: 65px;
   height: calc(100vh - 80px);
 }
@@ -140,15 +140,9 @@ main .pageWrapper {
   }
 }
 .pageContainer {
-  /*padding-left: 80px;
-  padding-right: 15px;
-  flex: 1 0 90%;
-  z-index: 100;
-  min-height: 100%;*/
-  padding-left: 94px;
+  padding-left: 75px;
   flex: 1 0 auto;
   height: calc(100vh - 65px);
-  max-width: 90%;
   z-index: 100;
 }
 .pageContainer .main {

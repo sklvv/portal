@@ -1,7 +1,7 @@
 import './table.scss';
 import {useTheme} from "../../hook/useTheme";
 
-const TableHead = ({children}) => {
+const TableHead = ({children, }) => {
     const styleBgColor = useTheme('listHeader')
     const styleColor = useTheme('listHeaderText')
 

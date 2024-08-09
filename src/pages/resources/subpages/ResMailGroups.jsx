@@ -121,15 +121,19 @@ const ResMailGroups = () => {
 
 
     return (
-        <div style={{width: '90%', margin: '0 auto', paddingTop: '15px'}} >
-            <TableHead>
-                <div style={{width: '3%'}} className='listIcon'>#</div>
-                <div style={{width: '20%'}} className='listIcon'>Название группы</div>
-                <div style={{width: '25%'}} className='listIcon'>Почтовый адрес</div>
-                <div style={{width: '52%'}} className='listIcon'>Описание</div>
-            </TableHead>
+        <div style={{paddingTop: '15px'}} >
+            <div style={{width: "90%", margin: "0 auto"}}>
+                <TableHead >
+                    <div style={{width: '3%'}} className='listIcon'>#</div>
+                    <div style={{width: '20%'}} className='listIcon'>Название группы</div>
+                    <div style={{width: '25%'}} className='listIcon'>Почтовый адрес</div>
+                    <div style={{width: '52%'}} className='listIcon'>Описание</div>
+                </TableHead>
+            </div>
             <Scroll>
-                    {data?.map(i => {return <Line i={i} key={i.id}/>})}
+                    <div style={{width: '90%', margin: '0 auto'}}>
+                        {data?.map(i => {return <Line i={i} key={i.id}/>})}
+                    </div>
             </Scroll>
         </div>
     );

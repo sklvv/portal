@@ -1,42 +1,41 @@
-
 import './versionLog.scss'
 import Scroll from "../../elements/Scroll";
+import VersionItem from "./subpages/VersionItem";
 
 const VersionLog = () => {
-    return (
+    const data = [
+        {
+            date: '08.08.2024',
+            ver: '1.0.0',
+            list: [
+                {
+                    name: 'Версии',
+                    li: ['Добавлена страница с иторией версий и изменений в приложении']
+                },
+                {
+                    name: 'Ресурсы',
+                    li: ['Добавлены вкладки для разделения информации','Добавлен раздел с информацией по группам рассылок']
+                },
+                {
+                    name: 'Учет [администрирование]',
+                    li: ['Добавлена страница учета лицензий']
+                },
+            ]
+        }
+    ]
 
+    return (
         <div className='versionPage'>
             <Scroll>
-                <div className='verLog'>
-                    <div className='version'>
-                        <div>08.08.2024</div>
-                        <div>1.0.0</div>
-                    </div>
-                    <div className='page'>Версии</div>
-                    <ul>
-                        <li>Добавлена страница логов изминений и доработок</li>
-                    </ul>
-                    <div className='page'>Ресурсы</div>
-                    <ul>
-                        <li>Добавлены вкладки для разделения информации</li>
-                        <li>Добавлен раздел с информацией о группах рассылки</li>
-                    </ul>
-                    <div className='page'>Учет [администрирование]</div>
-                    <ul>
-                        <li>Добавлена страница учета лицензий</li>
-                    </ul>
-                </div>
-
+                {data.map((i, index) => {
+                    return (<VersionItem data={i} key={index} />)
+                        }
+                    )
+                }
             </Scroll>
-
-
-
-
-
-
-
         </div>
-    );
+    )
 };
 
 export default VersionLog;
+
