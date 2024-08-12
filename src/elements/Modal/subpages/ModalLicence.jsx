@@ -1,29 +1,26 @@
-import React, {useEffect} from 'react';
-import {useSelector} from "react-redux";
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {useTheme} from "../../../hook/useTheme";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {LicenceSchema, phoneBookSchema} from "../modalSchema";
 import {useModal} from "../../../hook/useModal";
-import {useGetPhoneBook_add, useGetPhoneBook_del} from "../../../hook/useGetPhoneBook";
 import {useGetLicence_add, useGetLicence_del} from "../../../hook/useGetLicence";
 import EditIcon from "@mui/icons-material/Edit";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import {Box, Button, InputAdornment, Tooltip, Typography} from "@mui/material";
+import {Box, Button, Tooltip, Typography} from "@mui/material";
 import {GTextField} from "../../CustomMui/customMui";
-import BadgeIcon from "@mui/icons-material/Badge";
-import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
-import LanIcon from "@mui/icons-material/Lan";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from "@mui/icons-material/Save";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import InputIcon from '@mui/icons-material/Input';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import {resetDataForModal} from "../ModalSlice";
 
 const ModalLicence = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
     const neonGreen = useTheme('neonGreen')
     const neonGreenShadow = useTheme('neonGreenShadow')
+    const {exitModal} = useModal()
+    const dispatch = useDispatch()
+    const [clone, setClone] = useState(false)
     const {
         register, setValue,
         handleSubmit,
@@ -32,7 +29,6 @@ const ModalLicence = () => {
         mode: "onTouched",
         resolver: yupResolver(LicenceSchema)
     });
-    const {exitModal} = useModal()
     const mutation = useGetLicence_add()
     const mutate_del = useGetLicence_del()
 
@@ -45,12 +41,21 @@ const ModalLicence = () => {
     },[dataForModal])
 
     const onSubmit = async (data) => {
-        mutation.mutate(data);
+        let newData = Object.assign({}, data);
+        if (clone){
+            delete newData._id
+            setClone(false)
+        }
+        mutation.mutate(newData);
         exitModal(1000)
     }
     const onDelete = async (id)=>{
         mutate_del.mutate({_id: id})
         exitModal(1000)
+    }
+    const onClone = () => {
+        setClone(true)
+        dispatch(resetDataForModal())
     }
 
     if (mutation.isLoading) {return <span>Submitting...</span>;}
@@ -137,7 +142,7 @@ const ModalLicence = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField fullWidth id="notes" label="Заметки" variant="standard" type='text' size='small' multiline rows={10}
+                <GTextField fullWidth id="notes" label="Заметки" variant="standard" type='text' size='small' multiline rows={6}
                             {...register("notes")} error={errors.notes && true}
                             helperText={
                                 errors.notes ? <span style={{color: 'red'}}>{errors.notes.message}</span>
@@ -149,6 +154,15 @@ const ModalLicence = () => {
                     <Tooltip title={<Typography variant="body2"  gutterBottom>Сохранить данные</Typography>}>
                         <Button sx={{float: 'right'}}  variant="contained" type='submit' size='small' color="success" startIcon={<SaveIcon />}>Сохранить</Button>
                     </Tooltip>
+                    { dataForModal &&
+                        <Tooltip title={<Typography variant="body2" gutterBottom>Создать новый, клонированием</Typography>}>
+                            <Button onClick={onClone}  variant="contained" size='small' color="warning" startIcon={<FileCopyIcon />}>Дублировать</Button>
+                        </Tooltip>
+                    }
+
+                    {/*
+                    { dataForModal ? 'Изменить запись' : 'Добавить запись'}
+                    */}
                     {/*<Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
                         <Button onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color="error" startIcon={<DeleteForeverIcon />}>Удалить</Button>
                     </Tooltip>*/}

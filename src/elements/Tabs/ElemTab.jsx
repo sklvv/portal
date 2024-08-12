@@ -45,7 +45,7 @@ const ElemTab = ({arr = [], children}) => {
     const renderPanel = panelMaker(children)
 
     return (
-        <Box sx={{ }}>
+        <Box sx={{position: 'fixed', right: 0, left: '75px'}}>
             <Tabs value={value} onChange={handleChange}
                   sx={{
                       "& .MuiTabs-indicator": { backgroundColor: "#12c325" },

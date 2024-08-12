@@ -10,13 +10,10 @@ const Resources = () => {
 
 
     return (
-            <div style={{position: 'fixed', right: 0, left: '75px'}}>
-                <ElemTab arr={['Ресурсы компании', 'Почтовые группы']}>
-                    <ResLinks/>
-                    <ResMailGroups/>
-                </ElemTab>
-            </div>
-
+        <ElemTab arr={['Ресурсы компании', 'Почтовые группы']}>
+            <ResLinks/>
+            <ResMailGroups/>
+        </ElemTab>
     );
 };
 

@@ -34,36 +34,37 @@ const Licence = () => {
         setModal('licence')
     }
 
+
     if (isLoading) {return <Skelet/>}
     if (isError) {return <h3>Нет подключения к серверу</h3>}
     if (!licence) {return <h3>Нет данных с сервера</h3>}
 
     return (
         <div>
-            <LicenceFilters updateItem={updateItem}/>
+            <LicenceFilters updateItem={updateItem} lic={lic} setLic={setLic}/>
             <BlockShadow >
                 <TableHead>
                     <div style={{width: '3%'}} >№</div>
                     <div style={{width: '15%'}} ><span> Ораганизация</span></div>
                     <div style={{width: '15%'}} ><span> Поставщик</span></div>
                     <div style={{width: '25%'}} className='listIcon'><span> Продукт</span></div>
-                    <div style={{width: '15%'}} className='listIcon'>№ Лицензии</div>
+                    <div style={{width: '20%'}} className='listIcon'>№ Лицензии</div>
                     <div style={{width: '10%'}} className='listIcon'><AccessTimeIcon/><span> Начало</span></div>
                     <div style={{width: '10%'}} className='listIcon'><AccessTimeIcon/><span> Конец</span></div>
-                    <div style={{width: '17%'}} className='listIcon'><span> User/Кол-во</span></div>
+                    <div style={{width: '12%'}} className='listIcon'><span> User/Кол-во</span></div>
                 </TableHead>
             </BlockShadow>
-            <Scroll>
+            <Scroll h='h210'>
                 {
                     lic?.map((item, i) =>  <TableItem key={item._id}>
                         <div style={{width: '3%'}}>{i +1}</div>
                         <div style={{width: '15%'}}>{item.org}</div>
                         <div style={{width: '15%'}}>{item.seller}</div>
                         <div style={{width: '25%'}}>{item.vendor}</div>
-                        <div style={{width: '15%'}}>{item.lic}</div>
+                        <div style={{width: '20%'}}>{item.lic}</div>
                         <div style={{width: '10%'}}>{item.start}</div>
                         <div style={{width: '10%'}}>{item.exp}</div>
-                        <div style={{width: '17%'}}>{item.info}</div>
+                        <div style={{width: '12%'}}>{item.info}</div>
                         {
                             user && <div className='edit'><Button onClick={()=> updateItem(item)} size='small' color={'success'}><EditIcon/></Button></div>
                         }
