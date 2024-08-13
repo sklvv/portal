@@ -6,7 +6,7 @@ const ModalResMailGroups = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
     const {exitModal} = useModal()
 
-    exitModal(1000)
+    exitModal(2000)
 
     return (
         <div>

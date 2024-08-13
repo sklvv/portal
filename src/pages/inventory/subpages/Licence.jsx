@@ -56,15 +56,15 @@ const Licence = () => {
             </BlockShadow>
             <Scroll h='h210'>
                 {
-                    lic?.map((item, i) =>  <TableItem key={item._id}>
+                    lic?.map((item, i) =>  <TableItem key={item._id} extra={!item.status && 'grey'}>
                         <div style={{width: '3%'}}>{i +1}</div>
                         <div style={{width: '15%'}}>{item.org}</div>
                         <div style={{width: '15%'}}>{item.seller}</div>
                         <div style={{width: '25%'}}>{item.vendor}</div>
                         <div style={{width: '20%'}}>{item.lic}</div>
-                        <div style={{width: '10%'}}>{item.start}</div>
-                        <div style={{width: '10%'}}>{item.exp}</div>
-                        <div style={{width: '12%'}}>{item.info}</div>
+                        <div style={{width: '10%', textAlign: 'center'}}>{item.start}</div>
+                        <div style={{width: '10%', textAlign: 'center'}}>{item.exp}</div>
+                        <div style={{width: '12%', textAlign: 'center'}}>{item.info}</div>
                         {
                             user && <div className='edit'><Button onClick={()=> updateItem(item)} size='small' color={'success'}><EditIcon/></Button></div>
                         }

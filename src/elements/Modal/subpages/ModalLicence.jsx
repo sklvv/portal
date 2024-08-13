@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useTheme} from "../../../hook/useTheme";
-import {useForm} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {LicenceSchema, phoneBookSchema} from "../modalSchema";
+import {LicenceSchema} from "../modalSchema";
 import {useModal} from "../../../hook/useModal";
 import {useGetLicence_add, useGetLicence_del} from "../../../hook/useGetLicence";
 import EditIcon from "@mui/icons-material/Edit";
-import {Box, Button, Tooltip, Typography} from "@mui/material";
+import {Box, Button, ButtonGroup, FormControlLabel, IconButton, Tooltip, Typography} from "@mui/material";
 import {GTextField} from "../../CustomMui/customMui";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from "@mui/icons-material/Save";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {resetDataForModal} from "../ModalSlice";
+import Switch from "@mui/material/Switch";
 
 const ModalLicence = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
@@ -22,7 +23,7 @@ const ModalLicence = () => {
     const dispatch = useDispatch()
     const [clone, setClone] = useState(false)
     const {
-        register, setValue,
+        register, setValue, control,
         handleSubmit,
         formState: { errors },
     } = useForm({
@@ -149,20 +150,25 @@ const ModalLicence = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
+                <Controller
+                    name="status" control={control}
+                    render={({ field: { onChange, value } }) => (
+                        <FormControlLabel control={<Switch color='success' checked={!!value} onChange={onChange} />} label="Лицензия активна"/>
+                    )}
+                />
 
                 <div >
                     <Tooltip title={<Typography variant="body2"  gutterBottom>Сохранить данные</Typography>}>
                         <Button sx={{float: 'right'}}  variant="contained" type='submit' size='small' color="success" startIcon={<SaveIcon />}>Сохранить</Button>
                     </Tooltip>
                     { dataForModal &&
-                        <Tooltip title={<Typography variant="body2" gutterBottom>Создать новый, клонированием</Typography>}>
-                            <Button onClick={onClone}  variant="contained" size='small' color="warning" startIcon={<FileCopyIcon />}>Дублировать</Button>
-                        </Tooltip>
-                    }
+                        <ButtonGroup variant="contained" size='small' sx={{verticalAlign: 'bottom'}}>
+                            <Tooltip title={<Typography variant="body2" gutterBottom>Создать новый, клонированием</Typography>}>
+                                <IconButton onClick={onClone} color="warning" size='small'><FileCopyIcon /></IconButton>
+                            </Tooltip>
 
-                    {/*
-                    { dataForModal ? 'Изменить запись' : 'Добавить запись'}
-                    */}
+                        </ButtonGroup>
+                    }
                     {/*<Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
                         <Button onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color="error" startIcon={<DeleteForeverIcon />}>Удалить</Button>
                     </Tooltip>*/}

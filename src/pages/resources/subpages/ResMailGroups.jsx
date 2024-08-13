@@ -5,6 +5,8 @@ import '../resources.scss'
 import {useModal} from "../../../hook/useModal";
 import {useDispatch} from "react-redux";
 import {setDataForModal} from "../../../elements/Modal/ModalSlice";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 
 const ResMailGroups = () => {
     const data = [
@@ -118,8 +120,6 @@ const ResMailGroups = () => {
         },
     ]
 
-
-
     return (
         <div style={{paddingTop: '15px'}} >
             <div style={{width: "90%", margin: "0 auto"}}>
@@ -147,17 +147,17 @@ const Line = ({i}) => {
     const dispatch = useDispatch()
 
 
-    const copy = (item) => {
-        navigator.clipboard.writeText(item).then(function () {
-            dispatch(setDataForModal(item))
-        })
-        setModal('ModalResMailGroups')
-    }
-
     return <TableItem  extra='neon'>
         <div style={{width: '3%'}}>{id}</div>
         <div style={{width: '20%'}}>{name}</div>
-        <div style={{width: '25%'}} className='neonBlue' onClick={()=>copy(email)}>{email}</div>
+        <CopyToClipboard text={email} onCopy={(email, result) => {
+                dispatch(setDataForModal(email))
+                setModal('ModalResMailGroups')
+            }
+        }>
+            <div style={{width: '25%'}} className='neonBlue' >{email}</div>
+        </CopyToClipboard>
+
         <div style={{width: '52%'}}>{text}</div>
     </TableItem>
 }
