@@ -20,6 +20,7 @@ const Licence = () => {
     const dispatch = useDispatch()
     const {data: licence, isLoading, isError} = useGetLicence()
     const [lic, setLic] = useState([])
+    const [check, setCheck] = useState(false)
 
     useEffect(()=>{
         setLic(licence)
@@ -41,7 +42,7 @@ const Licence = () => {
 
     return (
         <div>
-            <LicenceFilters updateItem={updateItem} lic={lic} setLic={setLic}/>
+            <LicenceFilters updateItem={updateItem} lic={lic} setLic={setLic} check={check} setCheck={setCheck}/>
             <BlockShadow >
                 <TableHead>
                     <div style={{width: '3%'}} >№</div>
@@ -56,19 +57,24 @@ const Licence = () => {
             </BlockShadow>
             <Scroll h='h210'>
                 {
-                    lic?.map((item, i) =>  <TableItem key={item._id} extra={!item.status && 'grey'}>
-                        <div style={{width: '3%'}}>{i +1}</div>
-                        <div style={{width: '15%'}}>{item.org}</div>
-                        <div style={{width: '15%'}}>{item.seller}</div>
-                        <div style={{width: '25%'}}>{item.vendor}</div>
-                        <div style={{width: '20%'}}>{item.lic}</div>
-                        <div style={{width: '10%', textAlign: 'center'}}>{item.start}</div>
-                        <div style={{width: '10%', textAlign: 'center'}}>{item.exp}</div>
-                        <div style={{width: '12%', textAlign: 'center'}}>{item.info}</div>
-                        {
-                            user && <div className='edit'><Button onClick={()=> updateItem(item)} size='small' color={'success'}><EditIcon/></Button></div>
-                        }
-                    </TableItem>)
+                    lic?.map((item, i) => {
+                        if (!check && !item.status) return
+                        return (
+                            <TableItem key={item._id} extra={!item.status && 'grey'}>
+                                <div style={{width: '3%'}}>{i +1}</div>
+                                <div style={{width: '15%'}}>{item.org}</div>
+                                <div style={{width: '15%'}}>{item.seller}</div>
+                                <div style={{width: '25%'}}>{item.vendor}</div>
+                                <div style={{width: '20%'}}>{item.lic}</div>
+                                <div style={{width: '10%', textAlign: 'center'}}>{item.start}</div>
+                                <div style={{width: '10%', textAlign: 'center'}}>{item.exp}</div>
+                                <div style={{width: '12%', textAlign: 'center'}}>{item.info}</div>
+                                {
+                                    user && <div className='edit'><Button onClick={()=> updateItem(item)} size='small' color={'success'}><EditIcon/></Button></div>
+                                }
+                            </TableItem>
+                        )
+                    })
                 }
             </Scroll>
         </div>
