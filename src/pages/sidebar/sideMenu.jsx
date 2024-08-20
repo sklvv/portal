@@ -46,7 +46,7 @@ const SideMenu = () => {
                         <Tree name={'Пользователи'} ico={<CoPresentIcon/>} link={'userAdmin'} />
                         <Tree name={'iBoard'} ico={<ApiIcon/>} link={'iboardAdmin'} />
                         <Tree name={'Dashboard'} ico={<ApiIcon/>} link={'dashboardAdmin'} />
-                        <Tree name={'Учёт'} ico={<ImportantDevicesIcon/>} link={'inventory'} />
+                        <Tree name={'ИТ'} ico={<ImportantDevicesIcon/>} link={'inventory'} />
                         <Tree name={'Транспорт'} ico={<DriveEtaIcon/>} link={'transport'} />
                     </SimpleTreeView>
                 : ''
