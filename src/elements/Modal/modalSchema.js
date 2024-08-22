@@ -46,5 +46,11 @@ export const LicenceSchema = yup.object().shape({
     notes: yup.string(),
     amount: yup.string(),
 });
+export const IPtablesSchema = yup.object().shape({
+    ip: yup.string().required("Укажите IP адрес"),
+    type: yup.string().required("Укажите тип оборудования"),
+    name: yup.string().required("Укажите имя"),
+    info: yup.string(),
+});
 
 

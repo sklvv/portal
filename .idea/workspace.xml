@@ -10,6 +10,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/hook/useGetIPtables.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/pages/inventory/subpages/IPtable.jsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/pages/inventory/subpages/Licence.jsx" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -60,7 +65,7 @@
       <workItem from="1721964648595" duration="26050000" />
       <workItem from="1722338976714" duration="36573000" />
       <workItem from="1723434133673" duration="22265000" />
-      <workItem from="1723609987259" duration="7158000" />
+      <workItem from="1723609987259" duration="12943000" />
     </task>
     <servers />
   </component>
