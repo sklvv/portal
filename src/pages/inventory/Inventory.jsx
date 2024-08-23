@@ -6,9 +6,9 @@ import IPtable from "./subpages/IPtable";
 
 const Inventory = () => {
     return (
-         <ElemTab arr={['Лицензии','Таблица IP', 'Закуп', 'Баланс', ]}>
-            <Licence/>
+         <ElemTab arr={['Таблица IP', 'Лицензии', 'Закуп', 'Баланс', ]}>
              <IPtable/>
+             <Licence/>
             <div> 2222</div>
         </ElemTab>
     );

@@ -5,6 +5,16 @@ import VersionItem from "./subpages/VersionItem";
 const VersionLog = () => {
     const data = [
         {
+            date: '2024',
+            ver: '1.0.2',
+            list: [
+                {
+                    name: 'ИТ [администрирование]',
+                    li: ['Переименован раздел Учет в ИТ ','Добавлен блок Таблица IP', 'Ф-и поиска, изменения и добавления данных', 'Модальное окно для редактирования и клонирования данных']
+                },
+            ]
+        },
+        {
             date: '12.08.2024',
             ver: '1.0.1',
             list: [
@@ -36,15 +46,15 @@ const VersionLog = () => {
     ]
 
     return (
-        <div className='versionPage'>
-            <Scroll>
+        <Scroll>
+            <div className='versionPage'>
                 {data.map((i, index) => {
                     return (<VersionItem data={i} key={index} />)
                         }
                     )
                 }
-            </Scroll>
-        </div>
+            </div>
+        </Scroll>
     )
 };
 

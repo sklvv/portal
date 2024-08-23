@@ -9,11 +9,12 @@ import {useGetIPtables_add} from "../../../hook/useGetIPtables";
 import {resetDataForModal} from "../ModalSlice";
 import EditIcon from "@mui/icons-material/Edit";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import {Box, Button, ButtonGroup, FormControlLabel, IconButton, Tooltip, Typography} from "@mui/material";
-import {GTextField} from "../../CustomMui/customMui";
+import {Box, Button, ButtonGroup, FormControlLabel, IconButton, Select, Tooltip, Typography} from "@mui/material";
+import {GFormControl, GInputLabel, GTextField} from "../../CustomMui/customMui";
 import Switch from "@mui/material/Switch";
 import SaveIcon from "@mui/icons-material/Save";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
+import MenuItem from "@mui/material/MenuItem";
 
 const ModalIPtables = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
@@ -23,6 +24,7 @@ const ModalIPtables = () => {
     const dispatch = useDispatch()
     const mutation = useGetIPtables_add()
     const [clone, setClone] = useState(false)
+    const [select, setsetSelect] = useState('ПУСТО');
 
     const {
         register, setValue, control,
@@ -38,6 +40,7 @@ const ModalIPtables = () => {
             Object.entries(dataForModal).forEach(
                 ([name, value]) => setValue(name, value)
             );
+            setsetSelect(dataForModal['type'])
         }
     },[dataForModal])
 
@@ -55,6 +58,15 @@ const ModalIPtables = () => {
         setClone(true)
         dispatch(resetDataForModal())
     }
+
+    const handleChangeSelect = (e) => {
+        const item = e.target.value
+        setValue('type', item)
+        setsetSelect(item);
+    }
+
+    const text = useTheme('text')
+    const selectText = useTheme('select')
 
     if (mutation.isLoading) {return <span>Submitting...</span>;}
     if (mutation.isError) {return <span>Error: {mutation.error.message}</span>;}
@@ -88,14 +100,40 @@ const ModalIPtables = () => {
                             }
                 />
 
-
-                <GTextField style={{width: "45%"}} id="type" label="Тип" variant="standard" type='text' size='small'
-                            {...register("type")} error={errors.type && true}
-                            helperText={
-                                errors.type ? <span style={{color: 'red'}}>{errors.type.message}</span>
-                                    : <span style={{height: '20px'}}> </span>
+                <GFormControl sx={{width: '49%', borderBottom: '0.1rem solid #ffffff4a;'}} variant="standard" size='small'>
+                    <GInputLabel id="type-label" sx={{color: text}}
+                                 error={errors.type && true} {...register("type")}
+                                 helperText={
+                                     errors.type ? <span style={{color: 'red'}}>{errors.type.message}</span>
+                                         : <span style={{height: '20px'}}> </span>
+                                 }
+                    >Тип</GInputLabel>
+                    <Select
+                        labelId="type-label"
+                        id="type"
+                        value={select}
+                        onChange={handleChangeSelect}
+                        sx={{color: text}}
+                        inputProps={{
+                            MenuProps: {
+                                MenuListProps: {
+                                    sx: {
+                                        backgroundColor: selectText,
+                                        color: text
+                                    }
+                                }
                             }
-                />
+                        }}
+                    >
+                        <MenuItem  value={'ПУСТО'}>ПУСТО</MenuItem>
+                        <MenuItem  value={'Сервер'}>Сервер</MenuItem>
+                        <MenuItem  value={'Маршрутизатор'}>Маршрутизатор</MenuItem>
+                        <MenuItem  value={'Оргтехника'}>Оргтехника</MenuItem>
+                        <MenuItem  value={'Wifi роутер'}>Wifi роутер</MenuItem>
+                        <MenuItem  value={'ПК'}>ПК</MenuItem>
+                        <MenuItem  value={'USB концентротор'}>USB концентратор</MenuItem>
+                    </Select>
+                </GFormControl>
                 <GTextField fullWidth id="info" label="Описание" variant="standard" type='text' size='small'
                             {...register("info")} error={errors.info && true}
                             helperText={
@@ -111,7 +149,6 @@ const ModalIPtables = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-
 
                 <div >
                     <Tooltip title={<Typography variant="body2"  gutterBottom>Сохранить данные</Typography>}>
@@ -132,3 +169,4 @@ const ModalIPtables = () => {
 };
 
 export default ModalIPtables;
+

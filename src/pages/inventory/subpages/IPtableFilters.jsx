@@ -5,7 +5,6 @@ import {useAuth} from "../../../hook/useAuth";
 import {ButtonGroup, FormControlLabel, IconButton, InputAdornment, Tooltip, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import Switch from "@mui/material/Switch";
 import {GTextField} from "../../../elements/CustomMui/customMui";
 import {useTheme} from "../../../hook/useTheme";
 import SearchIcon from "@mui/icons-material/Search";
@@ -37,6 +36,7 @@ const IPtableFilters = ({updateItem,ipt, setIpt}) => {
                 return i.ip.toLowerCase().includes(search.toLowerCase())
                     || i.type.toLowerCase().includes(search.toLowerCase())
                     || i.name.toLowerCase().includes(search.toLowerCase())
+                    || i.info.toLowerCase().includes(search.toLowerCase())
             })
             setIpt(searchedData)
         }
