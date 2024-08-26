@@ -104,6 +104,16 @@ const ModalPhoneBook = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
+                <GTextField fullWidth id="org" label="Организация" variant="standard" type='text' size='small'
+                            InputProps={{
+                                startAdornment: (<InputAdornment position="start"><PhoneIcon /></InputAdornment>),
+                            }}
+                            {...register("org")} error={errors.org && true}
+                            helperText={
+                                errors.org ? <span style={{color: 'red'}}>{errors.org.message}</span>
+                                    : <span style={{height: '20px'}}> </span>
+                            }
+                />
                 <GTextField fullWidth id="phone" label="Телефон*" variant="standard" type='email' size='small'
                             InputProps={{
                                 startAdornment: (<InputAdornment position="start"><PhoneIcon /></InputAdornment>),

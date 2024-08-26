@@ -37,6 +37,7 @@ const PhoneBookFilters = ({updateItem}) => {
                     || i.phone.includes(search)
                     || i.dep.toLowerCase().includes(search)
                     || i.position.toLowerCase().includes(search)
+                    || i.org.toLowerCase().includes(search)
             })
             dispatch(setPhoneBookList(searchedData))
         }

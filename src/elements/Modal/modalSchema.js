@@ -12,6 +12,7 @@ export const phoneBookSchema = yup.object().shape({
         .required("Укажите имя"),
     position: yup.string(),
     dep: yup.string(),
+    org: yup.string(),
     phone: yup.string()
         .required("Введите номер")
         .min(3, txt.min)
