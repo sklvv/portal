@@ -53,5 +53,13 @@ export const IPtablesSchema = yup.object().shape({
     name: yup.string().required("Укажите имя"),
     info: yup.string(),
 });
+export const HardwareSchema = yup.object().shape({
+    name: yup.string().required("Укажите наименование адрес"),
+    type: yup.string().required("Укажите тип оборудования"),
+    price: yup.string(),
+    inventory: yup.string(),
+    factory: yup.string(),
+    date: yup.string(),
+});
 
 

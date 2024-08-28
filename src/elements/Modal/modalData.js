@@ -6,6 +6,7 @@ import ModalUsers from "./subpages/ModalUsers";
 import ModalLicence from "./subpages/ModalLicence";
 import ModalResMailGroups from "./subpages/ModalResMailGroups";
 import ModalIPtables from "./subpages/ModalIPtables";
+import ModalHardware from "./subpages/ModalHardware";
 
 
 
@@ -26,6 +27,9 @@ export const modalData = (variant, mode)=>{
             break;
         case 'iptables':
             return  <ModalIPtables />
+            break;
+        case 'hardware':
+            return  <ModalHardware />
             break;
         case 'users':
             return  <ModalUsers />
