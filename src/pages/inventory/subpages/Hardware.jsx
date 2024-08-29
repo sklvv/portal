@@ -14,6 +14,7 @@ import Scroll from "../../../elements/Scroll";
 import HardwareFilters from "./HardwareFilters";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
+
 const Hardware = () => {
     const {user} = useAuth()
     const {setModal} = useModal()
@@ -64,12 +65,18 @@ const Hardware = () => {
                     hard?.map((item, i) => {
                         if (!check && item.status) return
                         return (
-                            <TableItem key={item._id}>
+                            <TableItem key={item._id} extra={item.status && 'grey'}>
                                 <div style={{width: '5%'}}>{i +1}</div>
                                 <div style={{width: '20%'}}>{item.name}</div>
                                 <div style={{width: '15%'}}>{item.type}</div>
                                 <div style={{width: '20%'}}>{item.inventory}</div>
-                                <div style={{width: '10%'}}>{item.status ? 'ВЫДАНО' : 'СКЛАД'}</div>
+                                <div style={{width: '10%'}}>
+                                    {
+                                        item.status
+                                            ? <span style={{color: 'red'}}>ВЫДАНО</span>
+                                            : <span style={{color: 'green'}}>СКЛАД</span>
+                                    }
+                                </div>
                                 <div style={{width: '20%'}}>{item.person}</div>
                                 {
                                     user && <div className='edit'>
@@ -87,3 +94,4 @@ const Hardware = () => {
 };
 
 export default Hardware;
+

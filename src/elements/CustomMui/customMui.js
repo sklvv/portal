@@ -21,7 +21,7 @@ export const GTextField = styled(TextField)(({ theme }) => ({
     /*'& .MuiInputAdornment-root' : {color:'white'},*/
     '& .MuiButtonBase-root .black' : {backgroundColor: 'white'},
     '&:hover .black': {backgroundColor: 'grey'},
-    '& .MuiInput-input.Mui-disabled': {color: 'grey'},
+    '& .MuiInput-input.Mui-disabled': {'-webkitTextFillColor': 'grey'},
     '& .MuiInputLabel-root.Mui-disabled': {color: 'grey'},
    /* '& .MuiInputAdornment-root' : {color: '#4cb242'},*/
    /* 'input': {

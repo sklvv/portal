@@ -5,24 +5,22 @@ import {useDispatch, useSelector} from "react-redux";
 import {useTheme} from "../../../../hook/useTheme";
 import {useModal} from "../../../../hook/useModal";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import {Box, Button, ButtonGroup, ListItemIcon, ListItemText, Tooltip, Typography} from "@mui/material";
+import {Box, Button, Tooltip, Typography} from "@mui/material";
 import {GTextField} from "../../../CustomMui/customMui";
-import SaveIcon from "@mui/icons-material/Save";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {HardwareRentSchema, HardwareSchema} from "../../modalSchema";
-import AttributionIcon from '@mui/icons-material/Attribution';
+import {HardwareRentSchema,} from "../../modalSchema";
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {useGetHardware_rent} from "../../../../hook/useGetHardware";
-import TableHead from "../../../Table/TableHead";
-import BlockShadow from "../../../BlockShadow";
 import HardwareRentHistory from "./HardwareRentHistory";
+import {useAuth} from "../../../../hook/useAuth";
 
 const ModalHardwareRent = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
     const neonGreen = useTheme('neonGreen')
     const neonGreenShadow = useTheme('neonGreenShadow')
     const {exitModal} = useModal()
+    const {user} = useAuth()
     const dispatch = useDispatch()
     const {name, inventory, status} = dataForModal
     const mutation = useGetHardware_rent()
@@ -36,12 +34,19 @@ const ModalHardwareRent = () => {
         resolver: yupResolver(HardwareRentSchema)
     });
 
+    const _date = new Date().toISOString().slice(0, 10)
+
     useEffect(()=>{
         if (dataForModal){
             Object.entries(dataForModal).forEach(
                 ([name, value]) => setValue(name, value)
             );
         }
+        if (dataForModal.start.length < 1){
+            setValue('start', _date)
+        }
+
+
     },[dataForModal])
 
     const onSubmit = async (data) => {
@@ -52,6 +57,7 @@ const ModalHardwareRent = () => {
             _id: data._id,
             status: data.status,
             inventory: data.inventory,
+            whoGet: user
         }
         mutation.mutate(newData);
         exitModal(1000)

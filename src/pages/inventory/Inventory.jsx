@@ -7,11 +7,10 @@ import Hardware from "./subpages/Hardware";
 
 const Inventory = () => {
     return (
-         <ElemTab arr={['Таблица IP', 'Лицензии', 'Оборудование','Аренда', ]}>
+         <ElemTab arr={['Таблица IP', 'Лицензии', 'Оборудование',]}>
              <IPtable/>
              <Licence/>
              <Hardware/>
-            <div> 2222</div>
         </ElemTab>
     );
 }

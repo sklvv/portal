@@ -2,11 +2,7 @@ import React, {useEffect, useState} from 'react';
 import TableHead from "../../../Table/TableHead";
 import BlockShadow from "../../../BlockShadow";
 import {useGetHardwareRentHistory} from "../../../../hook/useGetHardware";
-import Skelet from "../../../Skelet";
 import TableItem from "../../../Table/TableItem";
-import Button from "@mui/material/Button";
-import EditIcon from "@mui/icons-material/Edit";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 const HardwareRentHistory = ({inventory}) => {
     const {data: hardwareRent, isError} = useGetHardwareRentHistory(inventory)
@@ -24,9 +20,10 @@ const HardwareRentHistory = ({inventory}) => {
             <BlockShadow >
                 <TableHead>
                     <div style={{width: '5%'}} >№</div>
-                    <div style={{width: '45%'}} >Ответственный</div>
-                    <div style={{width: '25%'}} >Дата выдачи</div>
-                    <div style={{width: '25%'}} >Дата возврата</div>
+                    <div style={{width: '30%'}} >Ответственный</div>
+                    <div style={{width: '20%'}} >Дата выдачи</div>
+                    <div style={{width: '20%'}} >Дата возврата</div>
+                    <div style={{width: '25%'}} >Кто принял</div>
                 </TableHead>
             </BlockShadow>
             <div>
@@ -35,9 +32,10 @@ const HardwareRentHistory = ({inventory}) => {
                         return (
                             <TableItem key={item._id}>
                                 <div style={{width: '5%'}}>{i + 1}</div>
-                                <div style={{width: '45%'}}>{item.person}</div>
-                                <div style={{width: '25%'}}>{item.start}</div>
-                                <div style={{width: '25%'}}>{item.end}</div>
+                                <div style={{width: '30%'}}>{item.person}</div>
+                                <div style={{width: '20%'}}>{item.start}</div>
+                                <div style={{width: '20%'}}>{item.end}</div>
+                                <div style={{width: '25%'}}>{item.whoGet}</div>
                             </TableItem>
                         )
                     })
