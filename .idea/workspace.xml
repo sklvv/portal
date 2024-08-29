@@ -28,7 +28,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Node/IGUARD",
+    "last_opened_file_path": "C:/Node/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,7 +65,8 @@
       <workItem from="1721964648595" duration="26050000" />
       <workItem from="1722338976714" duration="36573000" />
       <workItem from="1723434133673" duration="22265000" />
-      <workItem from="1723609987259" duration="30501000" />
+      <workItem from="1723609987259" duration="31074000" />
+      <workItem from="1724903128329" duration="5334000" />
     </task>
     <servers />
   </component>

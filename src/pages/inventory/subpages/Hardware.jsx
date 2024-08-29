@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import Scroll from "../../../elements/Scroll";
 import HardwareFilters from "./HardwareFilters";
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 const Hardware = () => {
     const {user} = useAuth()
@@ -25,12 +26,19 @@ const Hardware = () => {
         // eslint-disable-next-line no-use-before-define
     },[hardware])
 
-    const updateItem = (item = false) =>{
+    const updateItem = (type, item = false) =>{
         dispatch(resetDataForModal())
-        if (item._id) {
+        if (type === 'update'){
+            if (item._id) {
+                dispatch(setDataForModal(item))
+            }
+            setModal('hardware')
+        } else if (type === 'rent'){
             dispatch(setDataForModal(item))
+            setModal('hardwareRent')
         }
-        setModal('hardware')
+
+
     }
 
     if (isLoading) {return <Skelet/>}
@@ -44,9 +52,10 @@ const Hardware = () => {
                 <TableHead>
                     <div style={{width: '5%'}} >№</div>
                     <div style={{width: '20%'}} >Наименование</div>
-                    <div style={{width: '20%'}} >Тип</div>
-                    <div style={{width: '25%'}} >Инвентарный номер</div>
-                    <div style={{width: '20%'}} >Заводской номер</div>
+                    <div style={{width: '15%'}} >Тип</div>
+                    <div style={{width: '20%'}} >Инвентарный номер</div>
+                    <div style={{width: '10%'}} >Статус</div>
+                    <div style={{width: '20%'}} >Ответственный</div>
                 </TableHead>
             </BlockShadow>
             <Scroll h='h210'>
@@ -57,11 +66,15 @@ const Hardware = () => {
                             <TableItem key={item._id}>
                                 <div style={{width: '5%'}}>{i +1}</div>
                                 <div style={{width: '20%'}}>{item.name}</div>
-                                <div style={{width: '20%'}}>{item.type}</div>
-                                <div style={{width: '25%'}}>{item.inventory}</div>
-                                <div style={{width: '20%'}}>{item.factory}</div>
+                                <div style={{width: '15%'}}>{item.type}</div>
+                                <div style={{width: '20%'}}>{item.inventory}</div>
+                                <div style={{width: '10%'}}>{item.status}</div>
+                                <div style={{width: '20%'}}>{item.person}</div>
                                 {
-                                    user && <div className='edit'><Button onClick={()=> updateItem(item)} size='small' color={'success'}><EditIcon/></Button></div>
+                                    user && <div className='edit'>
+                                        <Button onClick={()=> updateItem('update',item)} size='small' color={'success'}><EditIcon/></Button>
+                                        <Button onClick={()=> updateItem('rent', item)} size='small' color={'success'}><ManageAccountsIcon/></Button>
+                                    </div>
                                 }
                             </TableItem>
                         )

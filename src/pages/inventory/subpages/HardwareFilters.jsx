@@ -48,7 +48,7 @@ const HardwareFilters = ({updateItem, hard, setHard}) => {
                 <ButtonGroup variant="outlined" size='small' sx={{verticalAlign: 'bottom'}}>
                     {
                         user && <Tooltip title={<Typography variant="body2"  gutterBottom>Добавить оборудование</Typography>}>
-                            <Button onClick={updateItem} color={'success'}><AddCircleOutlineIcon/> Добавить</Button>
+                            <Button onClick={()=>updateItem('update')} color={'success'}><AddCircleOutlineIcon/> Добавить</Button>
                         </Tooltip>
                     }
                 </ButtonGroup>

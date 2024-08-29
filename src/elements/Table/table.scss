@@ -39,6 +39,7 @@
         right: 2px;
         bottom: 3px;
         display: none;
+        .MuiButtonBase-root {min-width: 40px !important;}
     }
     .status {
         position: absolute;

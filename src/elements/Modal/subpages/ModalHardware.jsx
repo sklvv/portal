@@ -117,7 +117,7 @@ const ModalHardware = () => {
                         }}
                     >
                         <MenuItem  value={'ПУСТО'}>ПУСТО</MenuItem>
-                        <MenuItem  value={'Сервер'}>Ноутбук</MenuItem>
+                        <MenuItem  value={'Ноутбук'}>Ноутбук</MenuItem>
                         <MenuItem  value={'Маршрутизатор'}>Маршрутизатор</MenuItem>
                         <MenuItem  value={'Оргтехника'}>Оргтехника</MenuItem>
                         <MenuItem  value={'ПК'}>ПК</MenuItem>
@@ -151,6 +151,13 @@ const ModalHardware = () => {
                             {...register("date")} error={errors.date && true}
                             helperText={
                                 errors.date ? <span style={{color: 'red'}}>{errors.date.message}</span>
+                                    : <span style={{height: '20px'}}> </span>
+                            }
+                />
+                <GTextField fullWidth id="note" label="Примечания" variant="standard" type='text' size='small' multiline rows={4}
+                            {...register("note")} error={errors.note && true}
+                            helperText={
+                                errors.note ? <span style={{color: 'red'}}>{errors.note.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />

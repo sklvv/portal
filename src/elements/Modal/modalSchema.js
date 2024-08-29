@@ -60,6 +60,7 @@ export const HardwareSchema = yup.object().shape({
     inventory: yup.string(),
     factory: yup.string(),
     date: yup.string(),
+    note: yup.string(),
 });
 
 

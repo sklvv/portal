@@ -41,6 +41,9 @@
   bottom: 3px;
   display: none;
 }
+.tableItem .edit .MuiButtonBase-root {
+  min-width: 40px !important;
+}
 .tableItem .status {
   position: absolute;
   bottom: -8px;
