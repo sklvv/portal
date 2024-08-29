@@ -2,17 +2,22 @@ import React, {useState} from 'react';
 import '../inventory.scss'
 import {useGetHardware} from "../../../hook/useGetHardware";
 import {useAuth} from "../../../hook/useAuth";
-import {ButtonGroup, IconButton, InputAdornment, Tooltip, Typography} from "@mui/material";
+import {ButtonGroup, FormControlLabel, IconButton, InputAdornment, Tooltip, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import {GTextField} from "../../../elements/CustomMui/customMui";
 import {useTheme} from "../../../hook/useTheme";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import Switch from "@mui/material/Switch";
 
-const HardwareFilters = ({updateItem, hard, setHard}) => {
+const HardwareFilters = ({updateItem, hard, setHard, check, setCheck}) => {
     const {data: hardware} = useGetHardware()
     const {user} = useAuth()
+
+    const showLic = () =>{
+        setCheck(!check)
+    }
 
     /*Поиск*/
     const [search, setSearch] = useState('')
@@ -52,6 +57,9 @@ const HardwareFilters = ({updateItem, hard, setHard}) => {
                         </Tooltip>
                     }
                 </ButtonGroup>
+                <Tooltip title={<Typography variant="body2"  gutterBottom>Показ выданного оборудования</Typography>}>
+                    <FormControlLabel sx={{ml: '20px'}} control={<Switch onClick={showLic} checked={check} color="success"/>} label="Показать все" />
+                </Tooltip>
             </div>
             <div className='searchFilter'>
                 <GTextField id="realiz_search" sx={{pt: '15px', width: '300px', pr: '15px', color: useTheme('text')}}  variant="standard" placeholder='Поиск' value={search}

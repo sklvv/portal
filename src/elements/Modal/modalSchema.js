@@ -62,5 +62,11 @@ export const HardwareSchema = yup.object().shape({
     date: yup.string(),
     note: yup.string(),
 });
+export const HardwareRentSchema = yup.object().shape({
+    person: yup.string().required("Укажите ответственного"),
+    status: yup.boolean(),
+    start: yup.string().required("Укажите дату выдачи"),
+    end: yup.string(),
+});
 
 

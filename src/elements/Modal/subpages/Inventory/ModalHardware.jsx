@@ -1,28 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useTheme} from "../../../hook/useTheme";
-import {useModal} from "../../../hook/useModal";
-import {Controller, useForm} from "react-hook-form";
+import {useTheme} from "../../../../hook/useTheme";
+import {useModal} from "../../../../hook/useModal";
+import {useGetHardware_add} from "../../../../hook/useGetHardware";
+import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {IPtablesSchema} from "../modalSchema";
-import {useGetIPtables_add} from "../../../hook/useGetIPtables";
-import {resetDataForModal} from "../ModalSlice";
+import {HardwareSchema} from "../../modalSchema";
+import {resetDataForModal} from "../../ModalSlice";
 import EditIcon from "@mui/icons-material/Edit";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import {Box, Button, ButtonGroup, FormControlLabel, IconButton, Select, Tooltip, Typography} from "@mui/material";
-import {GFormControl, GInputLabel, GTextField} from "../../CustomMui/customMui";
-import Switch from "@mui/material/Switch";
+import {Box, Button, ButtonGroup, IconButton, Select, Tooltip, Typography} from "@mui/material";
+import {GFormControl, GInputLabel, GTextField} from "../../../CustomMui/customMui";
+import MenuItem from "@mui/material/MenuItem";
 import SaveIcon from "@mui/icons-material/Save";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MenuItem from "@mui/material/MenuItem";
 
-const ModalIPtables = () => {
+const ModalHardware = () => {
     const dataForModal = useSelector(state => state.modal.dataForModal);
     const neonGreen = useTheme('neonGreen')
     const neonGreenShadow = useTheme('neonGreenShadow')
     const {exitModal} = useModal()
     const dispatch = useDispatch()
-    const mutation = useGetIPtables_add()
+    const mutation = useGetHardware_add()
+
     const [clone, setClone] = useState(false)
     const [select, setsetSelect] = useState('ПУСТО');
 
@@ -32,7 +32,7 @@ const ModalIPtables = () => {
         formState: { errors },
     } = useForm({
         mode: "onTouched",
-        resolver: yupResolver(IPtablesSchema)
+        resolver: yupResolver(HardwareSchema)
     });
 
     useEffect(()=>{
@@ -53,7 +53,6 @@ const ModalIPtables = () => {
         mutation.mutate(newData);
         exitModal(1000)
     }
-
     const onClone = () => {
         setClone(true)
         dispatch(resetDataForModal())
@@ -92,15 +91,7 @@ const ModalIPtables = () => {
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
-                <GTextField style={{width: "45%"}} id="ip" label="IP*" variant="standard" type='text' size='small'
-                            {...register("ip")} error={errors.ip && true}
-                            helperText={
-                                errors.ip ? <span style={{color: 'red'}}>{errors.ip.message}</span>
-                                    : <span style={{height: '20px'}}> </span>
-                            }
-                />
-
-                <GFormControl sx={{width: '49%', borderBottom: '0.1rem solid #ffffff4a;'}} variant="standard" size='small'>
+                <GFormControl sx={{width: '100%', borderBottom: '0.1rem solid #ffffff4a;'}} variant="standard" size='small'>
                     <GInputLabel id="type-label" sx={{color: text}}
                                  error={errors.type && true} {...register("type")}
                                  helperText={
@@ -126,26 +117,48 @@ const ModalIPtables = () => {
                         }}
                     >
                         <MenuItem  value={'ПУСТО'}>ПУСТО</MenuItem>
-                        <MenuItem  value={'Сервер'}>Сервер</MenuItem>
+                        <MenuItem  value={'Ноутбук'}>Ноутбук</MenuItem>
                         <MenuItem  value={'Маршрутизатор'}>Маршрутизатор</MenuItem>
                         <MenuItem  value={'Оргтехника'}>Оргтехника</MenuItem>
-                        <MenuItem  value={'Wifi роутер'}>Wifi роутер</MenuItem>
                         <MenuItem  value={'ПК'}>ПК</MenuItem>
-                        <MenuItem  value={'USB концентротор'}>USB концентратор</MenuItem>
+                        <MenuItem  value={'Wifi роутер'}>Другое</MenuItem>
                     </Select>
                 </GFormControl>
-                <GTextField fullWidth id="info" label="Описание" variant="standard" type='text' size='small'
-                            {...register("info")} error={errors.info && true}
+                <GTextField style={{width: "45%"}} id="inventory" label="Инвентарный номер" variant="standard" type='text' size='small'
+                            disabled={ dataForModal ? true : false}
+                            {...register("inventory")} error={errors.inventory && true}
                             helperText={
-                                errors.info ? <span style={{color: 'red'}}>{errors.info.message}</span>
+                                errors.inventory ? <span style={{color: 'red'}}>{errors.inventory.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
 
-                <GTextField fullWidth id="notes" label="Заметки" variant="standard" type='text' size='small' multiline rows={4}
-                            {...register("notes")} error={errors.notes && true}
+                <GTextField style={{width: "45%"}} id="factory" label="Заводской номер" variant="standard" type='text' size='small'
+                            {...register("factory")} error={errors.factory && true}
                             helperText={
-                                errors.notes ? <span style={{color: 'red'}}>{errors.notes.message}</span>
+                                errors.factory ? <span style={{color: 'red'}}>{errors.factory.message}</span>
+                                    : <span style={{height: '20px'}}> </span>
+                            }
+                />
+
+                <GTextField style={{width: "45%"}} id="price" label="Стоимость" variant="standard" type='text' size='small'
+                            {...register("price")} error={errors.price && true}
+                            helperText={
+                                errors.price ? <span style={{color: 'red'}}>{errors.price.message}</span>
+                                    : <span style={{height: '20px'}}> </span>
+                            }
+                />
+                <GTextField style={{width: "45%"}} id="date" label="Дата покупки" variant="standard" type='text' size='small'
+                            {...register("date")} error={errors.date && true}
+                            helperText={
+                                errors.date ? <span style={{color: 'red'}}>{errors.date.message}</span>
+                                    : <span style={{height: '20px'}}> </span>
+                            }
+                />
+                <GTextField fullWidth id="note" label="Примечания" variant="standard" type='text' size='small' multiline rows={4}
+                            {...register("note")} error={errors.note && true}
+                            helperText={
+                                errors.note ? <span style={{color: 'red'}}>{errors.note.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
@@ -168,5 +181,4 @@ const ModalIPtables = () => {
     );
 };
 
-export default ModalIPtables;
-
+export default ModalHardware;

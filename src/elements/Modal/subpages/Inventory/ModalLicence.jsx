@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useTheme} from "../../../hook/useTheme";
+import {useTheme} from "../../../../hook/useTheme";
 import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {LicenceSchema} from "../modalSchema";
-import {useModal} from "../../../hook/useModal";
-import {useGetLicence_add, useGetLicence_del} from "../../../hook/useGetLicence";
+import {LicenceSchema} from "../../modalSchema";
+import {useModal} from "../../../../hook/useModal";
+import {useGetLicence_add, useGetLicence_del} from "../../../../hook/useGetLicence";
 import EditIcon from "@mui/icons-material/Edit";
 import {Box, Button, ButtonGroup, FormControlLabel, IconButton, Tooltip, Typography} from "@mui/material";
-import {GTextField} from "../../CustomMui/customMui";
+import {GTextField} from "../../../CustomMui/customMui";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SaveIcon from "@mui/icons-material/Save";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
-import {resetDataForModal} from "../ModalSlice";
+import {resetDataForModal} from "../../ModalSlice";
 import Switch from "@mui/material/Switch";
 
 const ModalLicence = () => {

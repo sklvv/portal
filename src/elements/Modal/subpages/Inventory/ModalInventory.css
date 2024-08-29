@@ -1,0 +1,15 @@
+/*inventory rent*/
+.hardInfoBlock {
+  display: flex;
+  justify-content: space-between;
+}
+.hardInfoBlock .nameBlock {
+  margin-top: 15px;
+}
+.hardInfoBlock .nameBlock span {
+  color: grey;
+  font-style: italic;
+  padding-right: 15px;
+}
+
+/*# sourceMappingURL=ModalInventory.css.map */

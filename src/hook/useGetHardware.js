@@ -5,17 +5,14 @@ const link = `${BACK}/api/portal/inventory/hardware`
 
 async function fetchHardware(){
     const data = (await axios.get(link)).data
-    /* data.sort((a, b)=>{
-         if (a.name < b.name) {
-             return -1;
-         }
-         if (a.name > b.name) {
-             return 1;
-         }
-         return 0;
-     })*/
     return data
 }
+
+async function fetchHardwareRentHistory(what){
+    const data = (await (axios.get(`${link}/rent/${what}`))).data
+    return data
+}
+
 export const useGetHardware = () => {
     return useQuery('hardware', fetchHardware,
         {
@@ -35,6 +32,25 @@ export const useGetHardware_add = () => {
             }
         }
     );
+}
+export const useGetHardware_rent = () => {
+    const queryClient = useQueryClient();
+    return useMutation((licItem) =>
+            axios.post(`${link}/rent`, licItem),
+        {
+            onSuccess: () => {
+                // Инвалидация и обновление
+                queryClient.invalidateQueries('hardware');
+            }
+        }
+    );
+}
+export const useGetHardwareRentHistory = (what) => {
+    return useQuery('hardwareRent', ()=> {return fetchHardwareRentHistory(what)},
+        {
+            keepPreviousData: true,
+            refetchOnWindowFocus: true,
+        })
 }
 export const useGetHardware_del = () => {
     const queryClient = useQueryClient();

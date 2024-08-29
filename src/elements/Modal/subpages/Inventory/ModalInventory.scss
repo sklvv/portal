@@ -1,0 +1,13 @@
+/*inventory rent*/
+.hardInfoBlock{
+    display: flex;
+    justify-content: space-between;
+    .nameBlock {
+        margin-top: 15px;
+        span{
+            color: grey;
+            font-style: italic;
+            padding-right: 15px;
+        }
+    }
+}

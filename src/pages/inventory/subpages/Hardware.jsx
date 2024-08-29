@@ -20,6 +20,7 @@ const Hardware = () => {
     const dispatch = useDispatch()
     const {data: hardware, isLoading, isError} = useGetHardware()
     const [hard, setHard] = useState([])
+    const [check, setCheck] = useState(false)
 
     useEffect(()=>{
         setHard(hardware)
@@ -47,7 +48,7 @@ const Hardware = () => {
 
     return (
         <div>
-            <HardwareFilters updateItem={updateItem} hard={hard} setHard={setHard}/>
+            <HardwareFilters updateItem={updateItem} hard={hard} setHard={setHard} check={check} setCheck={setCheck}/>
             <BlockShadow >
                 <TableHead>
                     <div style={{width: '5%'}} >№</div>
@@ -61,14 +62,14 @@ const Hardware = () => {
             <Scroll h='h210'>
                 {
                     hard?.map((item, i) => {
-                        /*if (!check && !item.status) return*/
+                        if (!check && item.status) return
                         return (
                             <TableItem key={item._id}>
                                 <div style={{width: '5%'}}>{i +1}</div>
                                 <div style={{width: '20%'}}>{item.name}</div>
                                 <div style={{width: '15%'}}>{item.type}</div>
                                 <div style={{width: '20%'}}>{item.inventory}</div>
-                                <div style={{width: '10%'}}>{item.status}</div>
+                                <div style={{width: '10%'}}>{item.status ? 'ВЫДАНО' : 'СКЛАД'}</div>
                                 <div style={{width: '20%'}}>{item.person}</div>
                                 {
                                     user && <div className='edit'>

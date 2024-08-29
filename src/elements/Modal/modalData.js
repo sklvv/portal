@@ -3,11 +3,11 @@ import ModalAuth from "./subpages/ModalAuth";
 import ModalPhoneBook from "./subpages/ModalPhoneBook";
 import ModalTransport from "./subpages/ModalTransport";
 import ModalUsers from "./subpages/ModalUsers";
-import ModalLicence from "./subpages/ModalLicence";
+import ModalLicence from "./subpages/Inventory/ModalLicence";
 import ModalResMailGroups from "./subpages/ModalResMailGroups";
-import ModalIPtables from "./subpages/ModalIPtables";
-import ModalHardware from "./subpages/ModalHardware";
-import ModalHardwareRent from "./subpages/ModalHardwareRent";
+import ModalIPtables from "./subpages/Inventory/ModalIPtables";
+import ModalHardware from "./subpages/Inventory/ModalHardware";
+import ModalHardwareRent from "./subpages/Inventory/ModalHardwareRent";
 
 
 
