@@ -57,7 +57,7 @@ const HardwareFilters = ({updateItem, hard, setHard, check, setCheck}) => {
                         </Tooltip>
                     }
                 </ButtonGroup>
-                <Tooltip title={<Typography variant="body2"  gutterBottom>Показ выданного оборудования</Typography>}>
+                <Tooltip title={<Typography variant="body2"  gutterBottom>Показать дополнительно выданное оборудование</Typography>}>
                     <FormControlLabel sx={{ml: '20px'}} control={<Switch onClick={showLic} checked={check} color="success"/>} label="Показать все" />
                 </Tooltip>
             </div>
