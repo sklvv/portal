@@ -10,6 +10,7 @@ import {useTheme} from "../../../hook/useTheme";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import Switch from "@mui/material/Switch";
+import {searchInArray} from "../../../utils/searchInArray";
 
 const LicenceFilters = ({updateItem,lic, setLic, check, setCheck}) => {
     const {data: licence} = useGetLicence()
@@ -39,11 +40,8 @@ const LicenceFilters = ({updateItem,lic, setLic, check, setCheck}) => {
             setLic(licence)
         }
         if (e.key === 'Enter' && search.length > 1) {
-            const searchedData = lic.filter(i => {
-                return i.org.toLowerCase().includes(search.toLowerCase())
-                    || i.seller.toLowerCase().includes(search.toLowerCase())
-                    || i.vendor.toLowerCase().includes(search.toLowerCase())
-            })
+            const keysToSearch = ["org", "seller", 'vendor'];
+            const searchedData = searchInArray(lic, search, keysToSearch);
             setLic(searchedData)
         }
     }

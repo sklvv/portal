@@ -28,7 +28,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Node/iboard",
+    "last_opened_file_path": "C:/Node/portal",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,6 +68,7 @@
       <workItem from="1723434133673" duration="22265000" />
       <workItem from="1723609987259" duration="31074000" />
       <workItem from="1724903128329" duration="22473000" />
+      <workItem from="1726461911789" duration="6504000" />
     </task>
     <servers />
   </component>

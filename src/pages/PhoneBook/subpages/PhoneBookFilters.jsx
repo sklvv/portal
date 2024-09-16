@@ -11,6 +11,7 @@ import {setPhoneBookList} from "../PhoneBookSlice";
 import {useGetPhoneBook} from "../../../hook/useGetPhoneBook";
 import {useTheme} from "../../../hook/useTheme";
 import {useAuth} from "../../../hook/useAuth";
+import {searchInArray} from "../../../utils/searchInArray";
 
 
 const PhoneBookFilters = ({updateItem}) => {
@@ -31,14 +32,12 @@ const PhoneBookFilters = ({updateItem}) => {
     }
     /*ф-я поиска*/
     const handleKeyDown = (e)=>{
+        if (e.key === 'Backspace' || e.key === 'Delete'){
+            dispatch(setPhoneBookList(phonebook))
+        }
         if (e.key === 'Enter' && search.length > 2) {
-            const searchedData = phonebook.filter(i => {
-                return i.name.toLowerCase().includes(search.toLowerCase())
-                    || i.phone.includes(search)
-                    || i.dep.toLowerCase().includes(search)
-                    || i.position.toLowerCase().includes(search)
-                    || i.org.toLowerCase().includes(search)
-            })
+            const keysToSearch = ["name", "phone", 'dep', 'position', 'org'];
+            const searchedData = searchInArray(phonebook, search, keysToSearch);
             dispatch(setPhoneBookList(searchedData))
         }
     }

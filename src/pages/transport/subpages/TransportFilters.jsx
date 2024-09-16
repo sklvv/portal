@@ -11,6 +11,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import {setTransportList} from "../TransportSlice";
 import {useGetTransport} from "../../../hook/useGetTransport";
 import '../transport.scss'
+import {searchInArray} from "../../../utils/searchInArray";
+import {setPhoneBookList} from "../../phoneBook/PhoneBookSlice";
 
 const TransportFilters = ({updateItem}) => {
     const dispatch = useDispatch()
@@ -30,14 +32,12 @@ const TransportFilters = ({updateItem}) => {
     }
     /*ф-я поиска*/
     const handleKeyDown = (e)=>{
+        if (e.key === 'Backspace' || e.key === 'Delete'){
+            dispatch(setTransportList(transport))
+        }
         if (e.key === 'Enter' && search.length > 2) {
-            const searchedData = transport.filter(i => {
-                return i.name.toLowerCase().includes(search.toLowerCase())
-                    || i.car.includes(search)
-                    || i.carmodel.includes(search)
-                    || i.number.includes(search)
-                    || i.phone.includes(search)
-            })
+            const keysToSearch = ["name", "car", 'carmodel', 'number', 'phone'];
+            const searchedData = searchInArray(transport, search, keysToSearch);
             dispatch(setTransportList(searchedData))
         }
     }

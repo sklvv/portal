@@ -10,6 +10,7 @@ import {useTheme} from "../../../hook/useTheme";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import Switch from "@mui/material/Switch";
+import {searchInArray} from "../../../utils/searchInArray";
 
 const HardwareFilters = ({updateItem, hard, setHard, check, setCheck}) => {
     const {data: hardware} = useGetHardware()
@@ -37,12 +38,8 @@ const HardwareFilters = ({updateItem, hard, setHard, check, setCheck}) => {
             setHard(hardware)
         }
         if (e.key === 'Enter' && search.length > 1) {
-            const searchedData = hard.filter(i => {
-                return i.name.toLowerCase().includes(search.toLowerCase())
-                    || i.type.toLowerCase().includes(search.toLowerCase())
-                    || i.inventory.toLowerCase().includes(search.toLowerCase())
-                    || i.factory.toLowerCase().includes(search.toLowerCase())
-            })
+            const keysToSearch = ["name", "type", 'inventory', 'factory'];
+            const searchedData = searchInArray(hard, search, keysToSearch);
             setHard(searchedData)
         }
     }

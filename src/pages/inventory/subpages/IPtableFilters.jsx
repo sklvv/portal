@@ -9,6 +9,7 @@ import {GTextField} from "../../../elements/CustomMui/customMui";
 import {useTheme} from "../../../hook/useTheme";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import {searchInArray} from "../../../utils/searchInArray";
 
 const IPtableFilters = ({updateItem,ipt, setIpt}) => {
     const {data: iptables} = useGetIPtables()
@@ -32,12 +33,8 @@ const IPtableFilters = ({updateItem,ipt, setIpt}) => {
             setIpt(iptables)
         }
         if (e.key === 'Enter' && search.length > 1) {
-            const searchedData = ipt.filter(i => {
-                return i.ip.toLowerCase().includes(search.toLowerCase())
-                    || i.type.toLowerCase().includes(search.toLowerCase())
-                    || i.name.toLowerCase().includes(search.toLowerCase())
-                    || i.info.toLowerCase().includes(search.toLowerCase())
-            })
+            const keysToSearch = ["ip", "type", 'name', 'info'];
+            const searchedData = searchInArray(ipt, search, keysToSearch);
             setIpt(searchedData)
         }
     }
