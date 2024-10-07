@@ -8,7 +8,7 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState('');
     const [auth, setAuth] = useState(false);
 
-    const date = localStorage.getItem('logged')
+    /*const date = localStorage.getItem('logged')
     const today = new Date();
     const currentDay = today.toISOString().slice(0,10);
 
@@ -20,25 +20,27 @@ export const AuthProvider = ({children}) => {
         else {
             signIn(name)
         }
-    }
+    }*/
 
-    const signIn = (newUser)=> {
+    const signIn = (name, position, token)=> {
         localStorage.setItem('auth', JSON.stringify(true));
-        localStorage.setItem('name', newUser);
-        localStorage.setItem('logged', currentDay)
-        setUser(newUser)
+        localStorage.setItem('name', name);
+        localStorage.setItem('position', position);
+        localStorage.setItem('token', token)
+        setUser(name)
         setAuth(true)
         /*navigate('/', {replace: true})*/
     }
     const signOut = ()=> {
         localStorage.removeItem('auth');
         localStorage.removeItem('name');
-        localStorage.removeItem('logged');
+        localStorage.removeItem('position');
+        localStorage.removeItem('token');
         setUser(null)
         navigate('/', {replace: true})
     }
 
-    const value = {auth, user, signIn, signOut, checkLogin}
+    const value = {auth, user, signIn, signOut}
 
     return <AuthContext.Provider value={value}>
         {children}

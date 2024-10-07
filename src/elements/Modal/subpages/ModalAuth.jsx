@@ -14,7 +14,7 @@ import {BACK} from "../../../utils/links";
 import {useTheme} from "../../../hook/useTheme";
 
 const ModalAuth = () => {
-    const {signIn, checkLogin} = useAuth()
+    const {signIn} = useAuth()
     const {exitModal} = useModal()
     const neonGreen = useTheme('neonGreen')
     const neonGreenShadow = useTheme('neonGreenShadow')
@@ -32,18 +32,13 @@ const ModalAuth = () => {
 
     const onSubmit = async (data) => {
         setAuthMsg('Проверка данных')
-        const loginDateCheck = checkLogin()
         try {
             let sendData = {...data, from: 'portal'}
             const response = await axios.post(`${BACK}/api/login`, sendData)
             setAuthMsg(response.data.message)
             if (response.status === 200) {
-                localStorage.setItem('auth', true);
-                localStorage.setItem('name', response.data.name);
-                localStorage.setItem('position', response.data.position);
-                localStorage.setItem('logged', loginDateCheck)
                 setAuthMsg('')
-                signIn(response.data.name, response.data.position);
+                signIn(response.data.name, response.data.position, response.data.token);
                 exitModal()
             }
         } catch (e) {
