@@ -38,7 +38,7 @@ const ModalAuth = () => {
             setAuthMsg(response.data.message)
             if (response.status === 200) {
                 setAuthMsg('')
-                signIn(response.data.name, response.data.position, response.data.token);
+                signIn(response.data.name, response.data.token);
                 exitModal()
             }
         } catch (e) {

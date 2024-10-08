@@ -1,5 +1,7 @@
 import React, {createContext, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import {BACK} from "../utils/links";
 
 export const AuthContext = createContext(null);
 
@@ -8,24 +10,19 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState('');
     const [auth, setAuth] = useState(false);
 
-    /*const date = localStorage.getItem('logged')
-    const today = new Date();
-    const currentDay = today.toISOString().slice(0,10);
-
-    const checkLogin = ()=>{
-        const name = localStorage.getItem('name')
-        if( date !== currentDay || !name){
+    const checkAuth = async () => {
+        const token = localStorage.getItem('token')
+        if (token && token !== 'undefined'){
+            const response = await axios.post(`${BACK}/api/reauth`, {token})
+            signIn(response.data.name, response.data.token)
+        } else {
             signOut()
         }
-        else {
-            signIn(name)
-        }
-    }*/
+    }
 
-    const signIn = (name, position, token)=> {
+    const signIn = (name, token)=> {
         localStorage.setItem('auth', JSON.stringify(true));
         localStorage.setItem('name', name);
-        localStorage.setItem('position', position);
         localStorage.setItem('token', token)
         setUser(name)
         setAuth(true)
@@ -34,13 +31,13 @@ export const AuthProvider = ({children}) => {
     const signOut = ()=> {
         localStorage.removeItem('auth');
         localStorage.removeItem('name');
-        localStorage.removeItem('position');
         localStorage.removeItem('token');
         setUser(null)
+        setAuth(false)
         navigate('/', {replace: true})
     }
 
-    const value = {auth, user, signIn, signOut}
+    const value = {auth, user, signIn, signOut, checkAuth}
 
     return <AuthContext.Provider value={value}>
         {children}

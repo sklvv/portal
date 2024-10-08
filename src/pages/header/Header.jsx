@@ -18,7 +18,7 @@ import Switch from "@mui/material/Switch";
 
 const Header = () => {
     const activePageName = useSelector(state => state.sidemenu.activePageName);
-    const {signOut,checkLogin, user} = useAuth()
+    const {signOut,checkAuth, user} = useAuth()
     const dispatch = useDispatch();
     const {setModal} = useModal()
 
@@ -54,7 +54,7 @@ const Header = () => {
         toggleTheme(getTheme)
         if (getTheme === 'dark'){setSwitchState(false)}
         else {setSwitchState(true)}
-        checkLogin()
+        checkAuth()
 
     }, []);
 
