@@ -33,7 +33,11 @@ export const useGetUsers = () => {
 export const useGetUsers_update = () => {
     const queryClient = useQueryClient();
     return useMutation((userItem) =>
-            axios.post(link, userItem),
+            axios.post(link, userItem, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление
@@ -45,7 +49,9 @@ export const useGetUsers_update = () => {
 export const useGetUser_del = () => {
     const queryClient = useQueryClient();
     return useMutation((id) =>
-            axios.delete(link, { data: { id: id } }),
+            axios.delete(link, { data: { id: id }, headers: {
+                    Authorization: `Bearer ${token}`
+                } }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление

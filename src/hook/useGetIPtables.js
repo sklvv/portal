@@ -3,17 +3,14 @@ import axios from "axios";
 import {BACK} from "../utils/links";
 const link = `${BACK}/api/portal/inventory/iptables`
 
+const token = localStorage.getItem('token')
+
 async function fetchIPtables(){
-    const data = (await axios.get(link)).data
-    /* data.sort((a, b)=>{
-         if (a.name < b.name) {
-             return -1;
-         }
-         if (a.name > b.name) {
-             return 1;
-         }
-         return 0;
-     })*/
+    const data = (await axios.get(link, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })).data
     return data
 }
 export const useGetIPtables = () => {
@@ -27,7 +24,11 @@ export const useGetIPtables = () => {
 export const useGetIPtables_add = () => {
     const queryClient = useQueryClient();
     return useMutation((licItem) =>
-            axios.post(link, licItem),
+            axios.post(link, licItem, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление
@@ -39,7 +40,9 @@ export const useGetIPtables_add = () => {
 export const useGetIPtables_del = () => {
     const queryClient = useQueryClient();
     return useMutation((id) =>
-            axios.delete(link, {data: {id: id}}),
+            axios.delete(link, {data: {id: id}, headers: {
+                    Authorization: `Bearer ${token}`
+                }}),
         {
             onSuccess: () => {
                 // Инвалидация и обновление

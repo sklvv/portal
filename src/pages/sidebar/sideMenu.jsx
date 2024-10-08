@@ -32,7 +32,7 @@ const SideMenu = () => {
 
     useEffect(()=>{
         checkAuth()
-    })
+    },[auth])
 
 
 
