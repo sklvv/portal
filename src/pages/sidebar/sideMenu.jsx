@@ -21,15 +21,18 @@ const SideMenu = () => {
     const mode = useSelector(state => state.header.mode);
     const menuList = useSelector(state => state.sidemenu.menuList);
     const dispatch = useDispatch()
-    const {auth} = useAuth()
     const color = useTheme('divider')
     const currentPath = (window.location.pathname).replace('/', '');
 
     const themeColor = useTheme() ? '' : 'themeColor'
-
+    const {checkAuth, auth} = useAuth()
     /*useEffect(()=>{
         dispatch(setPage(currentPath))
     },[])*/
+
+    useEffect(()=>{
+        checkAuth()
+    })
 
 
 

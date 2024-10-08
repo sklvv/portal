@@ -3,8 +3,14 @@ import axios from "axios";
 import {BACK} from "../utils/links";
 const link = `${BACK}/api/user`
 
+const token = localStorage.getItem('token')
+
 async function fetchUsers(){
-    const data = (await axios.get(link)).data
+    const data = (await axios.get(link, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })).data
     data.sort((a, b)=>{
         if (a.name < b.name) {
             return -1;

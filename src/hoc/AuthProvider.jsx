@@ -14,6 +14,7 @@ export const AuthProvider = ({children}) => {
         const token = localStorage.getItem('token')
         if (token && token !== 'undefined'){
             const response = await axios.post(`${BACK}/api/reauth`, {token})
+            if (!response.data) {signOut()}
             signIn(response.data.name, response.data.token)
         } else {
             signOut()
@@ -21,7 +22,6 @@ export const AuthProvider = ({children}) => {
     }
 
     const signIn = (name, token)=> {
-        localStorage.setItem('auth', JSON.stringify(true));
         localStorage.setItem('name', name);
         localStorage.setItem('token', token)
         setUser(name)
@@ -29,7 +29,6 @@ export const AuthProvider = ({children}) => {
         /*navigate('/', {replace: true})*/
     }
     const signOut = ()=> {
-        localStorage.removeItem('auth');
         localStorage.removeItem('name');
         localStorage.removeItem('token');
         setUser(null)
@@ -37,7 +36,11 @@ export const AuthProvider = ({children}) => {
         navigate('/', {replace: true})
     }
 
-    const value = {auth, user, signIn, signOut, checkAuth}
+    const token = () => {
+        return localStorage.getItem('token')
+    }
+
+    const value = {auth, user, signIn, signOut, checkAuth, token}
 
     return <AuthContext.Provider value={value}>
         {children}
