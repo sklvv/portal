@@ -87,14 +87,14 @@ const ModalIPtables = () => {
                 </Typography>
                 <GTextField fullWidth id="name" label="Наименование" variant="standard" type='text' size='small'
                             {...register("name")} error={errors.name && true}
-                            helperText={
+                            HelperText={
                                 errors.name ? <span style={{color: 'red'}}>{errors.name.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
                 />
                 <GTextField style={{width: "45%"}} id="ip" label="IP*" variant="standard" type='text' size='small'
                             {...register("ip")} error={errors.ip && true}
-                            helperText={
+                            HelperText={
                                 errors.ip ? <span style={{color: 'red'}}>{errors.ip.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
@@ -103,7 +103,7 @@ const ModalIPtables = () => {
                 <GFormControl sx={{width: '49%', borderBottom: '0.1rem solid #ffffff4a;'}} variant="standard" size='small'>
                     <GInputLabel id="type-label" sx={{color: text}}
                                  error={errors.type && true} {...register("type")}
-                                 helperText={
+                                 HelperText={
                                      errors.type ? <span style={{color: 'red'}}>{errors.type.message}</span>
                                          : <span style={{height: '20px'}}> </span>
                                  }
@@ -136,7 +136,7 @@ const ModalIPtables = () => {
                 </GFormControl>
                 <GTextField fullWidth id="info" label="Описание" variant="standard" type='text' size='small'
                             {...register("info")} error={errors.info && true}
-                            helperText={
+                            HelperText={
                                 errors.info ? <span style={{color: 'red'}}>{errors.info.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }
@@ -144,7 +144,7 @@ const ModalIPtables = () => {
 
                 <GTextField fullWidth id="notes" label="Заметки" variant="standard" type='text' size='small' multiline rows={4}
                             {...register("notes")} error={errors.notes && true}
-                            helperText={
+                            HelperText={
                                 errors.notes ? <span style={{color: 'red'}}>{errors.notes.message}</span>
                                     : <span style={{height: '20px'}}> </span>
                             }

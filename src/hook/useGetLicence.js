@@ -5,8 +5,8 @@ const link = `${BACK}/api/portal/inventory/licence`
 
 const getToken = () => localStorage.getItem('token') || null;
 
-const token = getToken();
 async function fetchLicence(){
+    const token = getToken();
     const data = (await axios.get(link, {
         headers: {
             Authorization: `Bearer ${token}`
@@ -23,6 +23,7 @@ export const useGetLicence = () => {
 }
 /**/
 export const useGetLicence_add = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((licItem) =>
             axios.post(link, licItem, {
@@ -39,6 +40,7 @@ export const useGetLicence_add = () => {
     );
 }
 export const useGetLicence_del = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((id) =>
             axios.delete(link, {data: {id: id}, headers: {

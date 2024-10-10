@@ -4,9 +4,10 @@ import {BACK} from "../utils/links";
 const link = `${BACK}/api/portal/inventory/hardware`
 
 const getToken = () => localStorage.getItem('token') || null;
-const token = getToken();
+
 
 async function fetchHardware(){
+    const token = getToken();
     if (!token) return;
     const data = (await axios.get(link, {
         headers: {
@@ -17,6 +18,7 @@ async function fetchHardware(){
 }
 
 async function fetchHardwareRentHistory(what){
+    const token = getToken();
     if (!token) return;
     const data = (await (axios.get(`${link}/rent/${what}`, {
         headers: {
@@ -35,6 +37,7 @@ export const useGetHardware = () => {
 }
 /**/
 export const useGetHardware_add = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((licItem) =>
             axios.post(link, licItem, {
@@ -51,6 +54,7 @@ export const useGetHardware_add = () => {
     );
 }
 export const useGetHardware_rent = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((licItem) =>
             axios.post(`${link}/rent`, licItem, {
@@ -74,6 +78,7 @@ export const useGetHardwareRentHistory = (what) => {
         })
 }
 export const useGetHardware_del = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((id) =>
             axios.delete(link, {data: {id: id}, headers: {

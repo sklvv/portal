@@ -5,8 +5,8 @@ const link = `${BACK}/api/portal/inventory/iptables`
 
 const getToken = () => localStorage.getItem('token') || null;
 
-const token = getToken();
 async function fetchIPtables(){
+    const token = getToken();
     const data = (await axios.get(link, {
         headers: {
             Authorization: `Bearer ${token}`
@@ -23,6 +23,7 @@ export const useGetIPtables = () => {
 }
 /**/
 export const useGetIPtables_add = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((licItem) =>
             axios.post(link, licItem, {
@@ -39,6 +40,7 @@ export const useGetIPtables_add = () => {
     );
 }
 export const useGetIPtables_del = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((id) =>
             axios.delete(link, {data: {id: id}, headers: {

@@ -7,8 +7,9 @@ const getToken = () => localStorage.getItem('token') || null;
 const sortTransportByName = (data) => {
     return data.sort((a, b) => a.name.localeCompare(b.name));
 }
-const token = getToken();
+
 const fetchTransport = async () => {
+    const token = getToken();
     if (!token) return;
     try {
         const { data } = await axios.get(link, {
@@ -32,6 +33,7 @@ export const useGetTransport = () => {
 }
 /**/
 export const useGetTransport_add = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((transportItem) =>
             axios.post(link, transportItem,{
@@ -48,6 +50,7 @@ export const useGetTransport_add = () => {
     );
 }
 export const useGetTransport_del = () => {
+    const token = getToken();
     const queryClient = useQueryClient();
     return useMutation((id) =>
             axios.delete(link, { data: { id: id }, headers: {
