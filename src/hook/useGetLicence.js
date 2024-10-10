@@ -3,17 +3,15 @@ import axios from "axios";
 import {BACK} from "../utils/links";
 const link = `${BACK}/api/portal/inventory/licence`
 
+const getToken = () => localStorage.getItem('token') || null;
+
+const token = getToken();
 async function fetchLicence(){
-    const data = (await axios.get(link)).data
-   /* data.sort((a, b)=>{
-        if (a.name < b.name) {
-            return -1;
+    const data = (await axios.get(link, {
+        headers: {
+            Authorization: `Bearer ${token}`
         }
-        if (a.name > b.name) {
-            return 1;
-        }
-        return 0;
-    })*/
+    })).data
     return data
 }
 export const useGetLicence = () => {
@@ -27,7 +25,11 @@ export const useGetLicence = () => {
 export const useGetLicence_add = () => {
     const queryClient = useQueryClient();
     return useMutation((licItem) =>
-            axios.post(link, licItem),
+            axios.post(link, licItem, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление
@@ -39,7 +41,9 @@ export const useGetLicence_add = () => {
 export const useGetLicence_del = () => {
     const queryClient = useQueryClient();
     return useMutation((id) =>
-            axios.delete(link, {data: {id: id}}),
+            axios.delete(link, {data: {id: id}, headers: {
+                    Authorization: `Bearer ${token}`
+                }}),
         {
             onSuccess: () => {
                 // Инвалидация и обновление

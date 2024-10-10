@@ -3,32 +3,34 @@ import axios from "axios";
 import {BACK} from "../utils/links";
 const link = `${BACK}/api/user`
 
-const token = localStorage.getItem('token')
+const getToken = () => localStorage.getItem('token') || null;
+const sortUsersByName = (users) => {
+    return users.sort((a, b) => a.name.localeCompare(b.name));
+}
 
-async function fetchUsers(){
-    const data = (await axios.get(link, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })).data
-    data.sort((a, b)=>{
-        if (a.name < b.name) {
-            return -1;
-        }
-        if (a.name > b.name) {
-            return 1;
-        }
-        return 0;
-    })
-    return data
+const token = getToken();
+const fetchUsers = async () => {
+    if (!token) return;
+
+    try {
+        const { data } = await axios.get(link, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return sortUsersByName(data);
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        return [];
+    }
 }
 export const useGetUsers = () => {
-    return useQuery('users', fetchUsers,
-        {
-            keepPreviousData: true,
-            refetchOnWindowFocus: true,
-        })
+    return useQuery(['users'], fetchUsers, {
+        keepPreviousData: true,
+        refetchOnWindowFocus: true,
+    });
 }
+
 /**/
 export const useGetUsers_update = () => {
     const queryClient = useQueryClient();

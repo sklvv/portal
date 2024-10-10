@@ -3,8 +3,9 @@ import axios from "axios";
 import {BACK} from "../utils/links";
 const link = `${BACK}/api/portal/inventory/iptables`
 
-const token = localStorage.getItem('token')
+const getToken = () => localStorage.getItem('token') || null;
 
+const token = getToken();
 async function fetchIPtables(){
     const data = (await axios.get(link, {
         headers: {

@@ -3,13 +3,26 @@ import axios from "axios";
 import {BACK} from "../utils/links";
 const link = `${BACK}/api/portal/inventory/hardware`
 
+const getToken = () => localStorage.getItem('token') || null;
+const token = getToken();
+
 async function fetchHardware(){
-    const data = (await axios.get(link)).data
+    if (!token) return;
+    const data = (await axios.get(link, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })).data
     return data
 }
 
 async function fetchHardwareRentHistory(what){
-    const data = (await (axios.get(`${link}/rent/${what}`))).data
+    if (!token) return;
+    const data = (await (axios.get(`${link}/rent/${what}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }))).data
     return data
 }
 
@@ -24,7 +37,11 @@ export const useGetHardware = () => {
 export const useGetHardware_add = () => {
     const queryClient = useQueryClient();
     return useMutation((licItem) =>
-            axios.post(link, licItem),
+            axios.post(link, licItem, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление
@@ -36,7 +53,11 @@ export const useGetHardware_add = () => {
 export const useGetHardware_rent = () => {
     const queryClient = useQueryClient();
     return useMutation((licItem) =>
-            axios.post(`${link}/rent`, licItem),
+            axios.post(`${link}/rent`, licItem, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление
@@ -55,7 +76,9 @@ export const useGetHardwareRentHistory = (what) => {
 export const useGetHardware_del = () => {
     const queryClient = useQueryClient();
     return useMutation((id) =>
-            axios.delete(link, {data: {id: id}}),
+            axios.delete(link, {data: {id: id}, headers: {
+                    Authorization: `Bearer ${token}`
+                }}),
         {
             onSuccess: () => {
                 // Инвалидация и обновление

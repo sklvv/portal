@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../inventory.scss'
 import {useGetIPtables} from "../../../hook/useGetIPtables";
 import {useAuth} from "../../../hook/useAuth";
-import {ButtonGroup, FormControlLabel, IconButton, InputAdornment, Tooltip, Typography} from "@mui/material";
+import {ButtonGroup, IconButton, InputAdornment, Tooltip, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import {GTextField} from "../../../elements/CustomMui/customMui";
@@ -45,7 +45,7 @@ const IPtableFilters = ({updateItem,ipt, setIpt}) => {
                 <ButtonGroup variant="outlined" size='small' sx={{verticalAlign: 'bottom'}}>
                     {
                         user && <Tooltip title={<Typography variant="body2"  gutterBottom>Добавить номер пользователя</Typography>}>
-                            <Button onClick={updateItem} color={'success'}><AddCircleOutlineIcon/> Добавить</Button>
+                            <Button onClick={updateItem} color='success'><AddCircleOutlineIcon/> Добавить</Button>
                         </Tooltip>
                     }
                 </ButtonGroup>
