@@ -48,16 +48,35 @@ export const useGetUsers_update = () => {
         }
     );
 }
-export const useGetUser_del = () => {
+
+export const useGetUsers_updatePass = () => {
     const queryClient = useQueryClient();
-    return useMutation((id) =>
-            axios.delete(link, { data: { id: id }, headers: {
+    return useMutation((userItem) =>
+            axios.post(`${link}/AdmReset`, userItem, {
+                headers: {
                     Authorization: `Bearer ${token}`
-                } }),
+                }
+            }),
         {
             onSuccess: () => {
                 // Инвалидация и обновление
-                queryClient.invalidateQueries('users');
+                queryClient.invalidateQueries('pass');
+            }
+        }
+    );
+}
+export const useGetUsers_SendConfirm = () => {
+    const queryClient = useQueryClient();
+    return useMutation((userItem) =>
+            axios.post(`${link}/Confirm`, userItem, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
+        {
+            onSuccess: () => {
+                // Инвалидация и обновление
+                queryClient.invalidateQueries('confirm');
             }
         }
     );

@@ -55,7 +55,6 @@ const Header = () => {
         if (getTheme === 'dark'){setSwitchState(false)}
         else {setSwitchState(true)}
         checkAuth()
-
     }, []);
 
     const ruDate = new Intl.DateTimeFormat("ru", {

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -17,11 +17,10 @@ import {GTextField} from "../../CustomMui/customMui";
 import BadgeIcon from "@mui/icons-material/Badge";
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import SaveIcon from "@mui/icons-material/Save";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import Switch from "@mui/material/Switch";
-import {useGetUsers_update} from "../../../hook/useGetUsers";
+import {useGetUsers_SendConfirm, useGetUsers_update, useGetUsers_updatePass} from "../../../hook/useGetUsers";
 import {useTheme} from "../../../hook/useTheme";
 
 
@@ -30,7 +29,7 @@ const ModalUsers = () => {
     const neonGreen = useTheme('neonGreen')
     const neonGreenShadow = useTheme('neonGreenShadow')
     const {
-        register, setValue, control,
+        register, setValue, control,getValues,
         handleSubmit,
         formState: { errors },
     } = useForm({
@@ -38,11 +37,11 @@ const ModalUsers = () => {
         resolver: yupResolver(userSchema)
     });
 
-
-
     const {exitModal} = useModal()
     const mutation = useGetUsers_update()
-    const mutate_del = useGetUsers_update()
+    const mutation_pass = useGetUsers_updatePass()
+    const mutation_sendConfirm = useGetUsers_SendConfirm()
+    const [pass, setPass] = useState('')
 
     useEffect(()=>{
         if (dataForModal){
@@ -63,18 +62,35 @@ const ModalUsers = () => {
         mutation.mutate(data);
         exitModal(1000)
     }
-    const onDelete = async (id)=>{
-        mutate_del.mutate({_id: id})
+
+    const onPassUpdate =async () => {
+        let email = getValues('login')
+        let name = getValues('name')
+        if (pass.length >= 6){
+            await mutation_pass.mutate({'login': email, 'pass': pass, 'name': name});
+            exitModal(1000)
+            setPass('')
+        }
+    }
+    const onConfirmAccess =async () => {
+        let email = getValues('login')
+        let name = getValues('name')
+        await mutation_sendConfirm.mutate({'login': email, 'name': name});
         exitModal(1000)
     }
+
 
     if (mutation.isLoading) {return <span>Submitting...</span>;}
     if (mutation.isError) {return <span>Error: {mutation.error.message}</span>;}
     if (mutation.isSuccess) {return <div>Сохранение выполнено успешно</div>;}
 
-    if (mutate_del.isLoading) {return <span>Submitting...</span>;}
-    if (mutate_del.isError) {return <span>Error: {mutation.error.message}</span>;}
-    if (mutate_del.isSuccess) {return <div>Удаление выполнено успешно</div>;}
+    if (mutation_pass.isLoading) {return <span>Submitting...</span>;}
+    if (mutation_pass.isError) {return <span>Error: {mutation_pass.error.message}</span>;}
+    if (mutation_pass.isSuccess) {return <div>Сохранение выполнено успешно</div>;}
+
+    if (mutation_sendConfirm.isLoading) {return <span>Submitting...</span>;}
+    if (mutation_sendConfirm.isError) {return <span>Error: {mutation_sendConfirm.error.message}</span>;}
+    if (mutation_sendConfirm.isSuccess) {return <div>Сохранение выполнено успешно</div>;}
 
     return (
         <div>
@@ -117,15 +133,14 @@ const ModalUsers = () => {
                 <div style={{display: 'flex', marginBottom: '30px', justifyContent: 'space-between'}}>
                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                         <Divider>Управление:</Divider>
+                        <GTextField sx={{m: 1}} fullWidth id="password" label="Обновление пароля" variant="standard" type='email' size='small'
+                                    onChange={(e) => setPass(e.target.value)} value={pass}
+                        />
                         <Tooltip title={<Typography variant="body2"  gutterBottom>Отправить пароль на почту</Typography>}>
-                            <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color='warning' startIcon={<LockResetIcon />}>Сброс пароля</Button>
+                            <Button sx={{m: 1}}  onClick={onPassUpdate} variant="contained" size='small' color='warning' startIcon={<LockResetIcon />}>Сброс пароля</Button>
                         </Tooltip>
-                        <Tooltip title={<Typography variant="body2"  gutterBottom>Активировать пользователя</Typography>}>
-                            <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color='warning' startIcon={<LockResetIcon />}>Активировать</Button>
-                        </Tooltip>
-                        {/*<Tooltip title={<Typography variant="body2"  gutterBottom>Удалить запись в БД</Typography>}>
-                            <Button sx={{m: 1}} onClick={()=>{onDelete(dataForModal._id)}}  variant="contained" size='small' color="error" startIcon={<DeleteForeverIcon />}>Удалить</Button>
-                        </Tooltip>*/}
+
+
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                         <Divider>Авторизация в приложениях:</Divider>
@@ -148,6 +163,9 @@ const ModalUsers = () => {
                                     <FormControlLabel control={<Switch color='success' checked={!!value} onChange={onChange} />} label="Portal" />
                                 )}
                             />
+                        <Tooltip title={<Typography variant="body2"  gutterBottom>Письмо пользователю что запись активированна</Typography>}>
+                            <Button sx={{m: 1}} onClick={onConfirmAccess}  variant="contained" size='small' color='warning' startIcon={<LockResetIcon />}>Уведомить пользователя</Button>
+                        </Tooltip>
                     </div>
                 </div>
 
