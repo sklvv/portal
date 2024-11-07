@@ -55,19 +55,19 @@ const ResMailGroups = () => {
         {
             id: 8,
             name:'Бухгалтерия',
-            email:'buh.group@grdn.ru',
+            email:'buh.group@2-cap.ru',
             text:'Группа рассылки для Бухгалтерии',
         },
         {
             id: 9,
             name:'Отдел Комплектации',
-            email:'ok.group@grdn.ru',
+            email:'ok.group@tdbss.ru',
             text:'Общая группа сотрудников отдела БСС',
         },
         {
             id: 10,
             name:'Отдел кадров',
-            email:'hr.group@grdn.ru',
+            email:'hr.group@2-cap.ru',
             text:'Группа рассылки для отдела кадров',
         },
         {
@@ -79,7 +79,7 @@ const ResMailGroups = () => {
         {
             id: 12,
             name:'Отдел ИТ',
-            email:'it.group@grdn.ru',
+            email:'it.group@2-cap.ru',
             text:'Группа для обращений в ИТ - отдел по вопросам техподдержки',
         },
         {
@@ -109,13 +109,13 @@ const ResMailGroups = () => {
         {
             id: 17,
             name:'СЦ Общая',
-            email:'sc.group@grdn.ru',
+            email:'sc.group@scgrdn.ru',
             text:'Группа рассылки для сервисного центра в том числе сервисные центры в других городах',
         },
         {
             id: 18,
             name:'СЦ Пермь',
-            email:'sc.perm@grdn.ru',
+            email:'sc.perm@scgrdn.ru',
             text:'Общая группа сотрудников сервисного центра г. Пермь',
         },
     ]
