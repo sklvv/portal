@@ -14,6 +14,7 @@ import Transport from "./pages/transport/Transport";
 import Resources from "./pages/resources/Resources";
 import Inventory from "./pages/inventory/Inventory";
 import VersionLog from "./pages/versionLog/VersionLog";
+import Swagger from "./pages/swagger/Swagger";
 
 
 
@@ -35,6 +36,7 @@ function App() {
                         <Route  path='/inventory' element={<Inventory/>}/>
                         <Route  path='/resources' element={<Resources />}/>
                         <Route  path='/transport' element={<Transport />}/>
+                        <Route  path='/swagger' element={<Swagger />}/>
                         <Route path='/versionLog' element={<VersionLog/>}/>
                     </Route>
                 </Routes>

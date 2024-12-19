@@ -16,6 +16,7 @@ import ApiIcon from '@mui/icons-material/Api';
 import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import DriveEtaIcon from '@mui/icons-material/DriveEta';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
+import HttpIcon from '@mui/icons-material/Http';
 
 const SideMenu = () => {
     const mode = useSelector(state => state.header.mode);
@@ -51,6 +52,7 @@ const SideMenu = () => {
                         <Tree name={'Dashboard'} ico={<ApiIcon/>} link={'dashboardAdmin'} />
                         <Tree name={'ИТ'} ico={<ImportantDevicesIcon/>} link={'inventory'} />
                         <Tree name={'Транспорт'} ico={<DriveEtaIcon/>} link={'transport'} />
+                        <Tree name={'Swagger'} ico={<HttpIcon/>} link={'swagger'} />
                     </SimpleTreeView>
                 : ''
             }
