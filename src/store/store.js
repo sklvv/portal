@@ -5,9 +5,18 @@ import sidemenu from "../pages/sidebar/SideMenuSlice";
 import phonebook from "../pages/PhoneBook/PhoneBookSlice";
 import transport from "../pages/transport/TransportSlice";
 import userAdmin from "../pages/userAdmin/UserAdminSlice";
+import swagger from "../pages/swagger/swagger.slice";
 
 const store = configureStore({
-	reducer: { header, modal, sidemenu, phonebook, transport, userAdmin },
+	reducer: {
+		header,
+		modal,
+		sidemenu,
+		phonebook,
+		transport,
+		userAdmin,
+		swagger,
+	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
 			serializableCheck: false,
