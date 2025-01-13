@@ -4,6 +4,7 @@ const initialState = {
 	projectsArr: [],
 	searchQuery: "",
 	selectedRequestId: "",
+	selectedProjectId: "",
 };
 
 const swaggerSlice = createSlice({
@@ -19,10 +20,18 @@ const swaggerSlice = createSlice({
 		setSelectedRequestId: (s, a) => {
 			s.selectedRequestId = a.payload;
 		},
+		setSelectedProjectId: (s, a) => {
+			s.selectedProjectId = a.payload;
+		},
 	},
 });
 
 const { actions, reducer } = swaggerSlice;
 
 export default reducer;
-export const { setProjectsArr, setSearchQuery, setSelectedRequestId } = actions;
+export const {
+	setProjectsArr,
+	setSearchQuery,
+	setSelectedRequestId,
+	setSelectedProjectId,
+} = actions;
