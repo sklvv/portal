@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-	IconButton,
-	InputAdornment,
 	List,
 	ListItemText,
 	Divider,
@@ -10,11 +8,7 @@ import {
 	Autocomplete,
 	TextField,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import CloseIcon from "@mui/icons-material/Close";
-import { GTextField } from "../../../elements/CustomMui/customMui";
 import { ArrowDropDown } from "@mui/icons-material";
-import { useTheme } from "../../../hook/useTheme";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	setProjectsArr,
@@ -265,7 +259,7 @@ const ProjectsListItem = ({ id, name, requests }) => {
 	);
 };
 const ProjectsList = () => {
-	const { projectsArr, searchQuery } = useSelector(s => s.swagger);
+	const { projectsArr } = useSelector(s => s.swagger);
 	return (
 		<List component="nav">
 			{projectsArr.map(project => {
@@ -294,7 +288,6 @@ const ProjectsBar = () => {
 				borderRight: "1px solid #ddd",
 				pt: "15px",
 				pb: "15px",
-				// pr: "10px",
 			}}
 		>
 			<ProjectsSearch />
