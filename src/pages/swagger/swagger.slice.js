@@ -5,6 +5,7 @@ const initialState = {
 	searchQuery: "",
 	selectedRequestId: "",
 	selectedProjectId: "",
+	isModalOpen: false,
 };
 
 const swaggerSlice = createSlice({
@@ -23,6 +24,9 @@ const swaggerSlice = createSlice({
 		setSelectedProjectId: (s, a) => {
 			s.selectedProjectId = a.payload;
 		},
+		setIsModalOpen: (s, a) => {
+			s.isModalOpen = a.payload;
+		},
 	},
 });
 
@@ -34,4 +38,5 @@ export const {
 	setSearchQuery,
 	setSelectedRequestId,
 	setSelectedProjectId,
+	setIsModalOpen,
 } = actions;

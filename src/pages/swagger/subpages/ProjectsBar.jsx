@@ -7,14 +7,26 @@ import {
 	ListItemButton,
 	Autocomplete,
 	TextField,
+	Button,
+	IconButton,
+	Tooltip,
+	Modal,
+	MenuItem,
+	Typography,
+	Dialog,
+	DialogTitle,
+	DialogContent,
 } from "@mui/material";
-import { ArrowDropDown } from "@mui/icons-material";
+import { Add, ArrowDropDown, Remove } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import {
+	setIsModalOpen,
 	setProjectsArr,
 	setSelectedProjectId,
 	setSelectedRequestId,
 } from "../swagger.slice";
+import { useTheme } from "../../../hook/useTheme";
+
 const MOCK_PROJECTS = [
 	{
 		id: "1",
@@ -200,7 +212,181 @@ const MOCK_PROJECTS = [
 		],
 	},
 ];
+const ModalForm = () => {
+	const { isModalOpen, projectsArr } = useSelector(s => s.swagger);
+	const dispatch = useDispatch();
+	const neonGreen = useTheme("neonGreen");
 
+	const [formType, setFormType] = useState("project");
+	const [projectName, setProjectName] = useState("");
+	const [requestData, setRequestData] = useState({
+		name: "",
+		url: "",
+		type: "GET",
+		params: [{ name: "", description: "" }],
+		description: "",
+		output: "",
+		body: "",
+	});
+
+	const handleRequestChange = e => {
+		const { name, value } = e.target;
+		setRequestData(prev => ({ ...prev, [name]: value }));
+	};
+
+	const handleParamChange = (index, e) => {
+		const { name, value } = e.target;
+		const newParams = [...requestData.params];
+		newParams[index][name] = value;
+		setRequestData(prev => ({ ...prev, params: newParams }));
+	};
+
+	const addParam = () => {
+		setRequestData(prev => ({
+			...prev,
+			params: [...prev.params, { name: "", description: "" }],
+		}));
+	};
+
+	const removeParam = index => {
+		const newParams = requestData.params.filter((_, i) => i !== index);
+		setRequestData(prev => ({ ...prev, params: newParams }));
+	};
+
+	return (
+		<Dialog open={isModalOpen} onClose={() => dispatch(setIsModalOpen(false))}>
+			<DialogTitle>
+				Создать {formType === "project" ? "проект" : "запрос"}
+			</DialogTitle>
+			<DialogContent sx={{ pt: "5px !important" }}>
+				<TextField
+					select
+					label="Создать"
+					value={formType}
+					onChange={e => setFormType(e.target.value)}
+					fullWidth
+				>
+					<MenuItem value="project">Проект</MenuItem>
+					<MenuItem value="request">Запрос</MenuItem>
+				</TextField>
+				{formType === "project" ? (
+					<TextField
+						label="Название проекта"
+						value={projectName}
+						onChange={e => setProjectName(e.target.value)}
+						fullWidth
+						margin="normal"
+					/>
+				) : (
+					<>
+						<Autocomplete
+							sx={{ flexGrow: 1, mt: "10px" }}
+							options={projectsArr}
+							renderInput={params => <TextField {...params} label="Проект" />}
+							getOptionLabel={option => option.name}
+							onChange={(e, value) => {
+								if (value && value.id) {
+									// dispatch(setSelectedRequestId(value.id));
+									// dispatch(setSelectedProjectId(value.projectId));
+								}
+							}}
+						/>
+						<TextField
+							label="Название запроса"
+							name="name"
+							value={requestData.name}
+							onChange={handleRequestChange}
+							fullWidth
+							margin="normal"
+						/>
+						<TextField
+							label="URL"
+							name="url"
+							value={requestData.url}
+							onChange={handleRequestChange}
+							fullWidth
+							margin="normal"
+						/>
+						<TextField
+							select
+							label="Тип"
+							name="type"
+							value={requestData.type}
+							onChange={handleRequestChange}
+							fullWidth
+							margin="normal"
+						>
+							<MenuItem value="GET">GET</MenuItem>
+							<MenuItem value="POST">POST</MenuItem>
+							<MenuItem value="PUT">PUT</MenuItem>
+							<MenuItem value="DELETE">DELETE</MenuItem>
+						</TextField>
+						{requestData.params.map((param, index) => (
+							<Box key={index} sx={{ display: "flex", gap: 1, mb: 1 }}>
+								<TextField
+									label="Параметр"
+									name="name"
+									value={param.name}
+									onChange={e => handleParamChange(index, e)}
+									fullWidth
+								/>
+								<TextField
+									label="Описание"
+									name="description"
+									value={param.description}
+									onChange={e => handleParamChange(index, e)}
+									fullWidth
+								/>
+								<IconButton onClick={() => removeParam(index)}>
+									<Tooltip title="Удалить">
+										<Remove />
+									</Tooltip>
+								</IconButton>
+							</Box>
+						))}
+						<Button
+							onClick={addParam}
+							// color="#4cb242"
+							sx={{ color: neonGreen }}
+						>
+							Добавить параметр
+						</Button>
+						<TextField
+							label="Описание"
+							name="description"
+							value={requestData.description}
+							onChange={handleRequestChange}
+							fullWidth
+							margin="normal"
+						/>
+						<TextField
+							label="Ответ"
+							name="output"
+							value={requestData.output}
+							onChange={handleRequestChange}
+							fullWidth
+							margin="normal"
+						/>
+						<TextField
+							label="Тело запроса"
+							name="body"
+							value={requestData.body}
+							onChange={handleRequestChange}
+							fullWidth
+							margin="normal"
+						/>
+					</>
+				)}
+				<Button
+					variant="contained"
+					sx={{ mt: "5px", backgroundColor: neonGreen, width: "100%" }}
+				>
+					Создать
+				</Button>
+			</DialogContent>
+		</Dialog>
+	);
+};
 const ProjectsSearch = () => {
 	const { projectsArr } = useSelector(s => s.swagger);
 	const allRequestsArr = projectsArr.flatMap(el => el.requests);
@@ -209,10 +395,13 @@ const ProjectsSearch = () => {
 	return (
 		<Box
 			sx={{
-				pr: "10px",
+				display: "flex",
+				flexDirection: "row",
+				justifyContent: "space-between",
 			}}
 		>
 			<Autocomplete
+				sx={{ flexGrow: 1 }}
 				options={allRequestsArr}
 				renderInput={params => (
 					<TextField {...params} label="Поиск по запросам" size="small" />
@@ -225,6 +414,11 @@ const ProjectsSearch = () => {
 					}
 				}}
 			/>
+			<IconButton size="small" onClick={() => dispatch(setIsModalOpen(true))}>
+				<Tooltip title="Создать">
+					<Add />
+				</Tooltip>
+			</IconButton>
 		</Box>
 	);
 };
@@ -292,6 +486,7 @@ const ProjectsBar = () => {
 		>
 			<ProjectsSearch />
 			<ProjectsList />
+			<ModalForm />
 		</Box>
 	);
 };
