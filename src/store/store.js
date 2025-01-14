@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import header from "../pages/header/HeaderSlice";
 import modal from "../elements/Modal/ModalSlice";
 import sidemenu from "../pages/sidebar/SideMenuSlice";
-import phonebook from "../pages/PhoneBook/PhoneBookSlice";
+import phonebook from "../pages/phoneBook/PhoneBookSlice";
 import transport from "../pages/transport/TransportSlice";
 import userAdmin from "../pages/userAdmin/UserAdminSlice";
 import swagger from "../pages/swagger/swagger.slice";

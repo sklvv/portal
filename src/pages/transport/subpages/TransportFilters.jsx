@@ -18,7 +18,7 @@ import { setTransportList } from "../TransportSlice";
 import { useGetTransport } from "../../../hook/useGetTransport";
 import "../transport.scss";
 import { searchInArray } from "../../../utils/searchInArray";
-import { setPhoneBookList } from "../../PhoneBook/PhoneBookSlice";
+import { setPhoneBookList } from "../../phoneBook/PhoneBookSlice";
 
 const TransportFilters = ({ updateItem }) => {
 	const dispatch = useDispatch();

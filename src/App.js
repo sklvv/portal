@@ -8,13 +8,14 @@ import { AuthProvider } from "./hoc/AuthProvider";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { themeMode } from "./utils/theme";
 import TransitionsModal from "./elements/Modal/Modal";
-import PhoneBook from "./pages/PhoneBook/PhoneBook";
+
 import UserAdmin from "./pages/userAdmin/UserAdmin";
 import Transport from "./pages/transport/Transport";
 import Resources from "./pages/resources/Resources";
 import Inventory from "./pages/inventory/Inventory";
 import VersionLog from "./pages/versionLog/VersionLog";
 import Swagger from "./pages/swagger/Swagger";
+import PhoneBook from "./pages/phoneBook/PhoneBook";
 
 function App() {
 	const theme = useMemo(() => createTheme(themeMode), []);
