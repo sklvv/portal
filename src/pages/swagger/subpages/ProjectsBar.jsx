@@ -7,6 +7,8 @@ import {
 	Divider,
 	Box,
 	ListItemButton,
+	Autocomplete,
+	TextField,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
@@ -206,55 +208,30 @@ const MOCK_PROJECTS = [
 ];
 
 const ProjectsSearch = () => {
-	/*Поиск*/
-	const [search, setSearch] = useState("");
-	/*Очистка поля поиска*/
-	const resetSearch = () => {
-		setSearch("");
-		// dispatch(setTransportList(transport));
-	};
-	/*Обновление поля поиска*/
-	const handleSearch = e => {
-		e.preventDefault();
-		setSearch(e.target.value);
-	};
-	/*ф-я поиска*/
-	const handleKeyDown = e => {
-		if (e.key === "Backspace" || e.key === "Delete") {
-			// dispatch(setTransportList(transport));
-		}
-		if (e.key === "Enter" && search.length > 2) {
-			// dispatch(setTransportList(searchedData));
-		}
-	};
+	const { projectsArr } = useSelector(s => s.swagger);
+	const allRequestsArr = projectsArr.flatMap(el => el.requests);
+	const dispatch = useDispatch();
 
 	return (
-		<GTextField
+		<Box
 			sx={{
-				width: "250px",
-				color: useTheme("text"),
-				"& .MuiInput-root": { color: useTheme("text") },
+				pr: "10px",
 			}}
-			variant="standard"
-			placeholder="Поиск по запросам"
-			value={search}
-			onKeyDown={handleKeyDown}
-			onChange={handleSearch}
-			InputProps={{
-				startAdornment: (
-					<InputAdornment position="start">
-						<SearchIcon sx={{ color: useTheme("text") }} />
-					</InputAdornment>
-				),
-				endAdornment: (
-					<InputAdornment position="end">
-						<IconButton onClick={resetSearch}>
-							<CloseIcon sx={{ color: useTheme("text") }} />
-						</IconButton>
-					</InputAdornment>
-				),
-			}}
-		/>
+		>
+			<Autocomplete
+				options={allRequestsArr}
+				renderInput={params => (
+					<TextField {...params} label="Поиск по запросам" size="small" />
+				)}
+				getOptionLabel={option => option.name}
+				onChange={(e, value) => {
+					if (value && value.id) {
+						dispatch(setSelectedRequestId(value.id));
+						dispatch(setSelectedProjectId(value.projectId));
+					}
+				}}
+			/>
+		</Box>
 	);
 };
 
@@ -313,10 +290,11 @@ const ProjectsBar = () => {
 	return (
 		<Box
 			sx={{
-				width: "250px",
+				width: "300px",
 				borderRight: "1px solid #ddd",
 				pt: "15px",
 				pb: "15px",
+				// pr: "10px",
 			}}
 		>
 			<ProjectsSearch />
