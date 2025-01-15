@@ -226,12 +226,12 @@ const MOCK_PROJECTS = [
 					"все виды  TYPE all - Все виды работ,  smr - Стоительно-монтажные работы, СМР+Проектно-исполнительные работы, Доделки , " +
 					"pir Проектно-исполнительные работы, service - Сервисные работы, other - КП, торговля, внутрифирменные, бухгалтерия, поставка" +
 					"все виды PARAM - prodano- Продано ТКП, podpisano- Подписано смет/договоров, postavleno- Поставлено ОиМ, oplacheno- Оплачено ФОТ, " +
-					"smontirovano- Смонтировано, zaprocentovano - Запроцентовано, marga - Маржинальная прибыль",
+					"smontirovano- Смонтировано, zaprocentovano - Запроцентовано, marga - Маржинальная прибыль.",
 				params: [
 					{ name: "year", description: "год, минимум 2020 (ниже данных нет)" },
 					{ name: "month", description: "месяц, в виде 1-12" },
 					{ name: "type", description: "тип работ,   " },
-					{ name: "rp", description: "код РП из 1с" },
+					{ name: "rp", description: "код РП из 1с или all  для всех" },
 					{ name: "param", description: "параметр из воронки" },
 				],
 				output: "JSON",
